@@ -1,0 +1,2290 @@
+{
+ "m_GameObject": {
+  "m_FileID": 0,
+  "m_PathID": 0
+ },
+ "m_Enabled": 1,
+ "m_Script": {
+  "m_FileID": 0,
+  "m_PathID": -3082203544527767022
+ },
+ "m_Name": "weapon_grenade_m67_StaticData",
+ "_stateHashToEventsCollection": [
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 1,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.008989952504634857,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Draw",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.12057112157344818,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Safety",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.5947368144989014,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "WeapIn",
+     "_functionNameHash": -224219248,
+     "Enabled": 1,
+     "_time": 0.9210000038146973,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Safety",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.31578946113586426,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 2,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.45077720284461975,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Holster",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.6858804821968079,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "WeapOut",
+     "_functionNameHash": 1174204865,
+     "Enabled": 1,
+     "_time": 0.9682707786560059,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "StartUtilityOperation",
+     "_functionNameHash": 1134400241,
+     "Enabled": 1,
+     "_time": 0.0,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Safety",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.19865772128105164,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Draw",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.7033557295799255,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 4,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.00951877236366272,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Throw",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.3010033369064331,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "FiringBullet",
+     "_functionNameHash": -58181185,
+     "Enabled": 1,
+     "_time": 0.5276329517364502,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "SndFuse",
+      "ParamType": 3
+     },
+     "_functionName": "SoundAtPoint",
+     "_functionNameHash": -833254918,
+     "Enabled": 1,
+     "_time": 0.7009009122848511,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "FireEnd",
+     "_functionNameHash": -1677976749,
+     "Enabled": 1,
+     "_time": 0.9629999995231628,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 3,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.0037878789007663727,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Pin",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.25026068091392517,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Lever",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.4829545319080353,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 3,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.00400962308049202,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "WeapIn",
+     "_functionNameHash": -224219248,
+     "Enabled": 1,
+     "_time": 0.028311964124441147,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Pin",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.19675925374031067,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "AddAmmoInChamber",
+     "_functionNameHash": -508605542,
+     "Enabled": 1,
+     "_time": 0.2745726406574249,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Throw",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.5462962985038757,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "FiringBullet",
+     "_functionNameHash": -58181185,
+     "Enabled": 1,
+     "_time": 0.5848757028579712,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Lever",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.5995370149612427,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "FireEnd",
+     "_functionNameHash": -1677976749,
+     "Enabled": 1,
+     "_time": 0.9509999752044678,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 7,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.008989952504634857,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Holster",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.33796295523643494,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 6,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.00951877236366272,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Throw",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.3010033369064331,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "FiringBullet",
+     "_functionNameHash": -58181185,
+     "Enabled": 1,
+     "_time": 0.4098018705844879,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "SndFuse",
+      "ParamType": 3
+     },
+     "_functionName": "SoundAtPoint",
+     "_functionNameHash": -833254918,
+     "Enabled": 1,
+     "_time": 0.7009009122848511,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "FireEnd",
+     "_functionNameHash": -1677976749,
+     "Enabled": 1,
+     "_time": 0.9629999995231628,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 3,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.0037878789007663727,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Pin",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.24053029716014862,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Lever",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.4829545319080353,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 5,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.011226944625377655,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Holster",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.3208053708076477,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "StartUtilityOperation",
+     "_functionNameHash": 1134400241,
+     "Enabled": 1,
+     "_time": 0.0,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 1,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 4
+     },
+     "_functionName": "UseProp",
+     "_functionNameHash": -1376281788,
+     "Enabled": 1,
+     "_time": 0.0,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 4
+     },
+     "_functionName": "UseProp",
+     "_functionNameHash": -1376281788,
+     "Enabled": 1,
+     "_time": 0.5,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "SndDropBackpack",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.0,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "OnBackpackDrop",
+     "_functionNameHash": 224242560,
+     "Enabled": 1,
+     "_time": 0.25,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "IdleStart",
+     "_functionNameHash": 198060848,
+     "Enabled": 1,
+     "_time": 0.0,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 9,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.00400962308049202,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "WeapIn",
+     "_functionNameHash": -224219248,
+     "Enabled": 1,
+     "_time": 0.028311964124441147,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Pin",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.19675925374031067,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "AddAmmoInChamber",
+     "_functionNameHash": -508605542,
+     "Enabled": 1,
+     "_time": 0.2745726406574249,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Throw",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.5462962985038757,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "FiringBullet",
+     "_functionNameHash": -58181185,
+     "Enabled": 1,
+     "_time": 0.5848757028579712,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Lever",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.5995370149612427,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "SndFuse",
+      "ParamType": 3
+     },
+     "_functionName": "SoundAtPoint",
+     "_functionNameHash": -833254918,
+     "Enabled": 1,
+     "_time": 0.6522522568702698,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "FireEnd",
+     "_functionNameHash": -1677976749,
+     "Enabled": 1,
+     "_time": 0.9509999752044678,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 4,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.010843373835086823,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Safety",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.07349397242069244,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "TripwirePlantingConcrete",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.5060241222381592,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "FiringBullet",
+     "_functionNameHash": -58181185,
+     "Enabled": 1,
+     "_time": 0.5140939354896545,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Holster",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.5987951755523682,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "FireEnd",
+     "_functionNameHash": -1677976749,
+     "Enabled": 1,
+     "_time": 0.9629999995231628,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "IdleStart",
+     "_functionNameHash": 198060848,
+     "Enabled": 1,
+     "_time": 0.0,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "StartUtilityOperation",
+     "_functionNameHash": 1134400241,
+     "Enabled": 1,
+     "_time": 0.0,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "TripwireUnplanting",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.09518072009086609,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Safety",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.19865772128105164,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Draw",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.7033557295799255,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 1,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.008989952504634857,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Draw",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.12057112157344818,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Safety",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.5947368144989014,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "WeapIn",
+     "_functionNameHash": -224219248,
+     "Enabled": 1,
+     "_time": 0.9210000038146973,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Safety",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.31578946113586426,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 2,
+      "StringParam": "",
+      "ParamType": 1
+     },
+     "_functionName": "ThirdAction",
+     "_functionNameHash": -612501071,
+     "Enabled": 1,
+     "_time": 0.45077720284461975,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Holster",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.6858804821968079,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "",
+      "ParamType": 0
+     },
+     "_functionName": "WeapOut",
+     "_functionNameHash": 1174204865,
+     "Enabled": 1,
+     "_time": 0.9682707786560059,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Hands1",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.08795180916786194,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Hands2",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.14216867089271545,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "TripwirePlanting",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.3361445665359497,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "TripwirePlantingWire",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.4168674647808075,
+     "EventConditions": []
+    }
+   ]
+  },
+  {
+   "_animationEvents": []
+  },
+  {
+   "_animationEvents": [
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "TripwireUnplantingWire",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.09036144614219666,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Safety",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 0,
+     "_time": 0.2506024241447449,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Safety",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 0,
+     "_time": 0.40602409839630127,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "TripwireUnplanting",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.6228915452957153,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Hands3",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.7433735132217407,
+     "EventConditions": []
+    },
+    {
+     "Parameter": {
+      "BoolParam": 0,
+      "FloatParam": 0.0,
+      "IntParam": 0,
+      "StringParam": "Hands1",
+      "ParamType": 3
+     },
+     "_functionName": "Sound",
+     "_functionNameHash": 1554795451,
+     "Enabled": 1,
+     "_time": 0.8132529854774475,
+     "EventConditions": []
+    }
+   ]
+  }
+ ],
+ "_stateHashToLActionSetups": [
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.7999999523162842,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.7999999523162842,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.5399999618530273,
+      "value": 1.0017857551574707,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.7999999523162842,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.20000000298023224,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.7999999523162842,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": -0.05412103235721588,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.0,
+      "outWeight": 0.0
+     },
+     {
+      "time": 0.4003661870956421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.0,
+      "outWeight": 0.0
+     },
+     {
+      "time": 0.4003661870956421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.0,
+      "outWeight": 0.0
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.5,
+      "outSlope": 0.5,
+      "weightedMode": 0,
+      "inWeight": 0.0,
+      "outWeight": 0.0
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": 0.05412103235721588,
+      "weightedMode": 3,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 3,
+      "inWeight": 0.3333333432674408,
+      "outWeight": 0.3333333432674408
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  },
+  {
+   "StartThreshold": 0.8999999761581421,
+   "LayerWeight": {
+    "m_Curve": [
+     {
+      "time": 0.0,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.0,
+      "outWeight": 0.0
+     },
+     {
+      "time": 0.8999999761581421,
+      "value": 1.0,
+      "inSlope": 0.0,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.0,
+      "outWeight": 0.0
+     },
+     {
+      "time": 1.0,
+      "value": 0.0,
+      "inSlope": 0.5,
+      "outSlope": 0.0,
+      "weightedMode": 0,
+      "inWeight": 0.0,
+      "outWeight": 0.0
+     }
+    ],
+    "m_PreInfinity": 2,
+    "m_PostInfinity": 2,
+    "m_RotationOrder": 4
+   },
+   "_stateHash": 0
+  }
+ ]
+}

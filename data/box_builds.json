@@ -1,0 +1,5597 @@
+[
+ {
+  "id": "m1911",
+  "name": "M1911",
+  "class": "pistol",
+  "role": "starter",
+  "base": {
+   "tpl": "5e81c3cbac2bb513793cdc75",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "M1911A1 .45 ACP National Match 127mm barrel",
+     "tpl": "5f3e7801153b8571434a924c",
+     "parts": []
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "M1911A1 side grips",
+     "tpl": "5e81c6bf763d9f754677beff",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "M1911A1 pistol slide",
+     "tpl": "5e81edc13397a21db957f6a1",
+     "parts": [
+      {
+       "slot": "mod_sight_rear",
+       "name": "M1911A1 rear sight",
+       "tpl": "5e81ee4dcb2b95385c177582",
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_front",
+       "name": "M1911A1 front sight",
+       "tpl": "5e81ee213397a21db957f6a6",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "M1911A1 .45 ACP 7-round magazine",
+     "tpl": "5e81c4ca763d9f754677befa",
+     "parts": []
+    },
+    {
+     "slot": "mod_trigger",
+     "name": "M45A1 trigger",
+     "tpl": "5f3e772a670e2a7b01739a52",
+     "parts": []
+    },
+    {
+     "slot": "mod_hammer",
+     "name": "M1911A1 hammer",
+     "tpl": "5e81c550763d9f754677befd",
+     "parts": []
+    },
+    {
+     "slot": "mod_catch",
+     "name": "M1911A1 Wilson Extended slide stop",
+     "tpl": "5ef3553c43cb350a955a7ccb",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "5efb0d4f4bc50b58e81710f3",
+  "pap": {
+   "tpl": "5e81c3cbac2bb513793cdc75",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "M1911A1 .45 ACP National Match 127mm barrel",
+     "tpl": "5f3e7801153b8571434a924c",
+     "parts": []
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "M1911 Kiba Arms Geneburn custom side grips",
+     "tpl": "626a9cb151cb5849f6002890",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "M1911A1 pistol slide",
+     "tpl": "5e81edc13397a21db957f6a1",
+     "parts": [
+      {
+       "slot": "mod_sight_rear",
+       "name": "M1911A1 rear sight",
+       "tpl": "5e81ee4dcb2b95385c177582",
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_front",
+       "name": "M1911A1 front sight",
+       "tpl": "5e81ee213397a21db957f6a6",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "M1911A1 .45 ACP 7-round magazine",
+     "tpl": "5e81c4ca763d9f754677befa",
+     "parts": []
+    },
+    {
+     "slot": "mod_trigger",
+     "name": "M45A1 trigger",
+     "tpl": "5f3e772a670e2a7b01739a52",
+     "parts": []
+    },
+    {
+     "slot": "mod_hammer",
+     "name": "M1911A1 hammer",
+     "tpl": "5e81c550763d9f754677befd",
+     "parts": []
+    },
+    {
+     "slot": "mod_catch",
+     "name": "M1911A1 Wilson Extended slide stop",
+     "tpl": "5ef3553c43cb350a955a7ccb",
+     "parts": []
+    },
+    {
+     "slot": "mod_mount_001",
+     "name": "M1911A1 NcSTAR trigger guard mount",
+     "tpl": "5ef369b08cef260c0642acaf",
+     "parts": [
+      {
+       "slot": "mod_tactical",
+       "name": "NcSTAR Tactical Blue Laser",
+       "tpl": "5cc9c20cd7f00c001336c65d",
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "m4a1",
+  "name": "M4A1",
+  "class": "ar",
+  "role": "box",
+  "base": {
+   "tpl": "5447a9cd4bdc2dbd208b4567",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AR-15 Colt A2 pistol grip",
+     "tpl": "55d4b9964bdc2d1d4e8b456e",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AR-15 5.56x45 Colt STANAG 30-round magazine",
+     "tpl": "55d4887d4bdc2d962f8b4570",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "M4A1 5.56x45 upper receiver",
+     "tpl": "55d355e64bdc2d962f8b4569",
+     "parts": [
+      {
+       "slot": "mod_barrel",
+       "name": "AR-15 5.56x45 14.5 inch barrel",
+       "tpl": "55d3632e4bdc2d972f8b4569",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "AR-15 Noveske KX3 5.56x45 flash hider",
+         "tpl": "56ea6fafd2720b844b8b4593",
+         "parts": []
+        },
+        {
+         "slot": "mod_gas_block",
+         "name": "M4A1 front sight with gas block",
+         "tpl": "5ae30e795acfc408fb139a0b",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_handguard",
+       "name": "AR-15 Colt M4 Carbine Length handguard",
+       "tpl": "5ae30db85acfc408fb139a05",
+       "parts": [
+        {
+         "slot": "mod_handguard",
+         "name": "AR-15 Colt M4 Carbine Length lower handguard",
+         "tpl": "637f57a68d137b27f70c4968",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "AR-15 Colt A2 rear sight",
+       "tpl": "55d5f46a4bdc2d1b198b4567",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AR-15 Colt Carbine buffer tube",
+     "tpl": "5649be884bdc2d79388b4577",
+     "parts": [
+      {
+       "slot": "mod_stock_000",
+       "name": "AR-15 High Standard M4SS Stock",
+       "tpl": "55d4ae6c4bdc2d8b2f8b456e",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AR-15 Colt charging handle",
+     "tpl": "55d44fd14bdc2d962f8b456e",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5447a9cd4bdc2dbd208b4567",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AR-15 Colt A2 pistol grip",
+     "tpl": "55d4b9964bdc2d1d4e8b456e",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AR-15 5.56x45 Colt STANAG 30-round magazine",
+     "tpl": "55d4887d4bdc2d962f8b4570",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "M4A1 5.56x45 upper receiver",
+     "tpl": "55d355e64bdc2d962f8b4569",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "DeltaPoint Cross Slot Mount base",
+       "tpl": "58d2664f86f7747fec5834f6",
+       "parts": [
+        {
+         "slot": "mod_scope",
+         "name": "Leupold DeltaPoint Reflex Sight",
+         "tpl": "58d268fc86f774111273f8c2",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_barrel",
+       "name": "AR-15 5.56x45 Ballistic Advantage Hanson Carbine Pro 13.7 inch barrel",
+       "tpl": "63d3ce0446bd475bcb50f55f",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "AR-15 Noveske KX3 5.56x45 flash hider",
+         "tpl": "56ea6fafd2720b844b8b4593",
+         "parts": []
+        },
+        {
+         "slot": "mod_gas_block",
+         "name": "AR-15 Daniel Defense MK12 Low Profile Gas Block",
+         "tpl": "56eabcd4d2720b66698b4574",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_handguard",
+       "name": "AR-15 Colt M4 Carbine Length handguard",
+       "tpl": "5ae30db85acfc408fb139a05",
+       "parts": [
+        {
+         "slot": "mod_handguard",
+         "name": "AR-15 Colt M4 Carbine Length lower handguard",
+         "tpl": "637f57a68d137b27f70c4968",
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AR-15 Colt Carbine buffer tube",
+     "tpl": "5649be884bdc2d79388b4577",
+     "parts": [
+      {
+       "slot": "mod_stock_000",
+       "name": "AR-15 High Standard M4SS Stock",
+       "tpl": "55d4ae6c4bdc2d8b2f8b456e",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AR-15 HK Extended Latch charging handle",
+     "tpl": "5bb20dbcd4351e44f824c04e",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "m16",
+  "name": "M16",
+  "class": "ar",
+  "role": "box",
+  "base": {
+   "tpl": "5447a9cd4bdc2dbd208b4567",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AR-15 Colt A2 pistol grip",
+     "tpl": "55d4b9964bdc2d1d4e8b456e",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AR-15 5.56x45 Colt STANAG 30-round magazine",
+     "tpl": "55d4887d4bdc2d962f8b4570",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "AR-15 Vltor MUR-1S 5.56x45 upper receiver",
+     "tpl": "59bfe68886f7746004266202",
+     "parts": [
+      {
+       "slot": "mod_barrel",
+       "name": "AR-15 5.56x45 14.5 inch barrel",
+       "tpl": "55d3632e4bdc2d972f8b4569",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "AR-15 Noveske KX3 5.56x45 flash hider",
+         "tpl": "56ea6fafd2720b844b8b4593",
+         "parts": []
+        },
+        {
+         "slot": "mod_gas_block",
+         "name": "M4A1 front sight with gas block",
+         "tpl": "5ae30e795acfc408fb139a0b",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_handguard",
+       "name": "AR-15 Strike Industries Viper carbine length M-LOK handguard",
+       "tpl": "5d00e0cbd7ad1a6c6566a42d",
+       "parts": [
+        {
+         "slot": "mod_handguard",
+         "name": "AR-15 Strike Industries Viper carbine length M-LOK lower handguard",
+         "tpl": "637f589af5ef8c33840d36d3",
+         "parts": [
+          {
+           "slot": "mod_foregrip",
+           "name": "BCM GUNFIGHTER MOD 3 M-LOK foregrip (Black)",
+           "tpl": "665d5d9e338229cfd6078da1",
+           "parts": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "AR-15 rear sight carry handle",
+       "tpl": "5ae30bad5acfc400185c2dc4",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AR-15 RTM ATP buffer tube",
+     "tpl": "638de3603a1a4031d8260b8c",
+     "parts": [
+      {
+       "slot": "mod_stock_000",
+       "name": "AR-15 Magpul PRS GEN3 stock (Black)",
+       "tpl": "5d44069ca4b9361ebd26fc37",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AR-15 Colt charging handle",
+     "tpl": "55d44fd14bdc2d962f8b456e",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5447a9cd4bdc2dbd208b4567",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AR-15 Colt A2 pistol grip",
+     "tpl": "55d4b9964bdc2d1d4e8b456e",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AR-15 5.56x45 Colt STANAG 30-round magazine",
+     "tpl": "55d4887d4bdc2d962f8b4570",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "AR-15 Vltor MUR-1S 5.56x45 upper receiver",
+     "tpl": "59bfe68886f7746004266202",
+     "parts": [
+      {
+       "slot": "mod_barrel",
+       "name": "AR-15 5.56x45 14.5 inch barrel",
+       "tpl": "55d3632e4bdc2d972f8b4569",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "AR-15 Noveske KX3 5.56x45 flash hider",
+         "tpl": "56ea6fafd2720b844b8b4593",
+         "parts": []
+        },
+        {
+         "slot": "mod_gas_block",
+         "name": "M4A1 front sight with gas block",
+         "tpl": "5ae30e795acfc408fb139a0b",
+         "parts": []
+        },
+        {
+         "slot": "mod_launcher",
+         "name": "M203 40mm underbarrel grenade launcher",
+         "tpl": "6357c98711fb55120211f7e1",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_handguard",
+       "name": "AR-15 Strike Industries Viper carbine length M-LOK handguard",
+       "tpl": "5d00e0cbd7ad1a6c6566a42d",
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "AR-15 rear sight carry handle",
+       "tpl": "5ae30bad5acfc400185c2dc4",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AR-15 RTM ATP buffer tube",
+     "tpl": "638de3603a1a4031d8260b8c",
+     "parts": [
+      {
+       "slot": "mod_stock_000",
+       "name": "AR-15 Magpul PRS GEN3 stock (Black)",
+       "tpl": "5d44069ca4b9361ebd26fc37",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AR-15 Colt charging handle",
+     "tpl": "55d44fd14bdc2d962f8b456e",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "aug",
+  "name": "AUG A1",
+  "class": "ar",
+  "role": "box",
+  "base": {
+   "tpl": "62e7c4fba689e8c9c50dfc38",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "Steyr AUG 5.56x45 30-round magazine",
+     "tpl": "62e7c98b550c8218d602cbb4",
+     "parts": []
+    },
+    {
+     "slot": "mod_charge",
+     "name": "Steyr AUG A1 charging handle",
+     "tpl": "62e7c880f68e7a0676050c7c",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "Steyr AUG A1 STG77 1.5x optic sight",
+     "tpl": "62ea7c793043d74a0306e19f",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0,
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": [
+      {
+       "slot": "mod_barrel",
+       "name": "Steyr AUG A1 5.56x45 20 inch barrel",
+       "tpl": "62e7c7f3c34ea971710c32fc",
+       "parts": [
+        {
+         "slot": "mod_muzzle_000",
+         "name": "Steyr AUG A1 5.56x45 closed flash hider",
+         "tpl": "630f2872911356c17d06abc5",
+         "parts": []
+        },
+        {
+         "slot": "mod_foregrip",
+         "name": "Steyr AUG vertical foregrip",
+         "tpl": "634e61b0767cb15c4601a877",
+         "parts": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "62e7c4fba689e8c9c50dfc38",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "Steyr AUG 5.56x45 30-round magazine",
+     "tpl": "62e7c98b550c8218d602cbb4",
+     "parts": []
+    },
+    {
+     "slot": "mod_charge",
+     "name": "Steyr AUG A1 charging handle",
+     "tpl": "62e7c880f68e7a0676050c7c",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "Steyr AUG A1 STG77 1.5x optic sight",
+     "tpl": "62ea7c793043d74a0306e19f",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0,
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": [
+      {
+       "slot": "mod_barrel",
+       "name": "Steyr AUG A1 5.56x45 20 inch barrel",
+       "tpl": "62e7c7f3c34ea971710c32fc",
+       "parts": [
+        {
+         "slot": "mod_muzzle_000",
+         "name": "Steyr AUG A1 5.56x45 closed flash hider",
+         "tpl": "630f2872911356c17d06abc5",
+         "parts": []
+        },
+        {
+         "slot": "mod_foregrip",
+         "name": "Steyr AUG vertical foregrip",
+         "tpl": "634e61b0767cb15c4601a877",
+         "parts": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "ak74n",
+  "name": "AK-74N",
+  "class": "ar",
+  "role": "box",
+  "base": {
+   "tpl": "5644bd2b4bdc2d3b4c8b4572",
+   "parts": [
+    {
+     "slot": "mod_gas_block",
+     "name": "AK-74 gas tube",
+     "tpl": "59c6633186f7740cf0493bb9",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "AK-74 wooden handguard",
+       "tpl": "5648b0744bdc2d363b8b4578",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "AK-74 PWS CQB 74 5.45x39 muzzle brake",
+     "tpl": "5943eeeb86f77412d6384f6b",
+     "parts": []
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AKM wooden pistol grip",
+     "tpl": "5a0071d486f77404e23a12b2",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "AK-74 dust cover",
+     "tpl": "5649af094bdc2df8348b4586",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "AK-74 rear sight",
+     "tpl": "5649b0544bdc2d1b2b8b458a",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AK-74 wooden stock",
+     "tpl": "5649b1c04bdc2d16268b457c",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AK-74 5.45x39 6L20 30-round magazine",
+     "tpl": "564ca99c4bdc2d16268b4589",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5644bd2b4bdc2d3b4c8b4572",
+   "parts": [
+    {
+     "slot": "mod_gas_block",
+     "name": "AK-74 gas tube",
+     "tpl": "59c6633186f7740cf0493bb9",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "WASR-10/63 CAF wooden foregrip",
+       "tpl": "5d2c829448f0353a5c7d6674",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "AK-74 PWS CQB 74 5.45x39 muzzle brake",
+     "tpl": "5943eeeb86f77412d6384f6b",
+     "parts": []
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AKM wooden pistol grip",
+     "tpl": "5a0071d486f77404e23a12b2",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "AK-74 dust cover",
+     "tpl": "5649af094bdc2df8348b4586",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "AK-74 rear sight",
+     "tpl": "5649b0544bdc2d1b2b8b458a",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AK-74 wooden stock",
+     "tpl": "5649b1c04bdc2d16268b457c",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AK-74 5.45x39 6L20 30-round magazine",
+     "tpl": "564ca99c4bdc2d16268b4589",
+     "parts": []
+    },
+    {
+     "slot": "mod_mount_000",
+     "name": "Zenit B-13V \"Klassika\" dovetail rail platform",
+     "tpl": "5c90c3622e221601da359851",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "Trijicon SRS-02 reflex sight",
+       "tpl": "5d2da1e948f035477b1ce2ba",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "aks74u",
+  "name": "AKS-74U",
+  "class": "ar",
+  "role": "box",
+  "base": {
+   "tpl": "57dc2fa62459775949412633",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AK-74 polymer pistol grip",
+     "tpl": "5649ade84bdc2d1b2b8b4587",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AKS-74 skeletonized stock",
+     "tpl": "5ab626e4d8ce87272e4c6e43",
+     "parts": []
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AK Zenit RP-1 charging handle",
+     "tpl": "5648ac824bdc2ded0b8b457d",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AK-74 5.45x39 6L23 30-round magazine",
+     "tpl": "55d480c04bdc2d1d4e8b456a",
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "AK Zenit DTK-1 7.62x39/5.45x39 muzzle brake-compensator",
+     "tpl": "5649ab884bdc2ded0b8b457f",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "AKS-74U dust cover",
+     "tpl": "57dc334d245977597164366f",
+     "parts": []
+    },
+    {
+     "slot": "mod_gas_block",
+     "name": "AKS-74U gas tube",
+     "tpl": "59d36a0086f7747e673f3946",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "AKS-74U wooden handguard",
+       "tpl": "57dc32dc245977596d4ef3d3",
+       "parts": []
+      }
+     ]
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "57dc2fa62459775949412633",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AK-74 polymer pistol grip",
+     "tpl": "5649ade84bdc2d1b2b8b4587",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AKS-74 skeletonized stock",
+     "tpl": "5ab626e4d8ce87272e4c6e43",
+     "parts": []
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AK Zenit RP-1 charging handle",
+     "tpl": "5648ac824bdc2ded0b8b457d",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AK-74 5.45x39 6L23 30-round magazine",
+     "tpl": "55d480c04bdc2d1d4e8b456a",
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "AKS-74U PBS-4 5.45x39 sound suppressor",
+     "tpl": "57ffb0e42459777d047111c5",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "AKS-74U Legal Arsenal Pilgrim railed dust cover",
+     "tpl": "655cb6b5d680a544f30607fa",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "VOMZ Pilad P1x42 Weaver reflex sight",
+       "tpl": "584984812459776a704a82a6",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_gas_block",
+     "name": "AKS-74U gas tube",
+     "tpl": "59d36a0086f7747e673f3946",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "AKS-74U wooden handguard",
+       "tpl": "57dc32dc245977596d4ef3d3",
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "sa58",
+  "name": "SA58 (FAL)",
+  "class": "ar",
+  "role": "box",
+  "base": {
+   "tpl": "5b0bbe4e5acfc40dc528a72d",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "SA58 FAB Defense AG-FAL pistol grip",
+     "tpl": "5b7d679f5acfc4001a5c4024",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "SA58/FAL 7.62x51 20-round magazine",
+     "tpl": "5b099ac65acfc400186331e1",
+     "parts": []
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "SA58/FAL Vltor CASV-FAS handguard",
+     "tpl": "5b7bee755acfc400196d5383",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "SA58 7.62x51 11 inch barrel",
+     "tpl": "5b099a765acfc47a8607efe3",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "AR-10 Keeno Arms SHREWD 7.62x51 muzzle brake",
+       "tpl": "5cdd7685d7f00c000f260ed2",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "SA58 Holland Type rear sight",
+     "tpl": "5b0bc22d5acfc47a8607f085",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "FAL standard dust cover",
+     "tpl": "5b7d6c105acfc40015109a5f",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "SA58 humpback polymer stock",
+     "tpl": "5b7d645e5acfc400170e2f90",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5b0bbe4e5acfc40dc528a72d",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "SA58 FAB Defense AG-FAL pistol grip",
+     "tpl": "5b7d679f5acfc4001a5c4024",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "SA58/FAL 7.62x51 20-round magazine",
+     "tpl": "5b099ac65acfc400186331e1",
+     "parts": []
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "SA58/FAL Vltor CASV-FAS handguard",
+     "tpl": "5b7bee755acfc400196d5383",
+     "parts": [
+      {
+       "slot": "mod_mount_000",
+       "name": "Vltor CASV 5 inch rail",
+       "tpl": "5b7be46e5acfc400170e2dcf",
+       "parts": [
+        {
+         "slot": "mod_foregrip",
+         "name": "Fortis Shift tactical foregrip",
+         "tpl": "59f8a37386f7747af3328f06",
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "SA58 7.62x51 11 inch barrel",
+     "tpl": "5b099a765acfc47a8607efe3",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "AR-10 Keeno Arms SHREWD 7.62x51 muzzle brake",
+       "tpl": "5cdd7685d7f00c000f260ed2",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "SA58 Holland Type rear sight",
+     "tpl": "5b0bc22d5acfc47a8607f085",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "SA58 Extreme Duty dust cover",
+     "tpl": "5b099bb25acfc400186331e8",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "Leapers UTG reflex sight",
+       "tpl": "6165ac8c290d254f5e6b2f6c",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_stock",
+     "name": "SA58 humpback polymer stock",
+     "tpl": "5b7d645e5acfc400170e2f90",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "scarl",
+  "name": "SCAR-L",
+  "class": "ar",
+  "role": "box",
+  "base": {
+   "tpl": "6184055050224f204c1da540",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AR-15 Colt A2 pistol grip",
+     "tpl": "55d4b9964bdc2d1d4e8b456e",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "FN SCAR-L 5.56x45 30-round magazine",
+     "tpl": "61840bedd92c473c77021635",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "FN SCAR-L 5.56x45 upper receiver",
+     "tpl": "618405198004cc50514c3594",
+     "parts": [
+      {
+       "slot": "mod_barrel",
+       "name": "FN SCAR-L 5.56x45 14 inch barrel",
+       "tpl": "6183fd911cb55961fa0fdce9",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "AR-15 Griffin Armament Gate-LOK Hammer 5.56x45 flash hider",
+         "tpl": "6386120cd6baa055ad1e201c",
+         "parts": []
+        },
+        {
+         "slot": "mod_sight_front",
+         "name": "FN SCAR flip-up front sight",
+         "tpl": "61816fcad92c473c770215cc",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "FN SCAR flip-up rear sight",
+       "tpl": "61817865d3a39d50044c13a4",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_mount_000",
+       "name": "FN SCAR bottom rail",
+       "tpl": "61816df1d3a39d50044c139e",
+       "parts": []
+      },
+      {
+       "slot": "mod_mount_001",
+       "name": "FN SCAR side rails",
+       "tpl": "61816dfa6ef05c2ce828f1ad",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_stock",
+     "name": "FN SCAR folding polymer stock",
+     "tpl": "61816734d8e3106d9806c1f3",
+     "parts": [
+      {
+       "slot": "mod_stock_001",
+       "name": "FN SCAR retractable polymer stock",
+       "tpl": "618167528004cc50514c34f9",
+       "parts": [
+        {
+         "slot": "mod_stock",
+         "name": "FN SCAR rubber buttpad",
+         "tpl": "618167616ef05c2ce828f1a8",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_stock_002",
+       "name": "FN SCAR cheek rest",
+       "tpl": "618167441cb55961fa0fdc71",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "FN SCAR charging handle",
+     "tpl": "6181688c6c780c1e710c9b04",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "6184055050224f204c1da540",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AR-15 Colt A2 pistol grip",
+     "tpl": "55d4b9964bdc2d1d4e8b456e",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "FN SCAR-L 5.56x45 30-round magazine",
+     "tpl": "61840bedd92c473c77021635",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "FN SCAR-L 5.56x45 upper receiver",
+     "tpl": "618405198004cc50514c3594",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "SIG Sauer ROMEO7 1x30 reflex sight (Prototype)",
+       "tpl": "6477772ea8a38bb2050ed4db",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_barrel",
+       "name": "FN SCAR-L 5.56x45 14 inch barrel",
+       "tpl": "6183fd911cb55961fa0fdce9",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "AR-15 SureFire SF3P 5.56x45 Flash hider",
+         "tpl": "5c7fb51d2e2216001219ce11",
+         "parts": [
+          {
+           "slot": "mod_muzzle",
+           "name": "SureFire SOCOM556-MINI MONSTER 5.56x45 sound suppressor",
+           "tpl": "55d6190f4bdc2d87028b4567",
+           "parts": []
+          }
+         ]
+        },
+        {
+         "slot": "mod_sight_front",
+         "name": "FN SCAR flip-up front sight",
+         "tpl": "61816fcad92c473c770215cc",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "FN SCAR flip-up rear sight",
+       "tpl": "61817865d3a39d50044c13a4",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_mount_000",
+       "name": "FN SCAR bottom rail",
+       "tpl": "61816df1d3a39d50044c139e",
+       "parts": [
+        {
+         "slot": "mod_foregrip",
+         "name": "Hera Arms CQR tactical foregrip",
+         "tpl": "5a7dbfc1159bd40016548fde",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_mount_001",
+       "name": "FN SCAR side rails",
+       "tpl": "61816dfa6ef05c2ce828f1ad",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_stock",
+     "name": "FN SCAR folding polymer stock",
+     "tpl": "61816734d8e3106d9806c1f3",
+     "parts": [
+      {
+       "slot": "mod_stock_001",
+       "name": "FN SCAR retractable polymer stock",
+       "tpl": "618167528004cc50514c34f9",
+       "parts": [
+        {
+         "slot": "mod_stock",
+         "name": "FN SCAR rubber buttpad",
+         "tpl": "618167616ef05c2ce828f1a8",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_stock_002",
+       "name": "FN SCAR cheek rest",
+       "tpl": "618167441cb55961fa0fdc71",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "FN SCAR charging handle",
+     "tpl": "6181688c6c780c1e710c9b04",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "mp7",
+  "name": "MP7A1",
+  "class": "smg",
+  "role": "box",
+  "base": {
+   "tpl": "5ba26383d4351e00334c93d9",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "HK MP7 4.6x30 40-round magazine",
+     "tpl": "5ba26586d4351e44f824b340",
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "HK MP7A1 4.6x30 flash hider",
+     "tpl": "5ba26acdd4351e003562908e",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_front",
+     "name": "HK MP7 flip-up front sight",
+     "tpl": "5ba26b01d4351e0085325a51",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "HK MP7 flip-up rear sight",
+     "tpl": "5ba26b17d4351e00367f9bdd",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "HK MP7A1 stock",
+     "tpl": "5bcf0213d4351e0085327c17",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5ba26383d4351e00334c93d9",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "HK MP7 4.6x30 40-round magazine",
+     "tpl": "5ba26586d4351e44f824b340",
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "HK MP7A1 4.6x30 flash hider",
+     "tpl": "5ba26acdd4351e003562908e",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_front",
+     "name": "HK MP7 flip-up front sight",
+     "tpl": "5ba26b01d4351e0085325a51",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "HK MP7 flip-up rear sight",
+     "tpl": "5ba26b17d4351e00367f9bdd",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "Walther MRS reflex sight",
+     "tpl": "570fd721d2720bc5458b4596",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "HK MP7A1 stock",
+     "tpl": "5bcf0213d4351e0085327c17",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "ppsh",
+  "name": "PPSh-41",
+  "class": "smg",
+  "role": "box",
+  "base": {
+   "tpl": "5ea03f7400685063ec28bfa8",
+   "parts": [
+    {
+     "slot": "mod_stock",
+     "name": "PPSh-41 stock",
+     "tpl": "5ea03e9400685063ec28bfa4",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "PPSh-41 7.62x25 71-round drum magazine",
+     "tpl": "5ea034f65aad6446a939737e",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "PPSh-41 dust cover",
+     "tpl": "5ea03e5009aa976f2e7a514b",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "PPSh-41 7.62x25 269mm barrel",
+     "tpl": "5ea02bb600685063ec28bfa1",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5ea03f7400685063ec28bfa8",
+   "parts": [
+    {
+     "slot": "mod_stock",
+     "name": "PPSh-41 stock",
+     "tpl": "5ea03e9400685063ec28bfa4",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "PPSh-41 7.62x25 71-round drum magazine",
+     "tpl": "5ea034f65aad6446a939737e",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "PPSh-41 dust cover",
+     "tpl": "5ea03e5009aa976f2e7a514b",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "PPSh-41 7.62x25 269mm barrel",
+     "tpl": "5ea02bb600685063ec28bfa1",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "sr2m",
+  "name": "SR-2M Veresk",
+  "class": "smg",
+  "role": "box",
+  "base": {
+   "tpl": "62e14904c2699c0ec93adc47",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "SR-2M 9x21 30-round magazine",
+     "tpl": "62e153bcdb1a5c41971c1b5b",
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "SR-2M 9x21 SV-1381 sound suppressor",
+     "tpl": "62e2a7138e1ac9380579c122",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "SR-2MP top-folding stock",
+     "tpl": "62e2969582ebf260c20539c2",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "SR-2M dust cover",
+     "tpl": "62e27a7865f0b1592a49e17b",
+     "parts": []
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "SR-2M polymer handguard (Black)",
+     "tpl": "637ba19df7ca6372bf2613d7",
+     "parts": [
+      {
+       "slot": "mod_mount_001",
+       "name": "SR-2M short side rail",
+       "tpl": "62ed189fb3608410ef5a2bfc",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_pistolgrip",
+     "name": "SR-2M pistol grip (Black)",
+     "tpl": "637ba29bf7ca6372bf2613db",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "62e14904c2699c0ec93adc47",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "SR-2M 9x21 30-round magazine",
+     "tpl": "62e153bcdb1a5c41971c1b5b",
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "SR-2M 9x21 SV-1381 sound suppressor",
+     "tpl": "62e2a7138e1ac9380579c122",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "SR-2MP top-folding stock",
+     "tpl": "62e2969582ebf260c20539c2",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "SR-2M dust cover",
+     "tpl": "62e27a7865f0b1592a49e17b",
+     "parts": [
+      {
+       "slot": "mod_mount",
+       "name": "SR-2M Zenit B-17 mount",
+       "tpl": "62e281349ecd3f493f6df954",
+       "parts": [
+        {
+         "slot": "mod_scope",
+         "name": "Aimpoint Micro Standard Mount",
+         "tpl": "58d39d3d86f77445bb794ae7",
+         "parts": [
+          {
+           "slot": "mod_scope",
+           "name": "Aimpoint Micro H-2 reflex sight",
+           "tpl": "61657230d92c473c770213d7",
+           "sight": {
+            "scope": 0,
+            "modes": [
+             0
+            ],
+            "zoom": 0
+           },
+           "parts": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "SR-2M polymer handguard (Black)",
+     "tpl": "637ba19df7ca6372bf2613d7",
+     "parts": [
+      {
+       "slot": "mod_mount_001",
+       "name": "SR-2M short side rail",
+       "tpl": "62ed189fb3608410ef5a2bfc",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_pistolgrip",
+     "name": "SR-2M pistol grip (Black)",
+     "tpl": "637ba29bf7ca6372bf2613db",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "mp5",
+  "name": "MP5",
+  "class": "smg",
+  "role": "box",
+  "base": {
+   "tpl": "5926bb2186f7744b1c6c6e60",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "HK MP5 9x19 30-round magazine",
+     "tpl": "5926c3b286f774640d189b6b",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "HK MP5 9x19 upper receiver",
+     "tpl": "5926c0df86f77462f647f764",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "HK MP5 Wide Tropical polymer handguard",
+       "tpl": "5926c36d86f77467a92a8629",
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "HK MP5 Drum rear sight",
+       "tpl": "5926d2be86f774134d668e4e",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_stock",
+       "name": "HK MP5 A2 stock",
+       "tpl": "5926d3c686f77410de68ebc8",
+       "parts": []
+      },
+      {
+       "slot": "mod_muzzle",
+       "name": "HK MP5 3-lug muzzle adapter",
+       "tpl": "5926e16e86f7742f5a0f7ecb",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "HK MP5 cocking handle",
+     "tpl": "5926c32286f774616e42de99",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5926bb2186f7744b1c6c6e60",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "HK MP5 9x19 X Products X-5 50-round drum magazine",
+     "tpl": "5a351711c4a282000b1521a4",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "HK MP5 9x19 upper receiver",
+     "tpl": "5926c0df86f77462f647f764",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "HK MP5 PTR Tri-Rail handguard",
+       "tpl": "5d19cd96d7ad1a4a992c9f52",
+       "parts": [
+        {
+         "slot": "mod_foregrip",
+         "name": "Magpul AFG tactical foregrip (Black)",
+         "tpl": "588226d124597767ad33f787",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_stock",
+       "name": "HK MP5 A2 stock",
+       "tpl": "5926d3c686f77410de68ebc8",
+       "parts": []
+      },
+      {
+       "slot": "mod_muzzle",
+       "name": "HK MP5 Navy Style 3-lug suppressor adapter",
+       "tpl": "5c0000c00db834001a6697fc",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "AAC Illusion 9 9x19 sound suppressor",
+         "tpl": "5c7e8fab2e22165df16b889b",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_mount",
+       "name": "HK MP5 B&T tri-rail receiver mount",
+       "tpl": "5a966ec8a2750c00171b3f36",
+       "parts": [
+        {
+         "slot": "mod_scope",
+         "name": "Walther MRS reflex sight",
+         "tpl": "570fd721d2720bc5458b4596",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "HK MP5 cocking handle",
+     "tpl": "5926c32286f774616e42de99",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "ump45",
+  "name": "UMP 45",
+  "class": "smg",
+  "role": "box",
+  "base": {
+   "tpl": "5fc3e272f8b6a877a729eac5",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "HK UMP .45 ACP 25-round magazine",
+     "tpl": "5fc3e466187fea44d52eda90",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "HK UMP polymer stock",
+     "tpl": "5fc3e4ee7283c4046c5814af",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "HK UMP .45 ACP 8 inch threaded barrel",
+     "tpl": "6130c3dffaa1272e43151c7d",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "KRISS Vector .45 ACP thread protector",
+       "tpl": "5fb6548dd1409e5ca04b54f9",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount_000",
+     "name": "HK UMP bottom handguard rail",
+     "tpl": "5fc53954f8b6a877a729eaeb",
+     "parts": []
+    },
+    {
+     "slot": "mod_mount_001",
+     "name": "HK UMP side handguard rail",
+     "tpl": "5fc5396e900b1d5091531e72",
+     "parts": []
+    },
+    {
+     "slot": "mod_mount_002",
+     "name": "HK UMP side handguard rail",
+     "tpl": "5fc5396e900b1d5091531e72",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5fc3e272f8b6a877a729eac5",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "HK UMP .45 ACP 25-round magazine",
+     "tpl": "5fc3e466187fea44d52eda90",
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "EOTech XPS3-0 holographic sight",
+     "tpl": "58491f3324597764bc48fa02",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "HK UMP polymer stock",
+     "tpl": "5fc3e4ee7283c4046c5814af",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "HK UMP .45 ACP 8 inch threaded barrel",
+     "tpl": "6130c3dffaa1272e43151c7d",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "SilencerCo Omega 45k Direct Thread Mount adapter",
+       "tpl": "5fc4b992187fea44d52edaa9",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "SilencerCo Omega 45k .45 ACP sound suppressor",
+         "tpl": "5fc4b9b17283c4046c5814d7",
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount_000",
+     "name": "HK UMP bottom handguard rail",
+     "tpl": "5fc53954f8b6a877a729eaeb",
+     "parts": [
+      {
+       "slot": "mod_foregrip",
+       "name": "BCM GUNFIGHTER MOD 3 vertical foregrip",
+       "tpl": "5c7fc87d2e221644f31c0298",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount_001",
+     "name": "HK UMP side handguard rail",
+     "tpl": "5fc5396e900b1d5091531e72",
+     "parts": []
+    },
+    {
+     "slot": "mod_mount_002",
+     "name": "HK UMP side handguard rail",
+     "tpl": "5fc5396e900b1d5091531e72",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "vector",
+  "name": "Vector 9x19",
+  "class": "smg",
+  "role": "box",
+  "base": {
+   "tpl": "5fc3f2d5900b1d5091531e57",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "Glock 9x19 \"Big Stick\" 33-round magazine",
+     "tpl": "5a7ad2e851dfba0016153692",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_front",
+     "name": "MPX flip-up front sight",
+     "tpl": "5894a73486f77426d259076c",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "Magpul MBUS Gen2 flip-up rear sight",
+     "tpl": "5bc09a18d4351e003562b68e",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "KRISS Vector Gen.2 folding stock",
+     "tpl": "5fb6558ad6f0b2136f2d7eb7",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "KRISS Vector 9x19 6 inch barrel",
+     "tpl": "5fbbc383d5cb881a7363194a",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "KRISS Vector 9x19 thread protector",
+       "tpl": "5fbbc34106bde7524f03cbe9",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount",
+     "name": "KRISS Vector bottom rail",
+     "tpl": "5fbb976df9986c4cff3fe5f2",
+     "parts": []
+    },
+    {
+     "slot": "mod_mount_001",
+     "name": "KRISS Vector side rail",
+     "tpl": "5fce0f9b55375d18a253eff2",
+     "parts": []
+    },
+    {
+     "slot": "mod_mount_002",
+     "name": "KRISS Vector side rail",
+     "tpl": "5fce0f9b55375d18a253eff2",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5fc3f2d5900b1d5091531e57",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "Glock 9x19 \"Big Stick\" 33-round magazine",
+     "tpl": "5a7ad2e851dfba0016153692",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_front",
+     "name": "MPX flip-up front sight",
+     "tpl": "5894a73486f77426d259076c",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "Magpul MBUS Gen2 flip-up rear sight",
+     "tpl": "5bc09a18d4351e003562b68e",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "Walther MRS reflex sight",
+     "tpl": "570fd721d2720bc5458b4596",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "KRISS Vector Gen.2 folding stock",
+     "tpl": "5fb6558ad6f0b2136f2d7eb7",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "KRISS Vector 9x19 6 inch barrel",
+     "tpl": "5fbbc383d5cb881a7363194a",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "SilencerCo Osprey 9 9x19 sound suppressor",
+       "tpl": "5a32a064c4a28200741e22de",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount",
+     "name": "KRISS Vector bottom rail",
+     "tpl": "5fbb976df9986c4cff3fe5f2",
+     "parts": [
+      {
+       "slot": "mod_foregrip",
+       "name": "Strike Industries Cobra Tactical foregrip",
+       "tpl": "5c791e872e2216001219c40a",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount_001",
+     "name": "KRISS Vector side rail",
+     "tpl": "5fce0f9b55375d18a253eff2",
+     "parts": []
+    },
+    {
+     "slot": "mod_mount_002",
+     "name": "KRISS Vector side rail",
+     "tpl": "5fce0f9b55375d18a253eff2",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "sv98",
+  "name": "SV-98",
+  "class": "sniper",
+  "role": "box",
+  "base": {
+   "tpl": "55801eed4bdc2d89578b4588",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "SV-98 7.62x54R 10-round magazine",
+     "tpl": "559ba5b34bdc2d1f1a8b4582",
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "Lobaev Arms 30mm scope mount",
+     "tpl": "57c69dd424597774c03b7bbc",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "EOTech Vudu 1-6x24 30mm riflescope",
+       "tpl": "5b3b99475acfc432ff4dcbee",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "SV-98 rear sight",
+     "tpl": "56083e1b4bdc2dc8488b4572",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "SV-98 SRVV Mk.2.0 7.62x54R muzzle brake-compensator",
+     "tpl": "5c4ee3d62e2216152006f302",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "SV-98 wooden stock",
+     "tpl": "61faa91878830f069b6b7967",
+     "parts": [
+      {
+       "slot": "mod_bipod",
+       "name": "SV-98 bipod",
+       "tpl": "56ea8222d2720b69698b4567",
+       "parts": []
+      }
+     ]
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "55801eed4bdc2d89578b4588",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "SV-98 7.62x54R 10-round magazine",
+     "tpl": "559ba5b34bdc2d1f1a8b4582",
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "Lobaev Arms 30mm scope mount",
+     "tpl": "57c69dd424597774c03b7bbc",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "EOTech Vudu 1-6x24 30mm riflescope",
+       "tpl": "5b3b99475acfc432ff4dcbee",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "SV-98 rear sight",
+     "tpl": "56083e1b4bdc2dc8488b4572",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "SV-98 SRVV Mk.2.0 7.62x54R muzzle brake-compensator",
+     "tpl": "5c4ee3d62e2216152006f302",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "SV-98 wooden stock",
+     "tpl": "61faa91878830f069b6b7967",
+     "parts": [
+      {
+       "slot": "mod_bipod",
+       "name": "SV-98 bipod",
+       "tpl": "56ea8222d2720b69698b4567",
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "m700",
+  "name": "M700",
+  "class": "sniper",
+  "role": "box",
+  "base": {
+   "tpl": "5bfea6e90db834001b7347f3",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "M700 7.62x51 Magpul PMAG AC 10-round magazine",
+     "tpl": "5d25a7b88abbc3054f3e60bc",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "M700 AB Arms MOD*X GEN 3 chassis",
+     "tpl": "5cde739cd7f00c0010373bd3",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "AR-15 Colt Carbine buffer tube",
+       "tpl": "5649be884bdc2d79388b4577",
+       "parts": [
+        {
+         "slot": "mod_stock_000",
+         "name": "AR-15 Magpul CTR Carbine stock (FDE)",
+         "tpl": "5d135ecbd7ad1a21c176542e",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_pistol_grip",
+       "name": "Hogue OverMolded Rubber Grip (FDE)",
+       "tpl": "57af48872459771f0b2ebf11",
+       "parts": []
+      },
+      {
+       "slot": "mod_handguard",
+       "name": "M700 AB Arms MOD*X GEN 3 KeyMod handguard",
+       "tpl": "5cde7afdd7f00c000d36b89d",
+       "parts": [
+        {
+         "slot": "mod_sight_front",
+         "name": "Magpul MBUS Gen2 flip-up front sight (FDE)",
+         "tpl": "5c18b90d2e2216152142466b",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "M700 7.62x51 20 inch stainless steel threaded barrel",
+     "tpl": "5d2703038abbc3105103d94c",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "AR-10 2A Armanent X3 7.62x51 compensator",
+       "tpl": "5b7d693d5acfc43bca706a3d",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount",
+     "name": "M700 AB Arms MOD*X rail mount",
+     "tpl": "5cde7b43d7f00c000d36b93e",
+     "parts": [
+      {
+       "slot": "mod_sight_rear",
+       "name": "Magpul MBUS Gen2 flip-up rear sight (FDE)",
+       "tpl": "5c18b9192e2216398b5a8104",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5bfea6e90db834001b7347f3",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "M700 7.62x51 Magpul PMAG AC 10-round magazine",
+     "tpl": "5d25a7b88abbc3054f3e60bc",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "M700 AB Arms MOD*X GEN 3 chassis",
+     "tpl": "5cde739cd7f00c0010373bd3",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "AR-15 Colt Carbine buffer tube",
+       "tpl": "5649be884bdc2d79388b4577",
+       "parts": [
+        {
+         "slot": "mod_stock_000",
+         "name": "AR-15 Magpul CTR Carbine stock (FDE)",
+         "tpl": "5d135ecbd7ad1a21c176542e",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_pistol_grip",
+       "name": "Hogue OverMolded Rubber Grip (FDE)",
+       "tpl": "57af48872459771f0b2ebf11",
+       "parts": []
+      },
+      {
+       "slot": "mod_handguard",
+       "name": "M700 AB Arms MOD*X GEN 3 KeyMod handguard",
+       "tpl": "5cde7afdd7f00c000d36b89d",
+       "parts": [
+        {
+         "slot": "mod_mount_002",
+         "name": "CNC Guns KeyMod 2 inch rail",
+         "tpl": "623c2f652febb22c2777d8d7",
+         "parts": [
+          {
+           "slot": "mod_tactical",
+           "name": "NcSTAR Tactical Blue Laser",
+           "tpl": "5cc9c20cd7f00c001336c65d",
+           "light": {
+            "on": false,
+            "mode": 0
+           },
+           "parts": []
+          }
+         ]
+        },
+        {
+         "slot": "mod_sight_front",
+         "name": "Magpul MBUS Gen2 flip-up front sight (FDE)",
+         "tpl": "5c18b90d2e2216152142466b",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "M700 7.62x51 20 inch stainless steel threaded barrel",
+     "tpl": "5d2703038abbc3105103d94c",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "AR-10 2A Armanent X3 7.62x51 compensator",
+       "tpl": "5b7d693d5acfc43bca706a3d",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount",
+     "name": "M700 AB Arms MOD*X rail mount",
+     "tpl": "5cde7b43d7f00c000d36b93e",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "EOTech EXPS3-0 holographic sight (Tan)",
+       "tpl": "558022b54bdc2dac148b458d",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "Magpul MBUS Gen2 flip-up rear sight (FDE)",
+       "tpl": "5c18b9192e2216398b5a8104",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "sr25",
+  "name": "SR-25",
+  "class": "sniper",
+  "role": "box",
+  "base": {
+   "tpl": "5df8ce05b11454561e39243b",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AR-15 Colt A2 pistol grip",
+     "tpl": "55d4b9964bdc2d1d4e8b456e",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AR-10 7.62x51 KAC 20-round steel magazine",
+     "tpl": "5df8f541c41b2312ea3335e3",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AR-15 Colt Carbine buffer tube",
+     "tpl": "5649be884bdc2d79388b4577",
+     "parts": [
+      {
+       "slot": "mod_stock_000",
+       "name": "AR-15 LMT SOPMOD stock",
+       "tpl": "5ae30c9a5acfc408fb139a03",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "SR-25 7.62x51 upper receiver",
+     "tpl": "5df8e4080b92095fd441e594",
+     "parts": [
+      {
+       "slot": "mod_barrel",
+       "name": "SR-25 7.62x51 16 inch barrel",
+       "tpl": "5df917564a9f347bc92edca3",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "AR-10 KAC QDC 7.62x51 Flash Suppressor Kit",
+         "tpl": "5dfa3cd1b33c0951220c079b",
+         "parts": []
+        },
+        {
+         "slot": "mod_gas_block",
+         "name": "AR-10 KAC Low Profile Gas Block",
+         "tpl": "5dfa3d45dfc58d14537c20b0",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_handguard",
+       "name": "AR-10 KAC URX 4 14.5 inch handguard",
+       "tpl": "5df916dfbb49d91fb446d6b9",
+       "parts": [
+        {
+         "slot": "mod_sight_front",
+         "name": "MPX flip-up front sight",
+         "tpl": "5894a73486f77426d259076c",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "Magpul MBUS Gen2 flip-up rear sight",
+       "tpl": "5bc09a18d4351e003562b68e",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AR-10 KAC charging handle",
+     "tpl": "5df8e053bb49d91fb446d6a6",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5df8ce05b11454561e39243b",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AR-15 Colt A2 pistol grip",
+     "tpl": "55d4b9964bdc2d1d4e8b456e",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AR-10 7.62x51 KAC 20-round steel magazine",
+     "tpl": "5df8f541c41b2312ea3335e3",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AR-15 Colt Carbine buffer tube",
+     "tpl": "5649be884bdc2d79388b4577",
+     "parts": [
+      {
+       "slot": "mod_stock_000",
+       "name": "AR-15 LMT SOPMOD stock",
+       "tpl": "5ae30c9a5acfc408fb139a03",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "SR-25 7.62x51 upper receiver",
+     "tpl": "5df8e4080b92095fd441e594",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "SIG Sauer ROMEO7 1x30 reflex sight (Prototype)",
+       "tpl": "6477772ea8a38bb2050ed4db",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_barrel",
+       "name": "SR-25 7.62x51 16 inch barrel",
+       "tpl": "5df917564a9f347bc92edca3",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "AR-10 AAC Blackout 51T 7.62x51 flash hider",
+         "tpl": "5a34fd2bc4a282329a73b4c5",
+         "parts": [
+          {
+           "slot": "mod_muzzle",
+           "name": "AAC 762-SDN-6 multi-caliber sound suppressor",
+           "tpl": "5a34fe59c4a282000b1521a2",
+           "parts": []
+          }
+         ]
+        },
+        {
+         "slot": "mod_gas_block",
+         "name": "AR-10 KAC Low Profile Gas Block",
+         "tpl": "5dfa3d45dfc58d14537c20b0",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_handguard",
+       "name": "AR-10 Lancer LCH7 12.5 inch M-LOK handguard",
+       "tpl": "5f6336bbda967c74a42e9932",
+       "parts": [
+        {
+         "slot": "mod_foregrip",
+         "name": "Magpul M-LOK 4.1 inch rail",
+         "tpl": "5b7be4895acfc400170e2dd5",
+         "parts": [
+          {
+           "slot": "mod_foregrip",
+           "name": "TangoDown BGV-QDITI foregrip (Black)",
+           "tpl": "661e52e29c8b4dadef008577",
+           "parts": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "Magpul MBUS Gen2 flip-up rear sight",
+       "tpl": "5bc09a18d4351e003562b68e",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AR-10 KAC ambidextrous charging handle",
+     "tpl": "5df8e085bb49d91fb446d6a8",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "svds",
+  "name": "SVDS",
+  "class": "sniper",
+  "role": "box",
+  "base": {
+   "tpl": "5c46fbd72e2216398b5a8c9c",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "SVDS pistol grip",
+     "tpl": "5c471be12e221602b66cd9ac",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "SVD 7.62x54R 20-round magazine",
+     "tpl": "5c88f24b2e22160bc12c69a6",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "SVDS polymer stock",
+     "tpl": "5c471b5d2e221602b21d4e14",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "SVD 7.62x54R 565mm barrel",
+     "tpl": "5c471cb32e221602b177afaa",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "SVDS 7.62x54R muzzle brake-compensator",
+       "tpl": "5c471bfc2e221602b21d4e17",
+       "parts": [
+        {
+         "slot": "mod_sight_front",
+         "name": "SVDS front sight",
+         "tpl": "5c471ba12e221602b3137d76",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_gas_block",
+       "name": "SVDS gas tube",
+       "tpl": "5c471c842e221615214259b5",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount_000",
+     "name": "SVD CAA XD RGL receiver mount",
+     "tpl": "5e569a2e56edd02abe09f280",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "Lobaev Arms 30mm scope mount",
+       "tpl": "57c69dd424597774c03b7bbc",
+       "parts": [
+        {
+         "slot": "mod_scope",
+         "name": "EOTech Vudu 1-6x24 30mm riflescope",
+         "tpl": "5b3b99475acfc432ff4dcbee",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount_001",
+     "name": "SVDS upper band",
+     "tpl": "5c471c2d2e22164bef5d077f",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "SVDS polymer handguard",
+       "tpl": "5c471c6c2e221602b66cd9ae",
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "SVDS rear sight",
+       "tpl": "5c471b7e2e2216152006e46c",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "SVDS dust cover",
+     "tpl": "5c471bd12e221602b4129c3a",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5c46fbd72e2216398b5a8c9c",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "SVDS Lynx Arms AK-series pistol grip adapter",
+     "tpl": "6516b129609aaf354b34b3a8",
+     "parts": [
+      {
+       "slot": "mod_pistolgrip",
+       "name": "AK TAPCO SAW-Style pistol grip (Black)",
+       "tpl": "5947f92f86f77427344a76b1",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "SVD 7.62x54R 20-round magazine",
+     "tpl": "5c88f24b2e22160bc12c69a6",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "SVDS polymer stock",
+     "tpl": "5c471b5d2e221602b21d4e14",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "SVD 7.62x54R 565mm barrel",
+     "tpl": "5c471cb32e221602b177afaa",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "SVDS 7.62x54R muzzle brake-compensator",
+       "tpl": "5c471bfc2e221602b21d4e17",
+       "parts": [
+        {
+         "slot": "mod_sight_front",
+         "name": "SVDS front sight",
+         "tpl": "5c471ba12e221602b3137d76",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        },
+        {
+         "slot": "mod_muzzle",
+         "name": "SVDS Rotor 43 thread adapter",
+         "tpl": "5e01e9e273d8eb11426f5bc3",
+         "parts": [
+          {
+           "slot": "mod_muzzle",
+           "name": "Rotor 43 7.62x54R sound suppressor",
+           "tpl": "5e01ea19e9dc277128008c0b",
+           "parts": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "slot": "mod_gas_block",
+       "name": "SVDS gas tube",
+       "tpl": "5c471c842e221615214259b5",
+       "parts": []
+      },
+      {
+       "slot": "mod_mount",
+       "name": "SVD CAA DRG L-1 barrel mount rail",
+       "tpl": "5e569a132642e66b0b68015c",
+       "parts": [
+        {
+         "slot": "mod_tactical_000",
+         "name": "NcSTAR Tactical Blue Laser",
+         "tpl": "5cc9c20cd7f00c001336c65d",
+         "light": {
+          "on": false,
+          "mode": 0
+         },
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount_000",
+     "name": "SVD CAA XD RGL receiver mount",
+     "tpl": "5e569a2e56edd02abe09f280",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "Lobaev Arms 30mm scope mount",
+       "tpl": "57c69dd424597774c03b7bbc",
+       "parts": [
+        {
+         "slot": "mod_scope",
+         "name": "EOTech Vudu 1-6x24 30mm riflescope",
+         "tpl": "5b3b99475acfc432ff4dcbee",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount_001",
+     "name": "SVDS upper band",
+     "tpl": "5c471c2d2e22164bef5d077f",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "SVD modernization kit handguard",
+       "tpl": "5e56991336989c75ab4f03f6",
+       "parts": [
+        {
+         "slot": "mod_mount_002",
+         "name": "Magpul M-LOK Bipod Mount",
+         "tpl": "671126b049e181972e0681fa",
+         "parts": [
+          {
+           "slot": "mod_bipod",
+           "name": "Harris S-BRM 6-9\" Bipod",
+           "tpl": "5888961624597754281f93f3",
+           "parts": []
+          }
+         ]
+        },
+        {
+         "slot": "mod_foregrip",
+         "name": "Magpul M-LOK 4.1 inch rail",
+         "tpl": "5b7be4895acfc400170e2dd5",
+         "parts": [
+          {
+           "slot": "mod_foregrip",
+           "name": "RTM Osovets P-2 tactical foregrip",
+           "tpl": "64806bdd26c80811d408d37a",
+           "parts": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "SVDS rear sight",
+       "tpl": "5c471b7e2e2216152006e46c",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "SVDS dust cover",
+     "tpl": "5c471bd12e221602b4129c3a",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "rpd",
+  "name": "RPD",
+  "class": "lmg",
+  "role": "box",
+  "base": {
+   "tpl": "6513ef33e06849f06c0957ca",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "RPD 7.62x39 Buben 100-round box",
+     "tpl": "6513f0a194c72326990a3868",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "RPD wooden stock",
+     "tpl": "6513f1798cb24472490ee331",
+     "parts": [
+      {
+       "slot": "mod_pistolgrip",
+       "name": "RPD wooden pistol grip",
+       "tpl": "6513f13a8cb24472490ee32f",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "RPD 7.62x39 520mm barrel",
+     "tpl": "6513eff1e06849f06c0957d4",
+     "parts": [
+      {
+       "slot": "mod_bipod",
+       "name": "RPD bipod",
+       "tpl": "6513f037e06849f06c0957d7",
+       "parts": []
+      },
+      {
+       "slot": "mod_muzzle",
+       "name": "RPD barrel thread protector",
+       "tpl": "6513f0f5e63f29908d0ffab8",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "RPD wooden handguard",
+     "tpl": "6513f05a94c72326990a3866",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "RPD rear sight",
+     "tpl": "6513f153e63f29908d0ffaba",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "64b7af734b75259c590fa895",
+  "pap": {
+   "tpl": "6513ef33e06849f06c0957ca",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "RPD 7.62x39 Buben 100-round box",
+     "tpl": "6513f0a194c72326990a3868",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "RPD wooden stock",
+     "tpl": "6513f1798cb24472490ee331",
+     "parts": [
+      {
+       "slot": "mod_pistolgrip",
+       "name": "RPD wooden pistol grip",
+       "tpl": "6513f13a8cb24472490ee32f",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "RPD 7.62x39 520mm barrel",
+     "tpl": "6513eff1e06849f06c0957d4",
+     "parts": [
+      {
+       "slot": "mod_bipod",
+       "name": "RPD bipod",
+       "tpl": "6513f037e06849f06c0957d7",
+       "parts": []
+      },
+      {
+       "slot": "mod_muzzle",
+       "name": "RPD barrel thread protector",
+       "tpl": "6513f0f5e63f29908d0ffab8",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "RPD wooden handguard",
+     "tpl": "6513f05a94c72326990a3866",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "RPD rear sight",
+     "tpl": "6513f153e63f29908d0ffaba",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "m60",
+  "name": "M60E6",
+  "class": "lmg",
+  "role": "box",
+  "base": {
+   "tpl": "661ceb1b9311543c7104149b",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "M60 7.62x51 Capco 100-round Assault Box",
+     "tpl": "660ea4453786cc0af808a1be",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "M60E6 buttstock",
+     "tpl": "6615202b96461aa8360271eb",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "M60E6 7.62x51 458mm barrel",
+     "tpl": "66225d88a1c7e3b81600c76f",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "M60E6 7.62x51 flash hider",
+       "tpl": "66012a1d3dff5074ed002e2a",
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_front",
+       "name": "M60E4 front sight",
+       "tpl": "6601268bc752a02bbe05e686",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "M60E6 handguard",
+     "tpl": "66012d003dff5074ed002e2c",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "M60 rear sight",
+     "tpl": "6601265f98a610c1aa0ea637",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_pistolgrip_000",
+     "name": "M60E4 trigger group",
+     "tpl": "6601257f1347bc1a5f0f4db6",
+     "parts": [
+      {
+       "slot": "mod_pistolgrip_001",
+       "name": "M60E4 pistol grip",
+       "tpl": "660125bf1d087a96c60a54db",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_bipod",
+     "name": "M60 bipod",
+     "tpl": "66012d9a3dff5074ed002e33",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "661ceb1b9311543c7104149b",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "M60 7.62x51 Capco 100-round Assault Box",
+     "tpl": "660ea4453786cc0af808a1be",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "M60E6 buttstock",
+     "tpl": "6615202b96461aa8360271eb",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "M60E6 7.62x51 458mm barrel",
+     "tpl": "66225d88a1c7e3b81600c76f",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "SilencerCo Hybrid 46 Direct Thread Mount adapter",
+       "tpl": "59bffc1f86f77435b128b872",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "SilencerCo Hybrid 46 multi-caliber sound suppressor",
+         "tpl": "59bffbb386f77435b379b9c2",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_sight_front",
+       "name": "M60E6 front sight rail",
+       "tpl": "660126a98f2b23af220b27e7",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "M60E4 Mod 1 handguard",
+     "tpl": "66012d64c752a02bbe05e69b",
+     "parts": [
+      {
+       "slot": "mod_foregrip",
+       "name": "Zenit RK-1 tactical foregrip on B-25U mount",
+       "tpl": "5c1cd46f2e22164bef5cfedb",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "M60 rear sight",
+     "tpl": "6601265f98a610c1aa0ea637",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_pistolgrip_000",
+     "name": "M60E4 trigger group",
+     "tpl": "6601257f1347bc1a5f0f4db6",
+     "parts": [
+      {
+       "slot": "mod_pistolgrip_001",
+       "name": "M60E4 pistol grip",
+       "tpl": "660125bf1d087a96c60a54db",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_bipod",
+     "name": "M60 bipod",
+     "tpl": "66012d9a3dff5074ed002e33",
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "Leapers UTG reflex sight",
+     "tpl": "6165ac8c290d254f5e6b2f6c",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "fiveseven",
+  "name": "Five-seveN MK2",
+  "class": "pistol",
+  "role": "box",
+  "base": {
+   "tpl": "5d67abc1a4b93614ec50137f",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "FN Five-seveN 5.7x28 120mm barrel",
+     "tpl": "5d3eb5b6a4b9361eab311902",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "FN Five-seveN MK2 pistol slide",
+     "tpl": "5d3eb44aa4b93650d64e4979",
+     "parts": [
+      {
+       "slot": "mod_sight_rear",
+       "name": "FN Five-seveN MK2 rear sight",
+       "tpl": "5d3eb4aba4b93650d64e497d",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_front",
+       "name": "FN Five-seveN MK2 front sight",
+       "tpl": "5d3eb536a4b9363b1f22f8e2",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "FN Five-seveN 5.7x28 20-round magazine",
+     "tpl": "5d3eb5eca4b9363b1f22f8e4",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5d67abc1a4b93614ec50137f",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "FN Five-seveN 5.7x28 120mm threaded barrel",
+     "tpl": "5d3eb59ea4b9361c284bb4b2",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "Gemtech SFN-57 5.7x28 sound suppressor",
+       "tpl": "5d3ef698a4b9361182109872",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "FN Five-seveN MK2 pistol slide",
+     "tpl": "5d3eb44aa4b93650d64e4979",
+     "parts": [
+      {
+       "slot": "mod_sight_rear",
+       "name": "FN Five-seveN MK2 RMR mount",
+       "tpl": "5d7b6bafa4b93652786f4c76",
+       "parts": [
+        {
+         "slot": "mod_scope",
+         "name": "Trijicon RMR reflex sight",
+         "tpl": "5a32aa8bc4a2826c6e06d737",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_sight_front",
+       "name": "FN Five-seveN MK2 front sight",
+       "tpl": "5d3eb536a4b9363b1f22f8e2",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "FN Five-seveN 5.7x28 20-round magazine",
+     "tpl": "5d3eb5eca4b9363b1f22f8e4",
+     "parts": []
+    },
+    {
+     "slot": "mod_tactical",
+     "name": "NcSTAR Tactical Blue Laser",
+     "tpl": "5cc9c20cd7f00c001336c65d",
+     "light": {
+      "on": false,
+      "mode": 0
+     },
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "glock18c",
+  "name": "Glock 18C",
+  "class": "pistol",
+  "role": "box",
+  "base": {
+   "tpl": "5b1fa9b25acfc40018633c01",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "Glock 18C 9x19 114mm compensated barrel",
+     "tpl": "5b1fa9ea5acfc40018633c0a",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "Glock 18C pistol slide",
+     "tpl": "5b1faa0f5acfc40dc528aeb5",
+     "parts": [
+      {
+       "slot": "mod_sight_rear",
+       "name": "Glock TruGlo TFX rear sight",
+       "tpl": "5a7d912f159bd400165484f3",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_front",
+       "name": "Glock TruGlo TFX front sight",
+       "tpl": "5a7d9104159bd400134c8c21",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "Glock 9x19 17-round magazine",
+     "tpl": "5a718b548dc32e000d46d262",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5b1fa9b25acfc40018633c01",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "Glock 18C 9x19 114mm compensated barrel",
+     "tpl": "5b1fa9ea5acfc40018633c0a",
+     "parts": []
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "Glock Pachmayr Tactical Grip Glove",
+     "tpl": "5a7b4960e899ef197b331a2d",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "Glock 18C pistol slide",
+     "tpl": "5b1faa0f5acfc40dc528aeb5",
+     "parts": [
+      {
+       "slot": "mod_sight_rear",
+       "name": "Glock TruGlo TFX rear sight",
+       "tpl": "5a7d912f159bd400165484f3",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_front",
+       "name": "Glock TruGlo TFX front sight",
+       "tpl": "5a7d9104159bd400134c8c21",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "Glock 9x19 17-round magazine",
+     "tpl": "5a718b548dc32e000d46d262",
+     "parts": []
+    },
+    {
+     "slot": "mod_tactical",
+     "name": "NcSTAR Tactical Blue Laser",
+     "tpl": "5cc9c20cd7f00c001336c65d",
+     "light": {
+      "on": false,
+      "mode": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_mount",
+     "name": "Glock Aimtech Tiger Shark sight mount",
+     "tpl": "5a7ad55551dfba0015068f42",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "DeltaPoint Cross Slot Mount base",
+       "tpl": "58d2664f86f7747fec5834f6",
+       "parts": [
+        {
+         "slot": "mod_scope",
+         "name": "Leupold DeltaPoint Reflex Sight",
+         "tpl": "58d268fc86f774111273f8c2",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_stock",
+     "name": "Glock FAB Defense GLR-17 stock",
+     "tpl": "5d1c702ad7ad1a632267f429",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "deagle",
+  "name": "Desert Eagle L6",
+  "class": "pistol",
+  "role": "box",
+  "base": {
+   "tpl": "669fa3d876116c89840b1217",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "Desert Eagle L6 .50 AE 152mm barrel (WTS)",
+     "tpl": "669fa48fa0bab4e8510d952a",
+     "parts": [
+      {
+       "slot": "mod_sight_front",
+       "name": "Desert Eagle front sight",
+       "tpl": "668fe5ec4315934ba10c6f96",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_pistolgrip",
+     "name": "Desert Eagle Hogue Rubber Grip with finger grooves",
+     "tpl": "66a0da76b6f47fcfeb025e96",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "Desert Eagle L6 pistol slide (WTS)",
+     "tpl": "669fa5271bd4416eaa09b3ce",
+     "parts": [
+      {
+       "slot": "mod_sight_rear",
+       "name": "Desert Eagle rear sight",
+       "tpl": "668fe5e1800f0244f9036e46",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "Desert Eagle .50 AE 7-round magazine",
+     "tpl": "668fe5c5f35310705d02b696",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "669fa3d876116c89840b1217",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "Desert Eagle L6 .50 AE 152mm barrel (WTS)",
+     "tpl": "669fa48fa0bab4e8510d952a",
+     "parts": [
+      {
+       "slot": "mod_sight_front",
+       "name": "Desert Eagle front sight",
+       "tpl": "668fe5ec4315934ba10c6f96",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_pistolgrip",
+     "name": "Desert Eagle Hogue Rubber Grip with finger grooves",
+     "tpl": "66a0da76b6f47fcfeb025e96",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "Desert Eagle L6 pistol slide (WTS)",
+     "tpl": "669fa5271bd4416eaa09b3ce",
+     "parts": [
+      {
+       "slot": "mod_sight_rear",
+       "name": "Desert Eagle rear sight",
+       "tpl": "668fe5e1800f0244f9036e46",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "Desert Eagle .50 AE 7-round magazine",
+     "tpl": "668fe5c5f35310705d02b696",
+     "parts": []
+    },
+    {
+     "slot": "mod_tactical",
+     "name": "NcSTAR Tactical Blue Laser",
+     "tpl": "5cc9c20cd7f00c001336c65d",
+     "light": {
+      "on": false,
+      "mode": 0
+     },
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "rsh12",
+  "name": "RSh-12",
+  "class": "pistol",
+  "role": "box",
+  "base": {
+   "tpl": "633ec7c2a6918cb895019c6c",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "RSh-12 12.7x55 5-round cylinder",
+     "tpl": "633ec6ee025b096d320a3b15",
+     "parts": []
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "RSh-12 pistol grip",
+     "tpl": "633ec8e4025b096d320a3b1e",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "633ec7c2a6918cb895019c6c",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "RSh-12 12.7x55 5-round cylinder",
+     "tpl": "633ec6ee025b096d320a3b15",
+     "parts": []
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "RSh-12 pistol grip",
+     "tpl": "633ec8e4025b096d320a3b1e",
+     "parts": []
+    },
+    {
+     "slot": "mod_tactical",
+     "name": "NcSTAR Tactical Blue Laser",
+     "tpl": "5cc9c20cd7f00c001336c65d",
+     "light": {
+      "on": false,
+      "mode": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "Lobaev Arms 30mm scope mount",
+     "tpl": "57c69dd424597774c03b7bbc",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "Vortex Razor HD Gen.2 1-6x24 30mm riflescope",
+       "tpl": "618ba27d9008e4636a67f61d",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 26.5
+       },
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "mp43",
+  "name": "MP-43-1C",
+  "class": "shotgun",
+  "role": "box",
+  "base": {
+   "tpl": "5580223e4bdc2d1c128b457f",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "MP-43-1C 12ga 725mm barrel",
+     "tpl": "55d447bb4bdc2d892f8b456f",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "MP-43-1C buttpad",
+     "tpl": "611a31ce5b7ffe001b4649d1",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5580223e4bdc2d1c128b457f",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "MP-43-1C 12ga 725mm barrel",
+     "tpl": "55d447bb4bdc2d892f8b456f",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "MP-43-1C buttpad",
+     "tpl": "611a31ce5b7ffe001b4649d1",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "m870",
+  "name": "M870",
+  "class": "shotgun",
+  "role": "box",
+  "base": {
+   "tpl": "5a7828548dc32e5a9c28b516",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "M870 12ga 508mm barrel",
+     "tpl": "5a787f7ac5856700177af660",
+     "parts": []
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "M870 SpeedFeed Short handguard",
+     "tpl": "5a788089c5856700142fdd9c",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "M870 12ga 7-shell magazine",
+     "tpl": "5a78830bc5856700137e4c90",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "M870 SPS polymer stock",
+     "tpl": "5a7880d0c5856700142fdd9d",
+     "parts": []
+    },
+    {
+     "slot": "mod_mount",
+     "name": "M870 XS SHOTRAIL rail with Ghost Ring rear sight",
+     "tpl": "5a78948ec5856700177b1124",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5a7828548dc32e5a9c28b516",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "M870 12ga 508mm barrel",
+     "tpl": "5a787f7ac5856700177af660",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "ME Cylinder 12ga muzzle adapter",
+       "tpl": "5c0111ab0db834001966914d",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "Tromix Monster Claw 12ga muzzle brake",
+         "tpl": "59fb137a86f7740adb646af1",
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "M870 FAB Defense PR-870 forestock",
+     "tpl": "5a788031c585673f2b5c1c79",
+     "parts": [
+      {
+       "slot": "mod_foregrip",
+       "name": "KAC vertical foregrip",
+       "tpl": "5c87ca002e221600114cb150",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "M870 12ga 7-shell magazine",
+     "tpl": "5a78830bc5856700137e4c90",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "M870 Magpul SGA polymer stock",
+     "tpl": "5a78813bc5856700186c4abe",
+     "parts": []
+    },
+    {
+     "slot": "mod_mount",
+     "name": "M870 Leapers UTG PRO MTU-028SG rail",
+     "tpl": "5a7893c1c585673f2b5c374d",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "Walther MRS reflex sight",
+       "tpl": "570fd721d2720bc5458b4596",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "saiga12",
+  "name": "Saiga-12K",
+  "class": "shotgun",
+  "role": "box",
+  "base": {
+   "tpl": "576165642459773c7a400233",
+   "parts": [
+    {
+     "slot": "mod_handguard",
+     "name": "SOK-12 polymer handguard",
+     "tpl": "576169e62459773c69055191",
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "GK-02 12ga muzzle brake",
+     "tpl": "58272d7f2459774f6311ddfd",
+     "parts": []
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AK Strike Industries Enhanced Pistol Grip (Black)",
+     "tpl": "5cf50850d7f00c056e24104c",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "SOK-12 Kiba Arms Zombie Custom dust cover ",
+     "tpl": "676017fe8cfeeba9f707c8d6",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "SOK-12 rear sight",
+     "tpl": "57a9b9ce2459770ee926038d",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "SOK-12 AK-style stock",
+     "tpl": "57616ca52459773c69055192",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "AK GP-25 accessory kit recoil pad",
+       "tpl": "5a0c59791526d8dba737bba7",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "SOK-12 12ga Sb.5 5-round magazine",
+     "tpl": "57616a9e2459773c7a400234",
+     "parts": []
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AK Zenit RP-1 charging handle",
+     "tpl": "5648ac824bdc2ded0b8b457d",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "576165642459773c7a400233",
+   "parts": [
+    {
+     "slot": "mod_handguard",
+     "name": "SOK-12 Chaos Titan Quad Rail handguard",
+     "tpl": "674fe57721a9aa6be6045b96",
+     "parts": [
+      {
+       "slot": "mod_foregrip",
+       "name": "Zenit RK-1 tactical foregrip on B-25U mount",
+       "tpl": "5c1cd46f2e22164bef5cfedb",
+       "parts": []
+      },
+      {
+       "slot": "mod_bipod",
+       "name": "BT10 V8 Atlas Bipod",
+       "tpl": "6644920d49817dc7d505ca71",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "GK-02 12ga muzzle brake",
+     "tpl": "58272d7f2459774f6311ddfd",
+     "parts": []
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AK Strike Industries Enhanced Pistol Grip (Black)",
+     "tpl": "5cf50850d7f00c056e24104c",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "SOK-12 Kiba Arms Zombie Custom dust cover ",
+     "tpl": "676017fe8cfeeba9f707c8d6",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "SOK-12 rear sight",
+     "tpl": "57a9b9ce2459770ee926038d",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "SOK-12 AK-style stock",
+     "tpl": "57616ca52459773c69055192",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "AK GP-25 accessory kit recoil pad",
+       "tpl": "5a0c59791526d8dba737bba7",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "SOK-12 12ga SAI-02 10-round magazine",
+     "tpl": "5a966f51a2750c00156aacf6",
+     "parts": []
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AK Zenit RP-1 charging handle",
+     "tpl": "5648ac824bdc2ded0b8b457d",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "m32a1",
+  "name": "M32A1 (War Machine)",
+  "class": "launcher",
+  "role": "box",
+  "base": {
+   "tpl": "6275303a9f372d6ea97f9ec7",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AR-15 Damage Industries ECS pistol grip (FDE)",
+     "tpl": "571659bb2459771fb2755a12",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AR-15 Magpul MOE Carbine stock (FDE)",
+     "tpl": "58d2946386f774496974c37e",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "M32A1 40mm cylinder",
+     "tpl": "627bce33f21bc425b06ab967",
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "Milkor M2A1 grenade launcher reflex sight",
+     "tpl": "6284bd5f95250a29bc628a30",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "6275303a9f372d6ea97f9ec7",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AR-15 Damage Industries ECS pistol grip (FDE)",
+     "tpl": "571659bb2459771fb2755a12",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AR-15 Magpul MOE Carbine stock (FDE)",
+     "tpl": "58d2946386f774496974c37e",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "Magpul MOE Carbine rubber buttpad",
+       "tpl": "58d2912286f7744e27117493",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "M32A1 40mm cylinder",
+     "tpl": "627bce33f21bc425b06ab967",
+     "parts": []
+    },
+    {
+     "slot": "mod_foregrip",
+     "name": "Zenit RK-1 tactical foregrip on B-25U mount",
+     "tpl": "5c1cd46f2e22164bef5cfedb",
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "Milkor M2A1 grenade launcher reflex sight",
+     "tpl": "6284bd5f95250a29bc628a30",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_tactical_001",
+     "name": "NcSTAR Tactical Blue Laser",
+     "tpl": "5cc9c20cd7f00c001336c65d",
+     "light": {
+      "on": false,
+      "mode": 0
+     },
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "mosin",
+  "name": "Mosin",
+  "class": "sniper",
+  "role": "wall",
+  "base": {
+   "tpl": "5ae08f0a5acfc408fb1398a1",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "Mosin Rifle 7.62x54R 5-round magazine",
+     "tpl": "5ae0973a5acfc4001562206c",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "Mosin Rifle standard stock",
+     "tpl": "5ae096d95acfc400185c2c81",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "Mosin Rifle 7.62x54R 730mm regular barrel",
+     "tpl": "5ae09bff5acfc4001562219d",
+     "parts": [
+      {
+       "slot": "mod_sight_front",
+       "name": "Mosin Rifle front sight",
+       "tpl": "5ae099875acfc4001714e593",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "Mosin Rifle rear sight",
+       "tpl": "5ae099925acfc4001a5fc7b3",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5ae08f0a5acfc408fb1398a1",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "Mosin Rifle 7.62x54R ProMag Archangel OPFOR 10-round magazine",
+     "tpl": "5bae13ded4351e44f824bf38",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "Mosin Rifle ProMag Archangel OPFOR PRS chassis",
+     "tpl": "5bae13bad4351e00320204af",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "Mosin Carbine 7.62x54R 514mm barrel",
+     "tpl": "5bfd4cbe0db834001b73449f",
+     "parts": [
+      {
+       "slot": "mod_sight_front",
+       "name": "Mosin Rifle front sight",
+       "tpl": "5ae099875acfc4001714e593",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_muzzle",
+       "name": "Mosin Rifle Bramit 7.62x54R sound suppressor",
+       "tpl": "5b86a0e586f7745b600ccb23",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount",
+     "name": "Mosin Rifle Kochetov mount",
+     "tpl": "5b3f7bf05acfc433000ecf6b",
+     "parts": [
+      {
+       "slot": "mod_mount",
+       "name": "Mosin Rifle Arbalet Patriot K+W rail mount",
+       "tpl": "5d024f5cd7ad1a04a067e91a",
+       "parts": [
+        {
+         "slot": "mod_scope",
+         "name": "Lobaev Arms 30mm scope mount",
+         "tpl": "57c69dd424597774c03b7bbc",
+         "parts": [
+          {
+           "slot": "mod_scope",
+           "name": "Vortex Razor HD Gen.2 1-6x24 30mm riflescope",
+           "tpl": "618ba27d9008e4636a67f61d",
+           "sight": {
+            "scope": 0,
+            "modes": [
+             0
+            ],
+            "zoom": 0
+           },
+           "parts": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "vityaz",
+  "name": "PP-19-01 Vityaz",
+  "class": "smg",
+  "role": "wall",
+  "base": {
+   "tpl": "59984ab886f7743e98271174",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "PP-19-01 Vityaz pistol grip",
+     "tpl": "5998517986f7746017232f7e",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "PP-19-01 Vityaz metal skeleton stock",
+     "tpl": "599851db86f77467372f0a18",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "AK Custom Arms ST-EF 74 skeleton stock extension",
+       "tpl": "6494094948796d891603e59f",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "PP-19-01 Vityaz 9x19 30-round magazine",
+     "tpl": "599860ac86f77436b225ed1a",
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "PP-19-01 Vityaz 9x19 muzzle brake-compensator",
+     "tpl": "5998597786f77414ea6da093",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "PP-19-01 Vityaz dust cover",
+     "tpl": "59985a8086f77414ec448d1a",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "PP-19-01 Vityaz rear sight",
+     "tpl": "599860e986f7743bb57573a6",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_gas_block",
+     "name": "PP-19-01 Vityaz gas tube",
+     "tpl": "59ccd11386f77428f24a488f",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "AK-74M polymer handguard",
+       "tpl": "5648b1504bdc2d9d488b4584",
+       "parts": []
+      }
+     ]
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "59984ab886f7743e98271174",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "AK Zenit RK-3 pistol grip",
+     "tpl": "5649ae4a4bdc2d1b2b8b4588",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "AK-74M/AK-100 Zenit PT Lock",
+     "tpl": "5ac78eaf5acfc4001926317a",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "AK Zenit PT-1 \"Klassika\" stock",
+       "tpl": "5b222d405acfc400153af4fe",
+       "parts": [
+        {
+         "slot": "mod_stock_000",
+         "name": "AK GP-25 accessory kit recoil pad",
+         "tpl": "5a0c59791526d8dba737bba7",
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "AK Zenit RP-1 charging handle",
+     "tpl": "5648ac824bdc2ded0b8b457d",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "PP-19-01 Vityaz 9x19 30-round magazine",
+     "tpl": "599860ac86f77436b225ed1a",
+     "parts": []
+    },
+    {
+     "slot": "mod_muzzle",
+     "name": "PP-19-01 Vityaz 9x19 sound suppressor",
+     "tpl": "59bfc5c886f7743bf6794e62",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "PP-19-01 Vityaz dust cover",
+     "tpl": "59985a8086f77414ec448d1a",
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "PP-19-01 Vityaz rear sight",
+     "tpl": "599860e986f7743bb57573a6",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "Zenit B-13V \"Klassika\" dovetail rail platform",
+     "tpl": "5c90c3622e221601da359851",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "Leapers UTG reflex sight",
+       "tpl": "6165ac8c290d254f5e6b2f6c",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_gas_block",
+     "name": "PP-19-01 Vityaz Vector VR-LPS left-side charging handle",
+     "tpl": "65ae4f57e343f0acc00824da",
+     "parts": [
+      {
+       "slot": "mod_foregrip",
+       "name": "TangoDown Stubby BGV-MK46K foregrip (Black)",
+       "tpl": "558032614bdc2de7118b4585",
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "mdr",
+  "name": "MDR 7.62",
+  "class": "ar",
+  "role": "wall",
+  "base": {
+   "tpl": "5dcbd56fdbd3d91b3e5468d5",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "MDR pistol grip (Black)",
+     "tpl": "5dcbd6dddbd3d91b3e5468de",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AR-10 7.62x51 Magpul PMAG 20 SR-LR GEN M3 20-round magazine",
+     "tpl": "5a3501acc4a282000d72293a",
+     "parts": []
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "MDR handguard (Black)",
+     "tpl": "5dcbd6b46ec07c0c4347a564",
+     "parts": [
+      {
+       "slot": "mod_sight_front",
+       "name": "MPX flip-up front sight",
+       "tpl": "5894a73486f77426d259076c",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "MDR 7.62x51 16 inch barrel",
+     "tpl": "5dcbe9431e1f4616d354987e",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "AR-10 Precision Armanent M11 Severe-Duty 7.62x51 muzzle brake",
+       "tpl": "5cdd7693d7f00c0010373aa5",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "Magpul MBUS Gen2 flip-up rear sight",
+     "tpl": "5bc09a18d4351e003562b68e",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5dcbd56fdbd3d91b3e5468d5",
+   "parts": [
+    {
+     "slot": "mod_pistol_grip",
+     "name": "MDR pistol grip (Black)",
+     "tpl": "5dcbd6dddbd3d91b3e5468de",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "AR-10 7.62x51 Magpul PMAG 20 SR-LR GEN M3 20-round magazine",
+     "tpl": "5a3501acc4a282000d72293a",
+     "parts": []
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "MDR handguard (Black)",
+     "tpl": "5dcbd6b46ec07c0c4347a564",
+     "parts": [
+      {
+       "slot": "mod_mount_000",
+       "name": "Daniel Defense Enhanced M-LOK Vertical Foregrip (Black)",
+       "tpl": "651a8bf3a8520e48047bf708",
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_front",
+       "name": "MPX flip-up front sight",
+       "tpl": "5894a73486f77426d259076c",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "MDR 7.62x51 16 inch barrel",
+     "tpl": "5dcbe9431e1f4616d354987e",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "AR-10 Precision Armanent M11 Severe-Duty 7.62x51 muzzle brake",
+       "tpl": "5cdd7693d7f00c0010373aa5",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_scope",
+     "name": "EOTech XPS3-0 holographic sight",
+     "tpl": "58491f3324597764bc48fa02",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "Magpul MBUS Gen2 flip-up rear sight",
+     "tpl": "5bc09a18d4351e003562b68e",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "ks23",
+  "name": "KS-23M",
+  "class": "shotgun",
+  "role": "wall",
+  "base": {
+   "tpl": "5e848cc2988a8701445df1e8",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "KS-23 23x75 510mm barrel",
+     "tpl": "5e848d1c264f7c180b5e35a9",
+     "parts": []
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "KS-23M forestock",
+     "tpl": "5e848d51e4dbc5266a4ec63b",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "KS-23M 23x75 3-shell magazine cap",
+     "tpl": "5f647d9f8499b57dc40ddb93",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "KS-23M pistol grip",
+     "tpl": "5e848d99865c0f329958c83b",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "KS-23M wire stock",
+       "tpl": "5e848dc4e4dbc5266a4ec63d",
+       "parts": []
+      }
+     ]
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5e848cc2988a8701445df1e8",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "KS-23 23x75 700mm barrel",
+     "tpl": "5e848d2eea0a7c419c2f9bfd",
+     "parts": []
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "KS-23M forestock",
+     "tpl": "5e848d51e4dbc5266a4ec63b",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "KS-23M 23x75 3-shell magazine cap",
+     "tpl": "5f647d9f8499b57dc40ddb93",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "KS-23M pistol grip",
+     "tpl": "5e848d99865c0f329958c83b",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "KS-23M wire stock",
+       "tpl": "5e848dc4e4dbc5266a4ec63d",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_scope",
+     "name": "KOMZ Rusak reflex sight",
+     "tpl": "65f05b9d39dab9e9ec049cfd",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "m1a",
+  "name": "M1A",
+  "class": "sniper",
+  "role": "wall",
+  "base": {
+   "tpl": "5aafa857e5b5b00018480968",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "M1A 7.62x51 20-round magazine",
+     "tpl": "5aaf8a0be5b5b00015693243",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "M1A SOCOM 16 stock",
+     "tpl": "5aaf8e43e5b5b00015693246",
+     "parts": [
+      {
+       "slot": "mod_mount",
+       "name": "M1A SOCOM 16 upper part",
+       "tpl": "5ab24ef9e5b5b00fe93c9209",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "M1A 7.62x51 16 inch barrel",
+     "tpl": "5aaf9d53e5b5b00015042a52",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "M1A SOCOM 16 7.62x51 muzzle brake-compensator",
+       "tpl": "5aafa1c2e5b5b00015042a56",
+       "parts": [
+        {
+         "slot": "mod_sight_front",
+         "name": "M1A SA XS Post .125 Blade front sight",
+         "tpl": "5aafa49ae5b5b00015042a58",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_sight_rear",
+     "name": "M14 SA Enlarged Military Aperture rear sight",
+     "tpl": "5abcbb20d8ce87001773e258",
+     "sight": {
+      "scope": 0,
+      "modes": [
+       0
+      ],
+      "zoom": 0
+     },
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5aafa857e5b5b00018480968",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "M14 7.62x51 30-round magazine",
+     "tpl": "5addcce35acfc4001a5fc635",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "M14 TROY S.A.S.S. Chassis stock",
+     "tpl": "5ab372a310e891001717f0d8",
+     "parts": [
+      {
+       "slot": "mod_foregrip",
+       "name": "TangoDown BGV-QDITI foregrip (Black)",
+       "tpl": "661e52e29c8b4dadef008577",
+       "parts": []
+      },
+      {
+       "slot": "mod_scope",
+       "name": "Lobaev Arms 30mm scope mount",
+       "tpl": "57c69dd424597774c03b7bbc",
+       "parts": [
+        {
+         "slot": "mod_scope",
+         "name": "Vortex Razor HD Gen.2 1-6x24 30mm riflescope",
+         "tpl": "618ba27d9008e4636a67f61d",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_tactical_003",
+       "name": "KAC MWS Bipod Adapter",
+       "tpl": "676175bb48fa5c377e06fc36",
+       "parts": [
+        {
+         "slot": "mod_bipod",
+         "name": "Harris S-BRM 6-9\" Bipod",
+         "tpl": "5888961624597754281f93f3",
+         "parts": []
+        }
+       ]
+      },
+      {
+       "slot": "mod_pistolgrip",
+       "name": "Hogue OverMolded Rubber Grip (Black)",
+       "tpl": "57c55efc2459772d2c6271e7",
+       "parts": []
+      },
+      {
+       "slot": "mod_stock",
+       "name": "AR-15 RTM ATP buffer tube",
+       "tpl": "638de3603a1a4031d8260b8c",
+       "parts": [
+        {
+         "slot": "mod_stock_000",
+         "name": "AR-15 B5 Systems Collapsible Precision Stock",
+         "tpl": "5fc2369685fd526b824a5713",
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "M1A 7.62x51 16 inch barrel",
+     "tpl": "5aaf9d53e5b5b00015042a52",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "M1A Smith Enterprise SOCOM 16 7.62x51 threaded muzzle brake & gas block",
+       "tpl": "5ab3afb2d8ce87001660304d",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "Gemtech ONE Direct Thread Mount adapter",
+         "tpl": "5c7954d52e221600106f4cc7",
+         "parts": [
+          {
+           "slot": "mod_muzzle",
+           "name": "Gemtech ONE multi-caliber sound suppressor",
+           "tpl": "5c7955c22e221644f31bfd5e",
+           "parts": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "uzi",
+  "name": "UZI",
+  "class": "smg",
+  "role": "wall",
+  "base": {
+   "tpl": "66992b349950f5f4cd06029f",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "UZI PRO 9x19 32-round magazine",
+     "tpl": "66866f622a2296a8d9099639",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "UZI 9x19 259mm barrel",
+     "tpl": "6698c8ab29e062525d0ad8ab",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "UZI 9x19 3-lug barrel retaining nut",
+       "tpl": "6698c9ba29e062525d0ad8b1",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "UZI polymer handguard",
+     "tpl": "6698c8c736ba38d29101770b",
+     "parts": []
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "UZI pistol grip cover",
+     "tpl": "669946c157df3e2b4e0a0dc5",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "66992b349950f5f4cd06029f",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "UZI 9x19 Beta C-Mag 100-round drum magazine",
+     "tpl": "676176a162e0497044079f46",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "UZI 9x19 259mm barrel",
+     "tpl": "6698c8ab29e062525d0ad8ab",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "UZI 9x19 sound suppressor",
+       "tpl": "66993733f74fef4dfd0b04ff",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_stock",
+     "name": "UZI StormWerkz stock adapter",
+     "tpl": "66992f4db9f31ddda10dd1c8",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "SIG Sauer Locking Stock Hinge Assembly",
+       "tpl": "6529348224cbe3c74a05e5c4",
+       "parts": [
+        {
+         "slot": "mod_stock",
+         "name": "SIG Sauer Stock Adapter Low Profile Tube (Coyote Tan)",
+         "tpl": "6529366450dc782999054ba0",
+         "parts": [
+          {
+           "slot": "mod_stock_000",
+           "name": "AR-15 FAB Defense GL-CORE buttstock",
+           "tpl": "602e620f9b513876d4338d9a",
+           "parts": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount_000",
+     "name": "UZI StormWerkz Scope Mount",
+     "tpl": "6698c90829e062525d0ad8ad",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "VOMZ Pilad P1x42 Weaver reflex sight",
+       "tpl": "584984812459776a704a82a6",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "UZI handguard with foregrip",
+     "tpl": "66993149558c59581e03c028",
+     "parts": [
+      {
+       "slot": "mod_mount_000",
+       "name": "UZI handguard rail",
+       "tpl": "6698c8f4710a4525fe0e9e57",
+       "parts": []
+      },
+      {
+       "slot": "mod_mount_001",
+       "name": "UZI handguard rail",
+       "tpl": "6698c8f4710a4525fe0e9e57",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_pistol_grip",
+     "name": "UZI pistol grip cover",
+     "tpl": "669946c157df3e2b4e0a0dc5",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "mp5k",
+  "name": "MP5K",
+  "class": "smg",
+  "role": "wall",
+  "base": {
+   "tpl": "5d2f0d8048f0356c925bc3b0",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "HK MP5 9x19 20-round magazine",
+     "tpl": "5d2f213448f0355009199284",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "HK MP5K 9x19 upper receiver",
+     "tpl": "5d2f261548f03576f500e7b7",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "HK MP5K polymer handguard",
+       "tpl": "5d2f259b48f0355a844acd74",
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "HK MP5 Drum rear sight",
+       "tpl": "5926d2be86f774134d668e4e",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_stock",
+       "name": "HK MP5K End Cap stock",
+       "tpl": "5d2f25bc48f03502573e5d85",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "HK MP5K cocking handle",
+     "tpl": "5d2f2d5748f03572ec0c0139",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "5d2f0d8048f0356c925bc3b0",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "HK MP5 9x19 X Products X-5 50-round drum magazine",
+     "tpl": "5a351711c4a282000b1521a4",
+     "parts": []
+    },
+    {
+     "slot": "mod_reciever",
+     "name": "HK MP5K 9x19 upper receiver",
+     "tpl": "5d2f261548f03576f500e7b7",
+     "parts": [
+      {
+       "slot": "mod_handguard",
+       "name": "HK MP5K polymer handguard",
+       "tpl": "5d2f259b48f0355a844acd74",
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "HK MP5 Drum rear sight",
+       "tpl": "5926d2be86f774134d668e4e",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_stock",
+       "name": "HK MP5K End Cap stock",
+       "tpl": "5d2f25bc48f03502573e5d85",
+       "parts": []
+      },
+      {
+       "slot": "mod_mount",
+       "name": "HK MP5 MFI HK universal low profile scope mount",
+       "tpl": "5926dad986f7741f82604363",
+       "parts": [
+        {
+         "slot": "mod_scope",
+         "name": "Walther MRS reflex sight",
+         "tpl": "570fd721d2720bc5458b4596",
+         "sight": {
+          "scope": 0,
+          "modes": [
+           0
+          ],
+          "zoom": 0
+         },
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_charge",
+     "name": "HK MP5K cocking handle",
+     "tpl": "5d2f2d5748f03572ec0c0139",
+     "parts": []
+    }
+   ]
+  }
+ },
+ {
+  "id": "mp133",
+  "name": "MP-133",
+  "class": "shotgun",
+  "role": "wall",
+  "base": {
+   "tpl": "54491c4f4bdc2db1078b4568",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "MP-133 12ga 510mm barrel",
+     "tpl": "55d4491a4bdc2d882f8b456e",
+     "parts": []
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "MP-133 beechwood forestock",
+     "tpl": "55d45d3f4bdc2d972f8b456c",
+     "parts": []
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "MP-153 12ga 5-shell magazine",
+     "tpl": "5882163e24597758206fee8c",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "MP-133/153 wooden stock",
+     "tpl": "56083cba4bdc2de22e8b456f",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "54491c4f4bdc2db1078b4568",
+   "parts": [
+    {
+     "slot": "mod_barrel",
+     "name": "MP-133 12ga 510mm barrel",
+     "tpl": "55d4491a4bdc2d882f8b456e",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "SilencerCo Salvo 12 choke adapter",
+       "tpl": "5b363dea5acfc4771e1c5e7e",
+       "parts": [
+        {
+         "slot": "mod_muzzle",
+         "name": "SilencerCo Salvo 12 12ga sound suppressor",
+         "tpl": "5b363dd25acfc4001a598fd2",
+         "parts": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "MP-133 custom plastic forestock with rails",
+     "tpl": "55d45f484bdc2d972f8b456d",
+     "parts": [
+      {
+       "slot": "mod_foregrip",
+       "name": "BCM GUNFIGHTER MOD 3 vertical foregrip",
+       "tpl": "5c7fc87d2e221644f31c0298",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_magazine",
+     "name": "MP-133 12ga 8-shell magazine",
+     "tpl": "55d485804bdc2d8c2f8b456b",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "MP-133/153 Taktika Tula 12003 stock adapter",
+     "tpl": "5bfe7fb30db8340018089fed",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "M870 FAB Defense AGR-870 pistol grip",
+       "tpl": "5bfe86a20db834001d23e8f7",
+       "parts": [
+        {
+         "slot": "mod_stock",
+         "name": "FAB Defense buffer tube for AGR-870",
+         "tpl": "5bfe89510db834001808a127",
+         "parts": [
+          {
+           "slot": "mod_stock_000",
+           "name": "AR-15 KRISS Defiance DS150 stock (Black)",
+           "tpl": "5fbbaa86f9986c4cff3fe5f6",
+           "parts": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount_001",
+     "name": "Kiba Arms SPRM rail mount for pump-action shotguns",
+     "tpl": "55d48a634bdc2d8b2f8b456a",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "Walther MRS reflex sight",
+       "tpl": "570fd721d2720bc5458b4596",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "g36c",
+  "name": "G36C",
+  "class": "ar",
+  "role": "wall",
+  "base": {
+   "tpl": "623063e994fc3f7b302a9696",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "AR-15 5.56x45 Magpul PMAG 30 GEN M3 W STANAG 30-round magazine",
+     "tpl": "55802d5f4bdc2dac148b458e",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "HK G36 polymer stock",
+     "tpl": "622f140da5958f63c67f1735",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "HK G36 5.56x45 228mm barrel",
+     "tpl": "622b379bf9cfc87d675d2de5",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "HK G36C 5.56x45 4-prong flash hider",
+       "tpl": "622f0ee47762f55aaa68ac87",
+       "parts": []
+      },
+      {
+       "slot": "mod_gas_block",
+       "name": "HK G36 gas block",
+       "tpl": "622b327b267a1b13a44abea3",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "HK G36 2-vent handguard",
+     "tpl": "62386b2adf47d66e835094b2",
+     "parts": [
+      {
+       "slot": "mod_mount_000",
+       "name": "HK G36 bottom handguard rail",
+       "tpl": "62444cb99f47004c781903eb",
+       "parts": []
+      },
+      {
+       "slot": "mod_tactical",
+       "name": "HK G36 hand stop",
+       "tpl": "622f16a1a5958f63c67f1737",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount",
+     "name": "HK G36 STANAG magwell",
+     "tpl": "622f039199f4ea1a4d6c9a17",
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "HK G36 sight mount",
+     "tpl": "622b3c081b89c677a33bcda6",
+     "parts": [
+      {
+       "slot": "mod_sight_front",
+       "name": "HK G36 front sight",
+       "tpl": "623166e08c43374ca1567195",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_sight_rear",
+       "name": "HK G36 rear sight",
+       "tpl": "6231670f0b8aa5472d060095",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "623063e994fc3f7b302a9696",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "AR-15 5.56x45 Magpul PMAG 30 GEN M3 W STANAG 30-round magazine",
+     "tpl": "55802d5f4bdc2dac148b458e",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "HK G36 Tommy Built AR Stock Adapter",
+     "tpl": "6706a159c67236b2f703bb95",
+     "parts": [
+      {
+       "slot": "mod_stock",
+       "name": "AR-15 HK Slim Line buttstock",
+       "tpl": "5bb20e70d4351e0035629f8f",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "HK G36 5.56x45 318mm barrel",
+     "tpl": "622b3858034a3e17ad0b81f5",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "AR-15 SureFire Warden 5.56x45 blast regulator",
+       "tpl": "62669bccdb9ebb4daa44cd14",
+       "parts": []
+      },
+      {
+       "slot": "mod_gas_block",
+       "name": "HK G36 gas block",
+       "tpl": "622b327b267a1b13a44abea3",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_handguard",
+     "name": "HK G36 KAC Quad Rail handguard",
+     "tpl": "67069d66af4890b09f0006ec",
+     "parts": [
+      {
+       "slot": "mod_tactical_003",
+       "name": "NcSTAR Tactical Blue Laser",
+       "tpl": "5cc9c20cd7f00c001336c65d",
+       "light": {
+        "on": false,
+        "mode": 0
+       },
+       "parts": []
+      },
+      {
+       "slot": "mod_foregrip",
+       "name": "Hera Arms CQR tactical foregrip",
+       "tpl": "5a7dbfc1159bd40016548fde",
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_mount",
+     "name": "HK G36 STANAG magwell",
+     "tpl": "622f039199f4ea1a4d6c9a17",
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "HK G36 sight mount",
+     "tpl": "622b3c081b89c677a33bcda6",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "Walther MRS reflex sight",
+       "tpl": "570fd721d2720bc5458b4596",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "vsk94",
+  "name": "VSK-94",
+  "class": "ar",
+  "role": "wall",
+  "base": {
+   "tpl": "645e0c6b3b381ede770e1cc9",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "9A-91 9x39 20-round magazine",
+     "tpl": "6450ec2e7da7133e5a09ca96",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "VSK-94 stock",
+     "tpl": "6452519e3d52156624001fd5",
+     "parts": []
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "9A-91 9x39 barrel",
+     "tpl": "645122f6d4928d46d30be3ff",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "9A-91 9x39 sound suppressor",
+       "tpl": "64527a3a7da7133e5a09ca99",
+       "parts": []
+      },
+      {
+       "slot": "mod_handguard",
+       "name": "9A-91 handguard",
+       "tpl": "644675573d52156624001fc9",
+       "parts": []
+      }
+     ]
+    }
+   ]
+  },
+  "ammo": "",
+  "pap": {
+   "tpl": "645e0c6b3b381ede770e1cc9",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "9A-91 9x39 20-round magazine",
+     "tpl": "6450ec2e7da7133e5a09ca96",
+     "parts": []
+    },
+    {
+     "slot": "mod_stock",
+     "name": "VSK-94 stock",
+     "tpl": "6452519e3d52156624001fd5",
+     "parts": []
+    },
+    {
+     "slot": "mod_scope",
+     "name": "Zenit B-13V \"Klassika\" dovetail rail platform",
+     "tpl": "5c90c3622e221601da359851",
+     "parts": [
+      {
+       "slot": "mod_scope",
+       "name": "Walther MRS reflex sight",
+       "tpl": "570fd721d2720bc5458b4596",
+       "sight": {
+        "scope": 0,
+        "modes": [
+         0
+        ],
+        "zoom": 0
+       },
+       "parts": []
+      }
+     ]
+    },
+    {
+     "slot": "mod_barrel",
+     "name": "9A-91 9x39 barrel",
+     "tpl": "645122f6d4928d46d30be3ff",
+     "parts": [
+      {
+       "slot": "mod_muzzle",
+       "name": "9A-91 9x39 sound suppressor",
+       "tpl": "64527a3a7da7133e5a09ca99",
+       "parts": []
+      },
+      {
+       "slot": "mod_handguard",
+       "name": "VSK-94 handguard",
+       "tpl": "6448f2f6d4928d46d30be3f6",
+       "parts": []
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "raygun",
+  "name": "Ray Gun",
+  "class": "wonder",
+  "role": "box_wonder",
+  "base": {
+   "tpl": "6a7e5a71d9a1160000000001",
+   "parts": []
+  },
+  "ammo": "6a7e5a71d9a11600000000ca",
+  "pap": {
+   "tpl": "6a7e5a71d9a1160000000001",
+   "parts": []
+  }
+ },
+ {
+  "id": "thundergun",
+  "name": "Thundergun",
+  "class": "wonder",
+  "role": "box_wonder",
+  "base": {
+   "tpl": "6a7e5a71d9a1150000000001",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "Pressure Cartridge",
+     "tpl": "6a7e5a71d9a1150000000002",
+     "parts": []
+    }
+   ]
+  },
+  "ammo": "6a7e5a71d9a1150000000004",
+  "pap": {
+   "tpl": "6a7e5a71d9a1150000000001",
+   "parts": [
+    {
+     "slot": "mod_magazine",
+     "name": "Pressure Cartridge",
+     "tpl": "6a7e5a71d9a1150000000002",
+     "parts": []
+    }
+   ]
+  }
+ }
+]

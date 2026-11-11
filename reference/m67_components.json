@@ -1,0 +1,1227 @@
+[
+ {
+  "owner": "MB:GrenadePrefab@weapon_grenade_m67_container",
+  "class": "GrenadePrefab",
+  "fields": {
+   "m_Name": "",
+   "PoolHistory": [],
+   "Colliders": [],
+   "Renderers": [],
+   "_originallyEnabledComponents": [],
+   "RegisteredComponentsToClean": [],
+   "_weaponObject": {
+    "ref": "GameObject:weapon_grenade_m67_model.generated"
+   },
+   "_weaponObjectSimple": {
+    "ref": "GameObject:weapon_grenade_m67_model_simple.generated"
+   },
+   "_originalAnimatorController": {
+    "ref": "AnimatorController:weapon_grenade_m67"
+   },
+   "_animatorSimple": {
+    "ref": "AnimatorOverrideController:weapon_grenade_m67_simple.generated"
+   },
+   "_animatorSpirit": {
+    "ref": "AnimatorOverrideController:weapon_grenade_m67_spirit.generated"
+   },
+   "_fastAnimatorControllerBinaryData": {
+    "ref": "TextAsset:weapon_grenade_m67.animatorcontrollerdata"
+   },
+   "_avatar": null,
+   "RestSettings": null,
+   "DefaultMuzzlePrefab": null,
+   "DefaultSmokeport": null,
+   "DefaultHeatHazeEffect": null,
+   "RecoilCenter": {
+    "x": 0.0,
+    "y": -0.23000000417232513,
+    "z": 0.0
+   },
+   "RotationCenter": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "RotationCenterNoStock": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "DupletAccuracyPenaltyX": {
+    "x": 0.0,
+    "y": 0.0
+   },
+   "DupletAccuracyPenaltyY": {
+    "x": 0.0,
+    "y": 0.0
+   },
+   "FarPlane": {
+    "Name": "farplane",
+    "Depth": 0.5
+   },
+   "DefaultAimPlane": {
+    "Name": "default",
+    "Depth": 0.0
+   },
+   "CustomAimPlanes": [],
+   "_objectInstance": null,
+   "_localWeaponRoot": null,
+   "RemoveChildrenOf": [],
+   "AnimatedBones": [
+    "weapon_grenade_pin_m67",
+    "weapon_grenade_m67_pin_l",
+    "weapon_grenade_m67_pin_r",
+    "weapon_grenade_m67_ring",
+    "weapon_grenade_skoba_m67",
+    "weapon_grenade_m67"
+   ],
+   "Hierarchy": null,
+   "LayersDefaultStates": [
+    0,
+    1733954903,
+    2081823275
+   ],
+   "MaterialsConfig": [],
+   "LodsConfig": [],
+   "ThrowingParts": [
+    "weapon_grenade_m67",
+    "weapon_grenade_skoba_m67"
+   ],
+   "GrenadeItself": {
+    "ref": "MB:GrenadeSettings@weapon_m67_world"
+   },
+   "TripwireItself": {
+    "ref": "MB:TripwireVisual@weapon_m67_world_tripwire"
+   }
+  }
+ },
+ {
+  "owner": "MB:TransformLinks@weapon_grenade_m67_simple.generated",
+  "class": "TransformLinks",
+  "fields": {
+   "m_Name": "",
+   "Transforms": [
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Base HumanLCollarbone"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Base HumanRCollarbone"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Base HumanLCollarbone/Base HumanLUpperarm/Base HumanLForearm1/Base HumanLForearm2/Base HumanLForearm3/Base HumanLPalm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Base HumanRCollarbone/Base HumanRUpperarm/Base HumanRForearm1/Base HumanRForearm2/Base HumanRForearm3/Base HumanRPalm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/Bend_Goal_Left"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/Bend_Goal_Right"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_R_hand_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_R_IK_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_L_hand_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_L_IK_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Camera_animated"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Base HumanLCollarbone/Base HumanLUpperarm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Base HumanLCollarbone/Base HumanLUpperarm/Base HumanLForearm1"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Base HumanRCollarbone/Base HumanRUpperarm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_simple.generated/Base HumanRCollarbone/Base HumanRUpperarm/Base HumanRForearm1"
+    }
+   ],
+   "Self": {
+    "ref": "Transform:weapon_grenade_m67_simple.generated"
+   },
+   "_cachedTransforms": [
+    {
+     "Position": {
+      "x": 0.13265720009803772,
+      "y": -0.05780075117945671,
+      "z": -0.010453472845256329
+     },
+     "Rotation": {
+      "x": -0.7071068286895752,
+      "y": -1.1978854612829492e-21,
+      "z": -1.197885562257145e-21,
+      "w": 0.7071067094802856
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root"
+     }
+    },
+    {
+     "Position": {
+      "x": 2.8610228852699038e-08,
+      "y": 1.0728835597717534e-08,
+      "z": 0.0
+     },
+     "Rotation": {
+      "x": -4.7683712978141557e-07,
+      "y": -1.4210856409267898e-14,
+      "z": -6.77626438582797e-21,
+      "w": 1.0
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim"
+     }
+    },
+    {
+     "Position": {
+      "x": -9.53674295089968e-09,
+      "y": -8.82148754044465e-08,
+      "z": -4.577636616431846e-07
+     },
+     "Rotation": {
+      "x": 4.986927706340794e-07,
+      "y": 4.755905413413031e-13,
+      "z": -9.536744300930877e-07,
+      "w": 1.0
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon"
+     }
+    },
+    {
+     "Position": {
+      "x": -0.019045714288949966,
+      "y": -0.2573334574699402,
+      "z": -0.006467132363468409
+     },
+     "Rotation": {
+      "x": -0.5481250286102295,
+      "y": -0.09011776000261307,
+      "z": -0.15115948021411896,
+      "w": 0.8176726698875427
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_pin"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.021577300503849983,
+      "y": -0.0010950469877570868,
+      "z": 5.861282261321321e-05
+     },
+     "Rotation": {
+      "x": 2.7499409043230116e-06,
+      "y": 1.5254602203640388e-06,
+      "z": 0.5015751123428345,
+      "w": 0.865114152431488
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_pin/weapon_pin_l"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.0214691162109375,
+      "y": 0.0007473754812963307,
+      "z": 5.85174529987853e-05
+     },
+     "Rotation": {
+      "x": -3.920340986951487e-06,
+      "y": 1.5617016515534488e-06,
+      "z": -0.5404282212257385,
+      "w": 0.8413901329040527
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_pin/weapon_pin_r"
+     }
+    },
+    {
+     "Position": {
+      "x": -2.288818308215923e-07,
+      "y": 3.0517577442878974e-07,
+      "z": -4.76837158203125e-07
+     },
+     "Rotation": {
+      "x": -6.078685714783205e-07,
+      "y": -5.747598606831161e-06,
+      "z": -0.7492967844009399,
+      "w": 0.662234365940094
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_pin/weapon_ring"
+     }
+    },
+    {
+     "Position": {
+      "x": -0.015670442953705788,
+      "y": -0.25736159086227417,
+      "z": 0.020773163065314293
+     },
+     "Rotation": {
+      "x": -0.23540590703487396,
+      "y": -0.1363830864429474,
+      "z": -0.11122100055217743,
+      "w": 0.9558314085006714
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_skoba"
+     }
+    }
+   ]
+  }
+ },
+ {
+  "owner": "MB:TransformLinks@weapon_grenade_m67_model.generated",
+  "class": "TransformLinks",
+  "fields": {
+   "m_Name": "",
+   "Transforms": [
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Base HumanLCollarbone"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Base HumanRCollarbone"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Base HumanLCollarbone/Base HumanLUpperarm/Base HumanLForearm1/Base HumanLForearm2/Base HumanLForearm3/Base HumanLPalm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Base HumanRCollarbone/Base HumanRUpperarm/Base HumanRForearm1/Base HumanRForearm2/Base HumanRForearm3/Base HumanRPalm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/Bend_Goal_Left"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/Bend_Goal_Right"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_R_hand_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_R_IK_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_L_hand_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_L_IK_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Camera_animated"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Base HumanLCollarbone/Base HumanLUpperarm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Base HumanLCollarbone/Base HumanLUpperarm/Base HumanLForearm1"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Base HumanRCollarbone/Base HumanRUpperarm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Base HumanRCollarbone/Base HumanRUpperarm/Base HumanRForearm1"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_vest_IK_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/prop"
+    }
+   ],
+   "Self": {
+    "ref": "Transform:weapon_grenade_m67_model.generated"
+   },
+   "_cachedTransforms": [
+    {
+     "Position": {
+      "x": 0.13265720009803772,
+      "y": -0.05780075117945671,
+      "z": -0.010453463532030582
+     },
+     "Rotation": {
+      "x": -0.7071068286895752,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.7071067094802856
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root"
+     }
+    },
+    {
+     "Position": {
+      "x": -0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "Rotation": {
+      "x": 0.0,
+      "y": -0.0,
+      "z": -0.0,
+      "w": 1.0
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim"
+     }
+    },
+    {
+     "Position": {
+      "x": -0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "Rotation": {
+      "x": 0.0,
+      "y": -0.0,
+      "z": -0.0,
+      "w": 1.0
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.0027828977908939123,
+      "y": 0.011350955814123154,
+      "z": 0.031803131103515625
+     },
+     "Rotation": {
+      "x": 0.02382391318678856,
+      "y": 0.0016075973398983479,
+      "z": -0.015782620757818222,
+      "w": 0.9995903372764587
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67/weapon_grenade_pin_m67"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.011532287113368511,
+      "y": -0.0010913849109783769,
+      "z": 5.874633643543348e-05
+     },
+     "Rotation": {
+      "x": 1.5582453443130362e-06,
+      "y": -9.051375400304096e-07,
+      "z": 0.501572847366333,
+      "w": 0.8651154041290283
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67/weapon_grenade_pin_m67/weapon_grenade_m67_pin_l"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.011579131707549095,
+      "y": 0.0011089324252679944,
+      "z": 5.844116094522178e-05
+     },
+     "Rotation": {
+      "x": 1.554454001961858e-06,
+      "y": 7.105963391040859e-07,
+      "z": -0.5404305458068848,
+      "w": 0.8413886427879333
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67/weapon_grenade_pin_m67/weapon_grenade_m67_pin_r"
+     }
+    },
+    {
+     "Position": {
+      "x": -0.00973663292825222,
+      "y": 0.0006101226899772882,
+      "z": -0.0008460235549136996
+     },
+     "Rotation": {
+      "x": 0.03873833641409874,
+      "y": 0.06757064163684845,
+      "z": -0.01520484033972025,
+      "w": 0.9968461990356445
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67/weapon_grenade_pin_m67/weapon_grenade_m67_ring"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.003797988872975111,
+      "y": -0.01616516150534153,
+      "z": 0.039318542927503586
+     },
+     "Rotation": {
+      "x": 0.002079743891954422,
+      "y": 0.001946618314832449,
+      "z": -0.015744080767035484,
+      "w": 0.9998720288276672
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67/weapon_grenade_skoba_m67"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.016705656424164772,
+      "y": -0.3836197555065155,
+      "z": -0.018527526408433914
+     },
+     "Rotation": {
+      "x": -0.007152029313147068,
+      "y": -0.2050810605287552,
+      "z": -0.15053051710128784,
+      "w": 0.9670735597610474
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67"
+     }
+    }
+   ]
+  }
+ },
+ {
+  "owner": "MB:BaseSoundPlayer@weapon_grenade_m67_container",
+  "class": "BaseSoundPlayer",
+  "fields": {
+   "m_Name": "",
+   "AdditionalSounds": [
+    {
+     "EventName": "SndDraw",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "external",
+       "file": 7,
+       "path": 4082030464012638033
+      }
+     ]
+    },
+    {
+     "EventName": "SndHolster",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "external",
+       "file": 7,
+       "path": -1033129874485358339
+      }
+     ]
+    },
+    {
+     "EventName": "SndSafety",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "external",
+       "file": 7,
+       "path": -6459328425448947359
+      }
+     ]
+    },
+    {
+     "EventName": "SndThrow",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "external",
+       "file": 7,
+       "path": -2479972065108653976
+      }
+     ]
+    },
+    {
+     "EventName": "SndPin",
+     "RollOff": 14,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "external",
+       "file": 7,
+       "path": -4176752323056808555
+      }
+     ]
+    },
+    {
+     "EventName": "SndLever",
+     "RollOff": 14,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "external",
+       "file": 7,
+       "path": -2400110904627143213
+      }
+     ]
+    },
+    {
+     "EventName": "SndDropBackpack",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "AudioClip:backpack_drop_generic1"
+      },
+      {
+       "ref": "AudioClip:backpack_drop_generic2"
+      },
+      {
+       "ref": "AudioClip:backpack_drop_generic3"
+      }
+     ]
+    },
+    {
+     "EventName": "SndDefuseEnd",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "AudioClip:tripwire_grenade_defuse_end"
+      }
+     ]
+    },
+    {
+     "EventName": "SndDefuseLoop",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "AudioClip:tripwire_grenade_defuse_loop"
+      }
+     ]
+    },
+    {
+     "EventName": "SndTripwirePin",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "AudioClip:tripwire_grenade_pin"
+      }
+     ]
+    },
+    {
+     "EventName": "SndTripwirePlanting",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "AudioClip:tripwire_grenade_planting"
+      }
+     ]
+    },
+    {
+     "EventName": "SndTripwirePlantingConcrete",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "AudioClip:tripwire_grenade_planting_concrete"
+      }
+     ]
+    },
+    {
+     "EventName": "SndTripwirePlantingSoil",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "AudioClip:tripwire_grenade_planting_soil"
+      }
+     ]
+    },
+    {
+     "EventName": "SndTripwirePlantingWire",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "AudioClip:tripwire_grenade_planting_wire"
+      }
+     ]
+    },
+    {
+     "EventName": "SndTripwireUnplanting",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "AudioClip:tripwire_grenade_unplanting"
+      }
+     ]
+    },
+    {
+     "EventName": "SndTripwireUnplantingWire",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "AudioClip:tripwire_grenade_unplanting_wire"
+      }
+     ]
+    },
+    {
+     "EventName": "SndHands1",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "external",
+       "file": 8,
+       "path": 756222309694297277
+      }
+     ]
+    },
+    {
+     "EventName": "SndHands2",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "external",
+       "file": 8,
+       "path": -7771219248219822457
+      }
+     ]
+    },
+    {
+     "EventName": "SndHands3",
+     "RollOff": 30,
+     "Volume": 1.0,
+     "SoundClips": [
+      {
+       "ref": "external",
+       "file": 8,
+       "path": -6051443042819276620
+      }
+     ]
+    }
+   ],
+   "MainSounds": []
+  }
+ },
+ {
+  "owner": "MB:TransformLinks@weapon_grenade_m67_model_simple.generated",
+  "class": "TransformLinks",
+  "fields": {
+   "m_Name": "",
+   "Transforms": [
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Base HumanLCollarbone"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Base HumanRCollarbone"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Base HumanLCollarbone/Base HumanLUpperarm/Base HumanLForearm1/Base HumanLForearm2/Base HumanLForearm3/Base HumanLPalm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Base HumanRCollarbone/Base HumanRUpperarm/Base HumanRForearm1/Base HumanRForearm2/Base HumanRForearm3/Base HumanRPalm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/Bend_Goal_Left"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/Bend_Goal_Right"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_R_hand_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_R_IK_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_L_hand_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_L_IK_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Camera_animated"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Base HumanLCollarbone/Base HumanLUpperarm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Base HumanLCollarbone/Base HumanLUpperarm/Base HumanLForearm1"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Base HumanRCollarbone/Base HumanRUpperarm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Base HumanRCollarbone/Base HumanRUpperarm/Base HumanRForearm1"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_vest_IK_marker"
+    },
+    null
+   ],
+   "Self": {
+    "ref": "Transform:weapon_grenade_m67_model_simple.generated"
+   },
+   "_cachedTransforms": [
+    {
+     "Position": {
+      "x": 0.13265720009803772,
+      "y": -0.05780075117945671,
+      "z": -0.010453463532030582
+     },
+     "Rotation": {
+      "x": -0.7071068286895752,
+      "y": 0.0,
+      "z": 0.0,
+      "w": 0.7071067094802856
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root"
+     }
+    },
+    {
+     "Position": {
+      "x": -0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "Rotation": {
+      "x": 0.0,
+      "y": -0.0,
+      "z": -0.0,
+      "w": 1.0
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim"
+     }
+    },
+    {
+     "Position": {
+      "x": -0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "Rotation": {
+      "x": 0.0,
+      "y": -0.0,
+      "z": -0.0,
+      "w": 1.0
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.0027828977908939123,
+      "y": 0.011350955814123154,
+      "z": 0.031803131103515625
+     },
+     "Rotation": {
+      "x": 0.02382391318678856,
+      "y": 0.0016075973398983479,
+      "z": -0.015782620757818222,
+      "w": 0.9995903372764587
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67/weapon_grenade_pin_m67"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.011532287113368511,
+      "y": -0.0010913849109783769,
+      "z": 5.874633643543348e-05
+     },
+     "Rotation": {
+      "x": 1.5582453443130362e-06,
+      "y": -9.051375400304096e-07,
+      "z": 0.501572847366333,
+      "w": 0.8651154041290283
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67/weapon_grenade_pin_m67/weapon_grenade_m67_pin_l"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.011579131707549095,
+      "y": 0.0011089324252679944,
+      "z": 5.844116094522178e-05
+     },
+     "Rotation": {
+      "x": 1.554454001961858e-06,
+      "y": 7.105963391040859e-07,
+      "z": -0.5404305458068848,
+      "w": 0.8413886427879333
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67/weapon_grenade_pin_m67/weapon_grenade_m67_pin_r"
+     }
+    },
+    {
+     "Position": {
+      "x": -0.00973663292825222,
+      "y": 0.0006101226899772882,
+      "z": -0.0008460235549136996
+     },
+     "Rotation": {
+      "x": 0.03873833641409874,
+      "y": 0.06757064163684845,
+      "z": -0.01520484033972025,
+      "w": 0.9968461990356445
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67/weapon_grenade_pin_m67/weapon_grenade_m67_ring"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.003797988872975111,
+      "y": -0.01616516150534153,
+      "z": 0.039318542927503586
+     },
+     "Rotation": {
+      "x": 0.002079743891954422,
+      "y": 0.001946618314832449,
+      "z": -0.015744080767035484,
+      "w": 0.9998720288276672
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67/weapon_grenade_skoba_m67"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.016705656424164772,
+      "y": -0.3836197555065155,
+      "z": -0.018527526408433914
+     },
+     "Rotation": {
+      "x": -0.007152029313147068,
+      "y": -0.2050810605287552,
+      "z": -0.15053051710128784,
+      "w": 0.9670735597610474
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67_model_simple.generated/Weapon_root/Weapon_root_anim/weapon/weapon_grenade_m67"
+     }
+    }
+   ]
+  }
+ },
+ {
+  "owner": "MB:TransformLinks@weapon_grenade_m67.generated",
+  "class": "TransformLinks",
+  "fields": {
+   "m_Name": "",
+   "Transforms": [
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Base HumanLCollarbone"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Base HumanRCollarbone"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Base HumanLCollarbone/Base HumanLUpperarm/Base HumanLForearm1/Base HumanLForearm2/Base HumanLForearm3/Base HumanLPalm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Base HumanRCollarbone/Base HumanRUpperarm/Base HumanRForearm1/Base HumanRForearm2/Base HumanRForearm3/Base HumanRPalm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Weapon_root"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/Bend_Goal_Left"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/Bend_Goal_Right"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/weapon_R_hand_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/weapon_R_IK_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/weapon_L_hand_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/weapon_L_IK_marker"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Camera_animated"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Base HumanLCollarbone/Base HumanLUpperarm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Base HumanLCollarbone/Base HumanLUpperarm/Base HumanLForearm1"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Base HumanRCollarbone/Base HumanRUpperarm"
+    },
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Base HumanRCollarbone/Base HumanRUpperarm/Base HumanRForearm1"
+    },
+    null,
+    {
+     "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/prop"
+    }
+   ],
+   "Self": {
+    "ref": "Transform:weapon_grenade_m67.generated"
+   },
+   "_cachedTransforms": [
+    {
+     "Position": {
+      "x": 0.13265720009803772,
+      "y": -0.05780075117945671,
+      "z": -0.010453472845256329
+     },
+     "Rotation": {
+      "x": -0.7071068286895752,
+      "y": -1.1978854612829492e-21,
+      "z": -1.197885562257145e-21,
+      "w": 0.7071067094802856
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67.generated/Weapon_root"
+     }
+    },
+    {
+     "Position": {
+      "x": 2.8610228852699038e-08,
+      "y": 1.0728835597717534e-08,
+      "z": 0.0
+     },
+     "Rotation": {
+      "x": -4.7683712978141557e-07,
+      "y": -1.4210856409267898e-14,
+      "z": -6.77626438582797e-21,
+      "w": 1.0
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim"
+     }
+    },
+    {
+     "Position": {
+      "x": -9.53674295089968e-09,
+      "y": -8.82148754044465e-08,
+      "z": -4.577636616431846e-07
+     },
+     "Rotation": {
+      "x": 4.986927706340794e-07,
+      "y": 4.755905413413031e-13,
+      "z": -9.536744300930877e-07,
+      "w": 1.0
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon"
+     }
+    },
+    {
+     "Position": {
+      "x": -0.019045714288949966,
+      "y": -0.2573334574699402,
+      "z": -0.006467132363468409
+     },
+     "Rotation": {
+      "x": -0.5481250286102295,
+      "y": -0.09011776000261307,
+      "z": -0.15115948021411896,
+      "w": 0.8176726698875427
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/weapon_pin"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.021577300503849983,
+      "y": -0.0010950469877570868,
+      "z": 5.861282261321321e-05
+     },
+     "Rotation": {
+      "x": 2.7499409043230116e-06,
+      "y": 1.5254602203640388e-06,
+      "z": 0.5015751123428345,
+      "w": 0.865114152431488
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/weapon_pin/weapon_pin_l"
+     }
+    },
+    {
+     "Position": {
+      "x": 0.0214691162109375,
+      "y": 0.0007473754812963307,
+      "z": 5.85174529987853e-05
+     },
+     "Rotation": {
+      "x": -3.920340986951487e-06,
+      "y": 1.5617016515534488e-06,
+      "z": -0.5404282212257385,
+      "w": 0.8413901329040527
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/weapon_pin/weapon_pin_r"
+     }
+    },
+    {
+     "Position": {
+      "x": -2.288818308215923e-07,
+      "y": 3.0517577442878974e-07,
+      "z": -4.76837158203125e-07
+     },
+     "Rotation": {
+      "x": -6.078685714783205e-07,
+      "y": -5.747598606831161e-06,
+      "z": -0.7492967844009399,
+      "w": 0.662234365940094
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/weapon_pin/weapon_ring"
+     }
+    },
+    {
+     "Position": {
+      "x": -0.015670442953705788,
+      "y": -0.25736159086227417,
+      "z": 0.020773163065314293
+     },
+     "Rotation": {
+      "x": -0.23540590703487396,
+      "y": -0.1363830864429474,
+      "z": -0.11122100055217743,
+      "w": 0.9558314085006714
+     },
+     "Transform": {
+      "ref": "Transform:weapon_grenade_m67.generated/Weapon_root/Weapon_root_anim/weapon/weapon_skoba"
+     }
+    }
+   ]
+  }
+ },
+ {
+  "owner": "MB:TripwireVisual@weapon_m67_world_tripwire",
+  "class": "TripwireVisual",
+  "fields": {
+   "m_Name": "",
+   "_pivotPosition": {
+    "ref": "Transform:weapon_m67_world_tripwire/attach_wire_here"
+   },
+   "_grenadeModel": {
+    "ref": "GameObject:weapon_m67_world_tripwire/item_spec_mining_kit_peg_LOD0/weapon_grenade_m67"
+   }
+  }
+ },
+ {
+  "owner": "MB:PreviewPivot@weapon_grenade_m67_container",
+  "class": "PreviewPivot",
+  "fields": {
+   "m_Name": "",
+   "pivotPosition": {
+    "x": 0.15000000596046448,
+    "y": -0.07999999821186066,
+    "z": 0.3799999952316284
+   },
+   "pivotRotation": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0,
+    "w": 0.0
+   },
+   "scale": {
+    "x": 1.0,
+    "y": 1.0,
+    "z": 1.0
+   },
+   "SpawnPosition": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "Icon": {
+    "position": {
+     "x": -0.0009999998146668077,
+     "y": 0.0,
+     "z": 0.0
+    },
+    "hasOffset": 0,
+    "rotation": {
+     "x": 0.1295040398836136,
+     "y": -0.22588549554347992,
+     "z": -0.37492483854293823,
+     "w": 0.8897391557693481
+    },
+    "boundsScale": 0.9550000429153442,
+    "perspective": 15.0,
+    "orthographic": 0,
+    "orthographicSize": 10.0,
+    "overrideIcon": null
+   }
+  }
+ },
+ {
+  "owner": "MB:GrenadeSettings@weapon_m67_world",
+  "class": "GrenadeSettings",
+  "fields": {
+   "m_Name": "",
+   "Offset": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "VelocityTreshold": 0.004999999888241291,
+   "CollisionSound": 0,
+   "Skoba": null
+  }
+ }
+]

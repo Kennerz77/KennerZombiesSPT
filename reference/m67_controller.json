@@ -1,0 +1,5376 @@
+{
+ "name": "weapon_grenade_m67",
+ "params": [
+  {
+   "name": "Active",
+   "type": "Bool",
+   "default": false
+  },
+  {
+   "name": "Inventory",
+   "type": "Bool",
+   "default": false
+  },
+  {
+   "name": "GrenadeFire",
+   "type": "Int",
+   "default": 0
+  },
+  {
+   "name": "Look",
+   "type": "Trigger",
+   "default": false
+  },
+  {
+   "name": "IdleTime",
+   "type": "Trigger",
+   "default": false
+  },
+  {
+   "name": "IdleVar",
+   "type": "Float",
+   "default": 0.0
+  },
+  {
+   "name": "QuickFire",
+   "type": "Bool",
+   "default": false
+  },
+  {
+   "name": "GrenadeAltFire",
+   "type": "Int",
+   "default": 0
+  },
+  {
+   "name": "CheckChamber",
+   "type": "Trigger",
+   "default": false
+  },
+  {
+   "name": "LActionIndex",
+   "type": "Int",
+   "default": 0
+  },
+  {
+   "name": "HandReady",
+   "type": "Trigger",
+   "default": false
+  },
+  {
+   "name": "UseLeftHand",
+   "type": "Bool",
+   "default": false
+  },
+  {
+   "name": "LeftHandProgress",
+   "type": "Float",
+   "default": 0.0
+  },
+  {
+   "name": "Patrol",
+   "type": "Bool",
+   "default": false
+  },
+  {
+   "name": "SpeedDraw",
+   "type": "Float",
+   "default": 1.0
+  },
+  {
+   "name": "GestureIndex",
+   "type": "Float",
+   "default": 0.0
+  },
+  {
+   "name": "Gesture",
+   "type": "Trigger",
+   "default": false
+  },
+  {
+   "name": "FireMode",
+   "type": "Float",
+   "default": 6.0
+  }
+ ],
+ "layers": [
+  {
+   "name": "Base Layer",
+   "blending": 0,
+   "defaultWeight": 0.0,
+   "mask": {},
+   "ikPass": false,
+   "syncedLayerAffectsTiming": false,
+   "defaultState": null,
+   "states": [],
+   "anyState": []
+  },
+  {
+   "name": "Hands",
+   "blending": 0,
+   "defaultWeight": 1.0,
+   "mask": {
+    "0": 1.0,
+    "422597891": 1.0,
+    "1718152087": 1.0,
+    "1685101104": 1.0,
+    "802307715": 1.0,
+    "763305895": 1.0,
+    "1597118046": 1.0,
+    "3716598168": 1.0,
+    "3915073263": 1.0,
+    "867468282": 1.0,
+    "4138441307": 1.0,
+    "3110639567": 1.0,
+    "1228661330": 1.0,
+    "4021332762": 1.0,
+    "1068049680": 1.0,
+    "1623114442": 1.0,
+    "2700164573": 1.0,
+    "420427151": 1.0,
+    "3156549890": 1.0,
+    "3119123612": 1.0,
+    "2681112400": 1.0,
+    "2510291354": 1.0,
+    "3853564622": 1.0,
+    "3179006730": 1.0,
+    "2594454114": 1.0,
+    "1178899561": 1.0,
+    "133887668": 1.0,
+    "3140991930": 1.0,
+    "3924292653": 1.0,
+    "1075037160": 1.0,
+    "2009407219": 1.0,
+    "3268061166": 1.0,
+    "270537416": 1.0,
+    "222986075": 1.0,
+    "3687945903": 1.0,
+    "2531368983": 1.0,
+    "617570243": 1.0,
+    "2492465256": 1.0,
+    "2957488264": 1.0,
+    "4166302731": 1.0,
+    "2374709545": 1.0,
+    "914752087": 1.0,
+    "3520175251": 1.0,
+    "3666855909": 1.0,
+    "678927987": 1.0,
+    "3605229598": 1.0,
+    "752886102": 1.0,
+    "1054046267": 1.0,
+    "1189921221": 1.0,
+    "2170295967": 1.0,
+    "2770261676": 1.0,
+    "414820644": 1.0,
+    "894670214": 1.0,
+    "2400428027": 1.0,
+    "1070972759": 1.0,
+    "114141064": 1.0,
+    "2592068730": 1.0,
+    "3160286719": 1.0,
+    "1934033620": 1.0,
+    "2576624244": 1.0,
+    "1671108375": 1.0,
+    "270192220": 1.0,
+    "4243385956": 1.0,
+    "3765610790": 1.0,
+    "2255603072": 1.0,
+    "2898165843": 1.0,
+    "415432449": 1.0,
+    "439567607": 1.0,
+    "111143286": 1.0,
+    "2484180194": 1.0,
+    "3133552471": 1.0,
+    "1695948468": 1.0,
+    "1451035338": 1.0,
+    "1832154209": 1.0,
+    "1300116965": 1.0,
+    "1653635704": 1.0,
+    "2560575259": 1.0,
+    "3221661443": 1.0,
+    "2697475298": 1.0,
+    "4193670776": 1.0,
+    "2637504855": 1.0,
+    "3339403183": 1.0,
+    "3394168202": 1.0,
+    "1705806150": 1.0,
+    "1057341471": 1.0,
+    "3305831804": 1.0,
+    "1034404601": 1.0,
+    "2357509741": 1.0,
+    "3071802386": 1.0,
+    "1639304858": 1.0,
+    "4035277118": 1.0,
+    "4283631846": 1.0,
+    "3370446593": 1.0,
+    "3411879603": 1.0,
+    "4068558168": 1.0,
+    "1817511018": 1.0,
+    "4057159765": 1.0,
+    "2513330016": 1.0,
+    "1966582709": 1.0,
+    "2851076870": 1.0,
+    "596904121": 1.0,
+    "343273258": 1.0,
+    "3049481170": 1.0,
+    "1799699602": 1.0,
+    "2954139994": 1.0,
+    "3394118851": 1.0,
+    "3223250465": 1.0,
+    "4160684466": 1.0,
+    "821773": 1.0,
+    "532085266": 1.0,
+    "4032651728": 1.0,
+    "253727417": 1.0,
+    "2467687191": 1.0,
+    "2767457412": 1.0,
+    "1848154271": 1.0,
+    "3659991722": 1.0,
+    "46797431": 1.0,
+    "2228693091": 1.0,
+    "2262600015": 1.0,
+    "158206925": 1.0,
+    "3987048522": 1.0,
+    "1867982964": 1.0,
+    "2360650382": 1.0,
+    "762673321": 1.0,
+    "775703810": 1.0,
+    "3860159741": 1.0,
+    "3028712697": 1.0,
+    "701404815": 1.0,
+    "3068218081": 1.0,
+    "1578195676": 1.0,
+    "1563829551": 1.0,
+    "4120857785": 1.0,
+    "186473502": 1.0,
+    "4047381520": 1.0,
+    "3481839516": 1.0,
+    "819932280": 1.0,
+    "297563838": 1.0,
+    "1854725076": 1.0,
+    "19174700": 1.0,
+    "1320859218": 1.0,
+    "1871316723": 1.0,
+    "889594182": 1.0,
+    "3381778320": 1.0,
+    "1352173098": 1.0,
+    "664778428": 1.0
+   },
+   "ikPass": false,
+   "syncedLayerAffectsTiming": false,
+   "defaultState": "SPAWN",
+   "states": [
+    {
+     "name": "SPAWN",
+     "tag": null,
+     "speed": 0.10000000149011612,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 8
+     },
+     "transitions": [
+      {
+       "to": "OUT TO IDLE",
+       "toIndex": 1,
+       "name": "Hands.SPAWN -> Hands.OUT TO IDLE",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "QuickFire",
+         "mode": "IfNot",
+         "threshold": 0.0
+        },
+        {
+         "param": "FireMode",
+         "mode": "Less",
+         "threshold": 7.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "Q FIRE",
+       "toIndex": 12,
+       "name": "Hands.SPAWN -> Hands.Q FIRE",
+       "conditions": [
+        {
+         "param": "QuickFire",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "OUT TO IDLE PLANT",
+       "toIndex": 27,
+       "name": "Hands.SPAWN -> Hands.OUT TO IDLE PLANT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "QuickFire",
+         "mode": "IfNot",
+         "threshold": 0.0
+        },
+        {
+         "param": "FireMode",
+         "mode": "Greater",
+         "threshold": 6.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "OUT TO IDLE",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 1
+     },
+     "transitions": [
+      {
+       "to": "IDLE",
+       "toIndex": 8,
+       "name": "Hands.OUT TO IDLE -> Hands.IDLE",
+       "conditions": [
+        {
+         "param": "Patrol",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "PATROL IN",
+       "toIndex": 21,
+       "name": "Hands.OUT TO IDLE -> Hands.PATROL IN",
+       "conditions": [
+        {
+         "param": "Patrol",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.8299999833106995,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.OUT TO IDLE",
+        "FullNameHash": -965243548,
+        "EventsListId": 0
+       }
+      }
+     ]
+    },
+    {
+     "name": "IDLE TO OUT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 2
+     },
+     "transitions": [
+      {
+       "to": "SPAWN",
+       "toIndex": 0,
+       "name": "Hands.IDLE TO OUT -> Hands.SPAWN",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.IDLE TO OUT",
+        "FullNameHash": -1205675207,
+        "EventsListId": 1
+       }
+      }
+     ]
+    },
+    {
+     "name": "OPEN INVENTORY",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 3
+     },
+     "transitions": [
+      {
+       "to": "IN INVENTORY",
+       "toIndex": 4,
+       "name": "Hands.OPEN INVENTORY -> Hands.IN INVENTORY",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      }
+     ]
+    },
+    {
+     "name": "IN INVENTORY",
+     "tag": null,
+     "speed": 0.5,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 4
+     },
+     "transitions": [
+      {
+       "to": "CLOSE INVENTORY",
+       "toIndex": 5,
+       "name": "Hands.IN INVENTORY -> Hands.CLOSE INVENTORY",
+       "conditions": [
+        {
+         "param": "Inventory",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "IDLE TO OUT",
+       "toIndex": 2,
+       "name": "Hands.IN INVENTORY -> Hands.IDLE TO OUT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "FIRE START",
+       "toIndex": 10,
+       "name": "Hands.IN INVENTORY -> Hands.FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.800000011920929,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "ALT FIRE START",
+       "toIndex": 16,
+       "name": "Hands.IN INVENTORY -> Hands.ALT FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeAltFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.800000011920929,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "CLOSE INVENTORY",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 5
+     },
+     "transitions": [
+      {
+       "to": "IDLE",
+       "toIndex": 8,
+       "name": "Hands.CLOSE INVENTORY -> Hands.IDLE",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "ALT FIRE START",
+       "toIndex": 16,
+       "name": "Hands.CLOSE INVENTORY -> Hands.ALT FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeAltFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.625,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "FIRE START",
+       "toIndex": 10,
+       "name": "Hands.CLOSE INVENTORY -> Hands.FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.625,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "LOOK",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 6
+     },
+     "transitions": [
+      {
+       "to": "FIRE START",
+       "toIndex": 10,
+       "name": "Hands.LOOK -> Hands.FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "ALT FIRE START",
+       "toIndex": 16,
+       "name": "Hands.LOOK -> Hands.ALT FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeAltFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "IDLE",
+       "toIndex": 8,
+       "name": "Hands.LOOK -> Hands.IDLE",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "L ACTIONS START",
+       "toIndex": 19,
+       "name": "Hands.LOOK -> Hands.L ACTIONS START",
+       "conditions": [
+        {
+         "param": "UseLeftHand",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.LOOK",
+        "FullNameHash": 1355507738,
+        "EventsListId": 2
+       }
+      }
+     ]
+    },
+    {
+     "name": "FIRE",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 7
+     },
+     "transitions": [
+      {
+       "to": "SPAWN",
+       "toIndex": 0,
+       "name": "Hands.FIRE -> Hands.SPAWN",
+       "conditions": [],
+       "duration": 0.23999999463558197,
+       "offset": 0.0,
+       "exitTime": 0.7500002384185791,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.FIRE",
+        "FullNameHash": 590329303,
+        "EventsListId": 3
+       }
+      }
+     ]
+    },
+    {
+     "name": "IDLE",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 0
+     },
+     "transitions": [
+      {
+       "to": "OPEN INVENTORY",
+       "toIndex": 3,
+       "name": "Hands.IDLE -> Hands.OPEN INVENTORY",
+       "conditions": [
+        {
+         "param": "Inventory",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "LOOK",
+       "toIndex": 6,
+       "name": "Hands.IDLE -> Hands.LOOK",
+       "conditions": [
+        {
+         "param": "Look",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "IDLE TO OUT",
+       "toIndex": 2,
+       "name": "Hands.IDLE -> Hands.IDLE TO OUT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "FIRE START",
+       "toIndex": 10,
+       "name": "Hands.IDLE -> Hands.FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "ALT FIRE START",
+       "toIndex": 16,
+       "name": "Hands.IDLE -> Hands.ALT FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeAltFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "CHECK",
+       "toIndex": 18,
+       "name": "Hands.IDLE -> Hands.CHECK",
+       "conditions": [
+        {
+         "param": "CheckChamber",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "L ACTIONS START",
+       "toIndex": 19,
+       "name": "Hands.IDLE -> Hands.L ACTIONS START",
+       "conditions": [
+        {
+         "param": "UseLeftHand",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "PATROL IN",
+       "toIndex": 21,
+       "name": "Hands.IDLE -> Hands.PATROL IN",
+       "conditions": [
+        {
+         "param": "Patrol",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "IDLE TO PLANT",
+       "toIndex": 32,
+       "name": "Hands.IDLE -> Hands.IDLE TO PLANT",
+       "conditions": [
+        {
+         "param": "FireMode",
+         "mode": "Greater",
+         "threshold": 6.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.IDLE",
+        "FullNameHash": -1479210739,
+        "EventsListId": 14
+       }
+      }
+     ]
+    },
+    {
+     "name": "TOO IDLE",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 9
+     },
+     "transitions": [
+      {
+       "to": "IDLE",
+       "toIndex": 8,
+       "name": "Hands.TOO IDLE -> Hands.IDLE",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "FIRE START",
+       "toIndex": 10,
+       "name": "Hands.TOO IDLE -> Hands.FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      }
+     ]
+    },
+    {
+     "name": "FIRE START",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 10
+     },
+     "transitions": [
+      {
+       "to": "FIRE IDLE",
+       "toIndex": 11,
+       "name": "Hands.FIRE START -> Hands.FIRE IDLE",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.FIRE START",
+        "FullNameHash": 220670101,
+        "EventsListId": 4
+       }
+      }
+     ]
+    },
+    {
+     "name": "FIRE IDLE",
+     "tag": null,
+     "speed": 0.5,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 11
+     },
+     "transitions": [
+      {
+       "to": "FIRE",
+       "toIndex": 7,
+       "name": "Hands.FIRE IDLE -> Hands.FIRE",
+       "conditions": [
+        {
+         "param": "GrenadeFire",
+         "mode": "Greater",
+         "threshold": 1.0
+        },
+        {
+         "param": "Active",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "Inventory",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "FIRE ABORT INV",
+       "toIndex": 13,
+       "name": "Hands.FIRE IDLE -> Hands.FIRE ABORT INV",
+       "conditions": [
+        {
+         "param": "Inventory",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "FIRE ABORT OUT",
+       "toIndex": 17,
+       "name": "Hands.FIRE IDLE -> Hands.FIRE ABORT OUT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "FIRE ABORT OUT",
+       "toIndex": 17,
+       "name": "Hands.FIRE IDLE -> Hands.FIRE ABORT OUT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "Inventory",
+         "mode": "IfNot",
+         "threshold": 0.0
+        },
+        {
+         "param": "GrenadeFire",
+         "mode": "Less",
+         "threshold": 1.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "Q FIRE",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 12
+     },
+     "transitions": [
+      {
+       "to": "SPAWN",
+       "toIndex": 0,
+       "name": "Hands.Q FIRE -> Hands.SPAWN",
+       "conditions": [],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.Q FIRE",
+        "FullNameHash": -436162191,
+        "EventsListId": 15
+       }
+      }
+     ]
+    },
+    {
+     "name": "FIRE ABORT INV",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 13
+     },
+     "transitions": [
+      {
+       "to": "OPEN INVENTORY",
+       "toIndex": 3,
+       "name": "Hands.FIRE ABORT INV -> Hands.OPEN INVENTORY",
+       "conditions": [
+        {
+         "param": "Inventory",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.8557693362236023,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "IDLE",
+       "toIndex": 8,
+       "name": "Hands.FIRE ABORT INV -> Hands.IDLE",
+       "conditions": [
+        {
+         "param": "Inventory",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.FIRE ABORT INV",
+        "FullNameHash": 1655091511,
+        "EventsListId": 6
+       }
+      }
+     ]
+    },
+    {
+     "name": "ALT FIRE",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 14
+     },
+     "transitions": [
+      {
+       "to": "SPAWN",
+       "toIndex": 0,
+       "name": "Hands.ALT FIRE -> Hands.SPAWN",
+       "conditions": [],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.7222222089767456,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.ALT FIRE",
+        "FullNameHash": 2035297569,
+        "EventsListId": 7
+       }
+      }
+     ]
+    },
+    {
+     "name": "ALT FIRE IDLE",
+     "tag": null,
+     "speed": 0.5,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 11
+     },
+     "transitions": [
+      {
+       "to": "ALT FIRE",
+       "toIndex": 14,
+       "name": "Hands.ALT FIRE IDLE -> Hands.ALT FIRE",
+       "conditions": [
+        {
+         "param": "GrenadeAltFire",
+         "mode": "Greater",
+         "threshold": 1.0
+        },
+        {
+         "param": "Active",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "Inventory",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      },
+      {
+       "to": "FIRE ABORT INV",
+       "toIndex": 13,
+       "name": "Hands.ALT FIRE IDLE -> Hands.FIRE ABORT INV",
+       "conditions": [
+        {
+         "param": "Inventory",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "FIRE ABORT OUT",
+       "toIndex": 17,
+       "name": "Hands.ALT FIRE IDLE -> Hands.FIRE ABORT OUT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "FIRE ABORT OUT",
+       "toIndex": 17,
+       "name": "Hands.ALT FIRE IDLE -> Hands.FIRE ABORT OUT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "Inventory",
+         "mode": "IfNot",
+         "threshold": 0.0
+        },
+        {
+         "param": "GrenadeAltFire",
+         "mode": "Less",
+         "threshold": 1.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "ALT FIRE START",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 10
+     },
+     "transitions": [
+      {
+       "to": "ALT FIRE IDLE",
+       "toIndex": 15,
+       "name": "Hands.ALT FIRE START -> Hands.ALT FIRE IDLE",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": false
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.ALT FIRE START",
+        "FullNameHash": 2112726508,
+        "EventsListId": 8
+       }
+      }
+     ]
+    },
+    {
+     "name": "FIRE ABORT OUT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 13
+     },
+     "transitions": [
+      {
+       "to": "IDLE TO OUT",
+       "toIndex": 2,
+       "name": "Hands.FIRE ABORT OUT -> Hands.IDLE TO OUT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.05999999865889549,
+       "exitTime": 0.7200000286102295,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "IDLE",
+       "toIndex": 8,
+       "name": "Hands.FIRE ABORT OUT -> Hands.IDLE",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.FIRE ABORT OUT",
+        "FullNameHash": 554919731,
+        "EventsListId": 9
+       }
+      }
+     ]
+    },
+    {
+     "name": "CHECK",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 18
+     },
+     "transitions": [
+      {
+       "to": "IDLE",
+       "toIndex": 8,
+       "name": "Hands.CHECK -> Hands.IDLE",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.CHECK",
+        "FullNameHash": 351790385,
+        "EventsListId": 10
+       }
+      }
+     ]
+    },
+    {
+     "name": "L ACTIONS START",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 0
+     },
+     "transitions": [
+      {
+       "to": "FIRE START",
+       "toIndex": 10,
+       "name": "Hands.L ACTIONS START -> Hands.FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.25000035762786865,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "ALT FIRE START",
+       "toIndex": 16,
+       "name": "Hands.L ACTIONS START -> Hands.ALT FIRE START",
+       "conditions": [
+        {
+         "param": "GrenadeAltFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.25000035762786865,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "IDLE",
+       "toIndex": 8,
+       "name": "Hands.L ACTIONS START -> Hands.IDLE",
+       "conditions": [
+        {
+         "param": "UseLeftHand",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.2500014305114746,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 1,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 0
+       }
+      }
+     ]
+    },
+    {
+     "name": "PATROL",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 4
+     },
+     "transitions": [
+      {
+       "to": "PATROL OUT",
+       "toIndex": 22,
+       "name": "Hands.PATROL -> Hands.PATROL OUT",
+       "conditions": [
+        {
+         "param": "Patrol",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "IDLE TO OUT",
+       "toIndex": 2,
+       "name": "Hands.PATROL -> Hands.IDLE TO OUT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.06199999898672104,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "PATROL IN",
+     "tag": null,
+     "speed": 1.2000000476837158,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 3
+     },
+     "transitions": [
+      {
+       "to": "PATROL",
+       "toIndex": 20,
+       "name": "Hands.PATROL IN -> Hands.PATROL",
+       "conditions": [],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "PATROL OUT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 5
+     },
+     "transitions": [
+      {
+       "to": "IDLE",
+       "toIndex": 8,
+       "name": "Hands.PATROL OUT -> Hands.IDLE",
+       "conditions": [],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "weapon_root_anim_fix",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 23
+     },
+     "transitions": []
+    },
+    {
+     "name": "IDLE PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 24
+     },
+     "transitions": [
+      {
+       "to": "FIRE PLANT",
+       "toIndex": 25,
+       "name": "Hands.IDLE PLANT -> Hands.FIRE PLANT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "Inventory",
+         "mode": "IfNot",
+         "threshold": 0.0
+        },
+        {
+         "param": "GrenadeFire",
+         "mode": "Greater",
+         "threshold": 1.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.75,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "LOOK PLANT",
+       "toIndex": 26,
+       "name": "Hands.IDLE PLANT -> Hands.LOOK PLANT",
+       "conditions": [
+        {
+         "param": "Look",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "OPEN INVENTORY PLANT",
+       "toIndex": 28,
+       "name": "Hands.IDLE PLANT -> Hands.OPEN INVENTORY PLANT",
+       "conditions": [
+        {
+         "param": "Inventory",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "IDLE TO OUT PLANT",
+       "toIndex": 31,
+       "name": "Hands.IDLE PLANT -> Hands.IDLE TO OUT PLANT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "PLANT TO IDLE",
+       "toIndex": 33,
+       "name": "Hands.IDLE PLANT -> Hands.PLANT TO IDLE",
+       "conditions": [
+        {
+         "param": "FireMode",
+         "mode": "Less",
+         "threshold": 7.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "L ACTIONS START PLANT",
+       "toIndex": 34,
+       "name": "Hands.IDLE PLANT -> Hands.L ACTIONS START PLANT",
+       "conditions": [
+        {
+         "param": "UseLeftHand",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "PATROL IN PAINT",
+       "toIndex": 35,
+       "name": "Hands.IDLE PLANT -> Hands.PATROL IN PAINT",
+       "conditions": [
+        {
+         "param": "Patrol",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.IDLE PLANT",
+        "FullNameHash": 1344860075,
+        "EventsListId": 17
+       }
+      }
+     ]
+    },
+    {
+     "name": "FIRE PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 25
+     },
+     "transitions": [
+      {
+       "to": "SPAWN",
+       "toIndex": 0,
+       "name": "Hands.FIRE PLANT -> Hands.SPAWN",
+       "conditions": [],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.75,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.FIRE PLANT",
+        "FullNameHash": 962424936,
+        "EventsListId": 16
+       }
+      }
+     ]
+    },
+    {
+     "name": "LOOK PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 26
+     },
+     "transitions": [
+      {
+       "to": "IDLE PLANT",
+       "toIndex": 24,
+       "name": "Hands.LOOK PLANT -> Hands.IDLE PLANT",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "L ACTIONS START PLANT",
+       "toIndex": 34,
+       "name": "Hands.LOOK PLANT -> Hands.L ACTIONS START PLANT",
+       "conditions": [
+        {
+         "param": "UseLeftHand",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.LOOK PLANT",
+        "FullNameHash": -354105716,
+        "EventsListId": 18
+       }
+      }
+     ]
+    },
+    {
+     "name": "OUT TO IDLE PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 27
+     },
+     "transitions": [
+      {
+       "to": "IDLE PLANT",
+       "toIndex": 24,
+       "name": "Hands.OUT TO IDLE PLANT -> Hands.IDLE PLANT",
+       "conditions": [
+        {
+         "param": "Patrol",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.OUT TO IDLE PLANT",
+        "FullNameHash": -1782392846,
+        "EventsListId": 19
+       }
+      }
+     ]
+    },
+    {
+     "name": "OPEN INVENTORY PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 28
+     },
+     "transitions": [
+      {
+       "to": "IN INVENTORY PLANT",
+       "toIndex": 30,
+       "name": "Hands.OPEN INVENTORY PLANT -> Hands.IN INVENTORY PLANT",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "CLOSE INVENTORY PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 29
+     },
+     "transitions": [
+      {
+       "to": "IDLE PLANT",
+       "toIndex": 24,
+       "name": "Hands.CLOSE INVENTORY PLANT -> Hands.IDLE PLANT",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.10000000149011612,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "IN INVENTORY PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 30
+     },
+     "transitions": [
+      {
+       "to": "CLOSE INVENTORY PLANT",
+       "toIndex": 29,
+       "name": "Hands.IN INVENTORY PLANT -> Hands.CLOSE INVENTORY PLANT",
+       "conditions": [
+        {
+         "param": "Inventory",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "IDLE TO OUT PLANT",
+       "toIndex": 31,
+       "name": "Hands.IN INVENTORY PLANT -> Hands.IDLE TO OUT PLANT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.75,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "IDLE TO OUT PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 31
+     },
+     "transitions": [
+      {
+       "to": "SPAWN",
+       "toIndex": 0,
+       "name": "Hands.IDLE TO OUT PLANT -> Hands.SPAWN",
+       "conditions": [],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.6249996423721313,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.IDLE TO OUT PLANT",
+        "FullNameHash": 809323642,
+        "EventsListId": 20
+       }
+      }
+     ]
+    },
+    {
+     "name": "IDLE TO PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 32
+     },
+     "transitions": [
+      {
+       "to": "IDLE PLANT",
+       "toIndex": 24,
+       "name": "Hands.IDLE TO PLANT -> Hands.IDLE PLANT",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.IDLE TO PLANT",
+        "FullNameHash": -1980980608,
+        "EventsListId": 21
+       }
+      }
+     ]
+    },
+    {
+     "name": "PLANT TO IDLE",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 33
+     },
+     "transitions": [
+      {
+       "to": "IDLE",
+       "toIndex": 8,
+       "name": "Hands.PLANT TO IDLE -> Hands.IDLE",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "Hands.PLANT TO IDLE",
+        "FullNameHash": 107554514,
+        "EventsListId": 23
+       }
+      }
+     ]
+    },
+    {
+     "name": "L ACTIONS START PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 24
+     },
+     "transitions": [
+      {
+       "to": "IDLE PLANT",
+       "toIndex": 24,
+       "name": "Hands.L ACTIONS START PLANT -> Hands.IDLE PLANT",
+       "conditions": [
+        {
+         "param": "UseLeftHand",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.2500014305114746,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "FIRE PLANT",
+       "toIndex": 25,
+       "name": "Hands.L ACTIONS START PLANT -> Hands.FIRE PLANT",
+       "conditions": [
+        {
+         "param": "GrenadeFire",
+         "mode": "Greater",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.25000035762786865,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 0
+       }
+      }
+     ]
+    },
+    {
+     "name": "PATROL IN PAINT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 28
+     },
+     "transitions": [
+      {
+       "to": "PATROL PLANT",
+       "toIndex": 37,
+       "name": "Hands.PATROL IN PAINT -> Hands.PATROL PLANT",
+       "conditions": [],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "PATROL OUT PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 29
+     },
+     "transitions": [
+      {
+       "to": "IDLE PLANT",
+       "toIndex": 24,
+       "name": "Hands.PATROL OUT PLANT -> Hands.IDLE PLANT",
+       "conditions": [],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "PATROL PLANT",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 30
+     },
+     "transitions": [
+      {
+       "to": "PATROL OUT PLANT",
+       "toIndex": 36,
+       "name": "Hands.PATROL PLANT -> Hands.PATROL OUT PLANT",
+       "conditions": [
+        {
+         "param": "Patrol",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "IDLE TO OUT PLANT",
+       "toIndex": 31,
+       "name": "Hands.PATROL PLANT -> Hands.IDLE TO OUT PLANT",
+       "conditions": [
+        {
+         "param": "Active",
+         "mode": "IfNot",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.06199999898672104,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    }
+   ],
+   "anyState": []
+  },
+  {
+   "name": "LActions",
+   "blending": 0,
+   "defaultWeight": 0.0,
+   "mask": {
+    "0": 1.0,
+    "422597891": 0.0,
+    "1718152087": 0.0,
+    "1685101104": 1.0,
+    "802307715": 1.0,
+    "763305895": 1.0,
+    "1597118046": 1.0,
+    "3716598168": 1.0,
+    "3915073263": 1.0,
+    "867468282": 1.0,
+    "4138441307": 1.0,
+    "3110639567": 1.0,
+    "1228661330": 1.0,
+    "4021332762": 1.0,
+    "1068049680": 1.0,
+    "1623114442": 1.0,
+    "2700164573": 1.0,
+    "420427151": 1.0,
+    "3156549890": 1.0,
+    "3119123612": 1.0,
+    "2681112400": 1.0,
+    "2510291354": 1.0,
+    "3853564622": 0.0,
+    "3179006730": 0.0,
+    "2594454114": 0.0,
+    "1178899561": 0.0,
+    "133887668": 0.0,
+    "3140991930": 0.0,
+    "3924292653": 0.0,
+    "1075037160": 0.0,
+    "2009407219": 0.0,
+    "3268061166": 0.0,
+    "270537416": 0.0,
+    "222986075": 0.0,
+    "3687945903": 0.0,
+    "2531368983": 0.0,
+    "617570243": 0.0,
+    "2492465256": 0.0,
+    "2957488264": 0.0,
+    "4166302731": 0.0,
+    "2374709545": 0.0,
+    "914752087": 0.0,
+    "3520175251": 0.0,
+    "3666855909": 1.0,
+    "678927987": 1.0,
+    "3605229598": 0.0,
+    "752886102": 0.0,
+    "1054046267": 1.0,
+    "1189921221": 0.0,
+    "882318336": 1.0,
+    "1104932850": 0.0,
+    "2155831742": 0.0,
+    "344605619": 0.0,
+    "3146265243": 1.0,
+    "977575281": 0.0,
+    "578904865": 1.0,
+    "3392753874": 0.0,
+    "4193670776": 1.0,
+    "2637504855": 1.0,
+    "3339403183": 1.0,
+    "3071802386": 0.0,
+    "1639304858": 0.0,
+    "4035277118": 0.0,
+    "2513330016": 0.0
+   },
+   "ikPass": false,
+   "syncedLayerAffectsTiming": false,
+   "defaultState": "Idle",
+   "states": [
+    {
+     "name": "Idle",
+     "tag": null,
+     "speed": 0.5,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 44
+     },
+     "transitions": [
+      {
+       "to": "generic_270",
+       "toIndex": 15,
+       "name": "LActions.Idle -> LActions.generic_270",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 14.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "push_hinge_right",
+       "toIndex": 16,
+       "name": "LActions.Idle -> LActions.push_hinge_right",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 57.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "hand_faceshield_on",
+       "toIndex": 19,
+       "name": "LActions.Idle -> LActions.hand_faceshield_on",
+       "conditions": [
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 401.0
+        },
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "hand_nv_on",
+       "toIndex": 3,
+       "name": "LActions.Idle -> LActions.hand_nv_on",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 21.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "pull_hinge_right",
+       "toIndex": 11,
+       "name": "LActions.Idle -> LActions.pull_hinge_right",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 56.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "generic_90",
+       "toIndex": 2,
+       "name": "LActions.Idle -> LActions.generic_90",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 12.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "hand_slap_forward",
+       "toIndex": 10,
+       "name": "LActions.Idle -> LActions.hand_slap_forward",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 99.0
+        }
+       ],
+       "duration": 0.05000000074505806,
+       "offset": 0.0,
+       "exitTime": 0.20173469185829163,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "GESTURES",
+       "toIndex": 14,
+       "name": "LActions.Idle -> LActions.GESTURES",
+       "conditions": [
+        {
+         "param": "Gesture",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "push_hinge_left",
+       "toIndex": 13,
+       "name": "LActions.Idle -> LActions.push_hinge_left",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 55.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "generic_180",
+       "toIndex": 7,
+       "name": "LActions.Idle -> LActions.generic_180",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 13.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "OPEN_PUSH_LEFT_HINGE",
+       "toIndex": 20,
+       "name": "LActions.Idle -> LActions.OPEN_PUSH_LEFT_HINGE",
+       "conditions": [
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 51.0
+        },
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.004511997103691101,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "OPEN_PULL_LEFT_HINGE",
+       "toIndex": 8,
+       "name": "LActions.Idle -> LActions.OPEN_PULL_LEFT_HINGE",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 54.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "generic_0",
+       "toIndex": 9,
+       "name": "LActions.Idle -> LActions.generic_0",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 11.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "hand_faceshield_off",
+       "toIndex": 12,
+       "name": "LActions.Idle -> LActions.hand_faceshield_off",
+       "conditions": [
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 400.0
+        },
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "Trunk Close",
+       "toIndex": 1,
+       "name": "LActions.Idle -> LActions.Trunk Close",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 102.0
+        }
+       ],
+       "duration": 0.02114853262901306,
+       "offset": 0.0,
+       "exitTime": 0.2499999701976776,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "pull_hinge_left",
+       "toIndex": 22,
+       "name": "LActions.Idle -> LActions.pull_hinge_left",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 58.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "Take Loot",
+       "toIndex": 18,
+       "name": "LActions.Idle -> LActions.Take Loot",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 1.0
+        }
+       ],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "hand_nv_off",
+       "toIndex": 5,
+       "name": "LActions.Idle -> LActions.hand_nv_off",
+       "conditions": [
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 20.0
+        },
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "OPEN_PULL_RIGHT_HINGE",
+       "toIndex": 23,
+       "name": "LActions.Idle -> LActions.OPEN_PULL_RIGHT_HINGE",
+       "conditions": [
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 52.0
+        },
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "hand_key_use",
+       "toIndex": 17,
+       "name": "LActions.Idle -> LActions.hand_key_use",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 50.0
+        }
+       ],
+       "duration": 0.05000000074505806,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "OPEN_PUSH_RIGHT_HINGE",
+       "toIndex": 4,
+       "name": "LActions.Idle -> LActions.OPEN_PUSH_RIGHT_HINGE",
+       "conditions": [
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 53.0
+        },
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "Trunk Open",
+       "toIndex": 21,
+       "name": "LActions.Idle -> LActions.Trunk Open",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 101.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "compass_out_to_idle",
+       "toIndex": 24,
+       "name": "LActions.Idle -> LActions.compass_out_to_idle",
+       "conditions": [
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 404.0
+        },
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": false,
+       "interruption": 2,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "hand_drop_stuff",
+       "toIndex": 27,
+       "name": "LActions.Idle -> LActions.hand_drop_stuff",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        },
+        {
+         "param": "LActionIndex",
+         "mode": "Equals",
+         "threshold": 300.0
+        }
+       ],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      },
+      {
+       "to": "Fallback",
+       "toIndex": 6,
+       "name": "LActions.Idle -> LActions.Fallback",
+       "conditions": [
+        {
+         "param": "HandReady",
+         "mode": "If",
+         "threshold": 0.0
+        }
+       ],
+       "duration": 0.038581863045692444,
+       "offset": 0.0,
+       "exitTime": 0.25,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "Trunk Close",
+     "tag": null,
+     "speed": 1.25,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 39
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.Trunk Close -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.05714285373687744,
+       "offset": 0.38823550939559937,
+       "exitTime": 0.9873950481414795,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 2
+       }
+      }
+     ]
+    },
+    {
+     "name": "generic_90",
+     "tag": null,
+     "speed": 1.2999999523162842,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 40
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.generic_90 -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.04999995231628418,
+       "offset": 0.0,
+       "exitTime": 0.9793522357940674,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 3
+       }
+      }
+     ]
+    },
+    {
+     "name": "hand_nv_on",
+     "tag": null,
+     "speed": 1.25,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 41
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.hand_nv_on -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.9900000095367432,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 4
+       }
+      }
+     ]
+    },
+    {
+     "name": "OPEN_PUSH_RIGHT_HINGE",
+     "tag": null,
+     "speed": 1.2000000476837158,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 42
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.OPEN_PUSH_RIGHT_HINGE -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.10000002384185791,
+       "offset": 0.0,
+       "exitTime": 0.9635714888572693,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 5
+       }
+      }
+     ]
+    },
+    {
+     "name": "hand_nv_off",
+     "tag": null,
+     "speed": 1.25,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 43
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.hand_nv_off -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.8125001192092896,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 6
+       }
+      }
+     ]
+    },
+    {
+     "name": "Fallback",
+     "tag": null,
+     "speed": 2.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 44
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.Fallback -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.009999999776482582,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 25
+       }
+      }
+     ]
+    },
+    {
+     "name": "generic_180",
+     "tag": null,
+     "speed": 1.2999999523162842,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 45
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.generic_180 -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.050000131130218506,
+       "offset": 0.0,
+       "exitTime": 0.9789473414421082,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 8
+       }
+      }
+     ]
+    },
+    {
+     "name": "OPEN_PULL_LEFT_HINGE",
+     "tag": null,
+     "speed": 1.2000000476837158,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 46
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.OPEN_PULL_LEFT_HINGE -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.10000002384185791,
+       "offset": 0.0,
+       "exitTime": 0.9696429371833801,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 9
+       }
+      }
+     ]
+    },
+    {
+     "name": "generic_0",
+     "tag": null,
+     "speed": 1.2999999523162842,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 38
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.generic_0 -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.04999995231628418,
+       "offset": 0.0,
+       "exitTime": 0.9719298481941223,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 10
+       }
+      }
+     ]
+    },
+    {
+     "name": "hand_slap_forward",
+     "tag": null,
+     "speed": 1.399999976158142,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 48
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.hand_slap_forward -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.07571428269147873,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 11
+       }
+      }
+     ]
+    },
+    {
+     "name": "pull_hinge_right",
+     "tag": null,
+     "speed": 1.2999999523162842,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 49
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.pull_hinge_right -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.10000002384185791,
+       "offset": 0.0,
+       "exitTime": 0.9693151116371155,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 12
+       }
+      }
+     ]
+    },
+    {
+     "name": "hand_faceshield_off",
+     "tag": null,
+     "speed": 1.25,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 50
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.hand_faceshield_off -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.9900000095367432,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 13
+       }
+      }
+     ]
+    },
+    {
+     "name": "push_hinge_left",
+     "tag": null,
+     "speed": 1.2999999523162842,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 38
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.push_hinge_left -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.09999990463256836,
+       "offset": 0.0,
+       "exitTime": 0.9732603430747986,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 1
+       }
+      }
+     ]
+    },
+    {
+     "name": "GESTURES",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "blendType": 0,
+      "param": "GestureIndex",
+      "paramY": "#4294967295",
+      "children": [
+       {
+        "clip": null,
+        "clipIndex": 52
+       },
+       {
+        "clip": null,
+        "clipIndex": 53
+       },
+       {
+        "clip": null,
+        "clipIndex": 54
+       },
+       {
+        "clip": null,
+        "clipIndex": 55
+       },
+       {
+        "clip": null,
+        "clipIndex": 56
+       },
+       {
+        "clip": null,
+        "clipIndex": 57
+       },
+       {
+        "clip": null,
+        "clipIndex": 58
+       }
+      ],
+      "thresholds": [
+       0.0,
+       1.0,
+       2.0,
+       3.0,
+       4.0,
+       5.0,
+       6.0
+      ]
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.GESTURES -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 14
+       }
+      }
+     ]
+    },
+    {
+     "name": "generic_270",
+     "tag": null,
+     "speed": 1.2999999523162842,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 59
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.generic_270 -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.050000011920928955,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 15
+       }
+      }
+     ]
+    },
+    {
+     "name": "push_hinge_right",
+     "tag": null,
+     "speed": 1.2999999523162842,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 60
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.push_hinge_right -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.10000008344650269,
+       "offset": 0.0,
+       "exitTime": 0.9605480432510376,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 16
+       }
+      }
+     ]
+    },
+    {
+     "name": "hand_key_use",
+     "tag": null,
+     "speed": 1.25,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 61
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.hand_key_use -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.15000000596046448,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 17
+       }
+      }
+     ]
+    },
+    {
+     "name": "Take Loot",
+     "tag": null,
+     "speed": 1.25,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": true,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 62
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.Take Loot -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 18
+       }
+      }
+     ]
+    },
+    {
+     "name": "hand_faceshield_on",
+     "tag": null,
+     "speed": 1.25,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 63
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.hand_faceshield_on -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.10000000149011612,
+       "offset": 0.0,
+       "exitTime": 0.9900000095367432,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 19
+       }
+      }
+     ]
+    },
+    {
+     "name": "OPEN_PUSH_LEFT_HINGE",
+     "tag": null,
+     "speed": 1.2000000476837158,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 64
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.OPEN_PUSH_LEFT_HINGE -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.05239415168762207,
+       "offset": 0.0,
+       "exitTime": 0.9786372184753418,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 20
+       }
+      }
+     ]
+    },
+    {
+     "name": "Trunk Open",
+     "tag": null,
+     "speed": 1.25,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 65
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.Trunk Open -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.05000007152557373,
+       "offset": 0.3107143044471741,
+       "exitTime": 0.9714285731315613,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 21
+       }
+      }
+     ]
+    },
+    {
+     "name": "pull_hinge_left",
+     "tag": null,
+     "speed": 1.2999999523162842,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 66
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.pull_hinge_left -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.10000002384185791,
+       "offset": 0.0,
+       "exitTime": 0.9654795527458191,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 22
+       }
+      }
+     ]
+    },
+    {
+     "name": "OPEN_PULL_RIGHT_HINGE",
+     "tag": null,
+     "speed": 1.2000000476837158,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 42
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.OPEN_PULL_RIGHT_HINGE -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.09999996423721313,
+       "offset": 0.0,
+       "exitTime": 0.9514286518096924,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 23
+       }
+      }
+     ]
+    },
+    {
+     "name": "compass_out_to_idle",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": "compass_out_to_idle",
+      "clipIndex": 68
+     },
+     "transitions": [
+      {
+       "to": "compass_use",
+       "toIndex": 26,
+       "name": "LActions.compass_out_to_idle -> LActions.compass_use",
+       "conditions": [],
+       "duration": 0.20000000298023224,
+       "offset": 0.0,
+       "exitTime": 0.8999999761581421,
+       "hasExitTime": true,
+       "fixedDuration": false,
+       "interruption": 2,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "LActions.compass_out_to_idle",
+        "FullNameHash": 268070204,
+        "EventsListId": 11
+       }
+      }
+     ]
+    },
+    {
+     "name": "compass_idle_to_out",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": "compass_idle_to_out",
+      "clipIndex": 69
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.compass_idle_to_out -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.33000001311302185,
+       "offset": 0.0,
+       "exitTime": 0.5079209804534912,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 24
+       }
+      },
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "LActions.compass_idle_to_out",
+        "FullNameHash": 18416827,
+        "EventsListId": 12
+       }
+      }
+     ]
+    },
+    {
+     "name": "compass_use",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": "compass_use",
+      "clipIndex": 70
+     },
+     "transitions": [
+      {
+       "to": "compass_idle_to_out",
+       "toIndex": 25,
+       "name": "LActions.compass_use -> LActions.compass_idle_to_out",
+       "conditions": [
+        {
+         "param": "LActionIndex",
+         "mode": "NotEqual",
+         "threshold": 404.0
+        }
+       ],
+       "duration": 0.25,
+       "offset": 0.0,
+       "exitTime": 0.0,
+       "hasExitTime": false,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ]
+    },
+    {
+     "name": "hand_drop_stuff",
+     "tag": null,
+     "speed": 1.0,
+     "cycleOffset": 0.0,
+     "speedParam": null,
+     "mirrorParam": null,
+     "cycleParam": null,
+     "timeParam": null,
+     "writeDefaults": true,
+     "loop": false,
+     "mirror": false,
+     "iKOnFeet": false,
+     "motion": {
+      "clip": null,
+      "clipIndex": 71
+     },
+     "transitions": [
+      {
+       "to": "Idle",
+       "toIndex": 0,
+       "name": "LActions.hand_drop_stuff -> LActions.Idle",
+       "conditions": [],
+       "duration": 0.0,
+       "offset": 0.0,
+       "exitTime": 1.0,
+       "hasExitTime": true,
+       "fixedDuration": true,
+       "interruption": 0,
+       "orderedInterruption": true,
+       "canTransitionToSelf": true
+      }
+     ],
+     "behaviours": [
+      {
+       "class": "LActionState",
+       "fields": {
+        "LActionSetupId": 26
+       }
+      },
+      {
+       "class": "AnimationEventsStateBehaviour",
+       "fields": {
+        "EventsContainer": {},
+        "FullName": "LActions.hand_drop_stuff",
+        "FullNameHash": -909179027,
+        "EventsListId": 13
+       }
+      }
+     ]
+    }
+   ],
+   "anyState": []
+  }
+ ],
+ "behaviours": [
+  {
+   "layer": "LActions",
+   "state": "compass_idle_to_out",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 24
+     }
+    },
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "LActions.compass_idle_to_out",
+      "FullNameHash": 18416827,
+      "EventsListId": 12
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "OPEN_PULL_RIGHT_HINGE",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 23
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "PLANT TO IDLE",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.PLANT TO IDLE",
+      "FullNameHash": 107554514,
+      "EventsListId": 23
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "Fallback",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 25
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "FIRE START",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.FIRE START",
+      "FullNameHash": 220670101,
+      "EventsListId": 4
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "compass_out_to_idle",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "LActions.compass_out_to_idle",
+      "FullNameHash": 268070204,
+      "EventsListId": 11
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "OPEN_PULL_LEFT_HINGE",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 9
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "CHECK",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.CHECK",
+      "FullNameHash": 351790385,
+      "EventsListId": 10
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "hand_faceshield_off",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 13
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "generic_90",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 3
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "hand_nv_on",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 4
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "FIRE ABORT OUT",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.FIRE ABORT OUT",
+      "FullNameHash": 554919731,
+      "EventsListId": 9
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "FIRE",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.FIRE",
+      "FullNameHash": 590329303,
+      "EventsListId": 3
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "hand_key_use",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 17
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "IDLE TO OUT PLANT",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.IDLE TO OUT PLANT",
+      "FullNameHash": 809323642,
+      "EventsListId": 20
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "GESTURES",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 14
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "FIRE PLANT",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.FIRE PLANT",
+      "FullNameHash": 962424936,
+      "EventsListId": 16
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "Trunk Open",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 21
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "push_hinge_left",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 1
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "IDLE PLANT",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.IDLE PLANT",
+      "FullNameHash": 1344860075,
+      "EventsListId": 17
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "LOOK",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.LOOK",
+      "FullNameHash": 1355507738,
+      "EventsListId": 2
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "FIRE ABORT INV",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.FIRE ABORT INV",
+      "FullNameHash": 1655091511,
+      "EventsListId": 6
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "push_hinge_right",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 16
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "generic_180",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 8
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "ALT FIRE",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.ALT FIRE",
+      "FullNameHash": 2035297569,
+      "EventsListId": 7
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "ALT FIRE START",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.ALT FIRE START",
+      "FullNameHash": 2112726508,
+      "EventsListId": 8
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "Take Loot",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 18
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "L ACTIONS START",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 0
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "OPEN_PUSH_LEFT_HINGE",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 20
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "IDLE TO PLANT",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.IDLE TO PLANT",
+      "FullNameHash": -1980980608,
+      "EventsListId": 21
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "pull_hinge_right",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 12
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "OUT TO IDLE PLANT",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.OUT TO IDLE PLANT",
+      "FullNameHash": -1782392846,
+      "EventsListId": 19
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "hand_faceshield_on",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 19
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "IDLE",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.IDLE",
+      "FullNameHash": -1479210739,
+      "EventsListId": 14
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "IDLE TO OUT",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.IDLE TO OUT",
+      "FullNameHash": -1205675207,
+      "EventsListId": 1
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "L ACTIONS START PLANT",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 0
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "hand_slap_forward",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 11
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "OUT TO IDLE",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.OUT TO IDLE",
+      "FullNameHash": -965243548,
+      "EventsListId": 0
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "hand_drop_stuff",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 26
+     }
+    },
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "LActions.hand_drop_stuff",
+      "FullNameHash": -909179027,
+      "EventsListId": 13
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "generic_0",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 10
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "pull_hinge_left",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 22
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "generic_270",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 15
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "Q FIRE",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.Q FIRE",
+      "FullNameHash": -436162191,
+      "EventsListId": 15
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "hand_nv_off",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 6
+     }
+    }
+   ]
+  },
+  {
+   "layer": "Hands",
+   "state": "LOOK PLANT",
+   "behaviours": [
+    {
+     "class": "AnimationEventsStateBehaviour",
+     "fields": {
+      "EventsContainer": {},
+      "FullName": "Hands.LOOK PLANT",
+      "FullNameHash": -354105716,
+      "EventsListId": 18
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "Trunk Close",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 2
+     }
+    }
+   ]
+  },
+  {
+   "layer": "LActions",
+   "state": "OPEN_PUSH_RIGHT_HINGE",
+   "behaviours": [
+    {
+     "class": "LActionState",
+     "fields": {
+      "LActionSetupId": 5
+     }
+    }
+   ]
+  }
+ ],
+ "clips": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  "compass_out_to_idle",
+  "compass_idle_to_out",
+  "compass_use",
+  null
+ ]
+}

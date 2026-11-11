@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The zombies mode's Fika add-on: carries ZombiesNet's messages over Fika. Shipped beside Kennerz_ZM_Core.dll in the
+    same plugin folder as Kennerz_ZM_CoreFika.bridge; Kennerz_ZM_Core loads it only when Fika is installed.
+    Fika.Core.dll is a build reference only (never shipped or copied): the installed one, else the 2.4.2 client kept in
+    C:\Git\2_References\Fika-Client-2.4.2 for building.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>Kennerz_ZM_CoreFika</AssemblyName>
+    <RootNamespace>KennerZombiesFika</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <!-- Only this install. Do NOT point at D:\OTHER LAUNCHERS\BSTATE GAMES. -->
+    <GamePath Condition="'$(GamePath)' == ''">D:\OTHER LAUNCHERS\BUTTERSTATE</GamePath>
+    <ManagedPath>$(GamePath)\EscapeFromTarkov_Data\Managed</ManagedPath>
+    <PluginOutputPath>$(GamePath)\BepInEx\plugins\Kennerz_ZM_Core</PluginOutputPath>
+    <FikaCore Condition="Exists('$(GamePath)\BepInEx\plugins\Fika\Fika.Core.dll')">$(GamePath)\BepInEx\plugins\Fika\Fika.Core.dll</FikaCore>
+    <FikaCore Condition="'$(FikaCore)' == ''">C:\Git\2_References\Fika-Client-2.4.2\Fika.Core.dll</FikaCore>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Fika.Core" HintPath="$(FikaCore)" Private="false" />
+    <Reference Include="Kennerz_ZM_Core" HintPath="$(PluginOutputPath)\Kennerz_ZM_Core.dll" Private="false" />
+    <Reference Include="BepInEx" HintPath="$(GamePath)\BepInEx\core\BepInEx.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(GamePath)\BepInEx\core\0Harmony.dll" Private="false" />
+    <Reference Include="UnityEngine.UI" HintPath="$(ManagedPath)\UnityEngine.UI.dll" Private="false" />
+    <Reference Include="Assembly-CSharp" HintPath="$(ManagedPath)\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="Comfort" HintPath="$(ManagedPath)\Comfort.dll" Private="false" />
+    <Reference Include="Comfort.Unity" HintPath="$(ManagedPath)\Comfort.Unity.dll" Private="false" />
+    <Reference Include="ItemComponent.Types" HintPath="$(ManagedPath)\ItemComponent.Types.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(ManagedPath)\UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedPath)\UnityEngine.CoreModule.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="CopyToPlugins" AfterTargets="Build">
+    <!-- As .bridge: BepInEx and Harmony never scan it; Kennerz_ZM_Core loads it when Fika is there -->
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(PluginOutputPath)\Kennerz_ZM_CoreFika.bridge" />
+    <Message Importance="high" Text="Copied Kennerz_ZM_CoreFika.bridge -> $(PluginOutputPath)" />
+  </Target>
+
+</Project>

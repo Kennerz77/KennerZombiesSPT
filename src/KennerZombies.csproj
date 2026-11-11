@@ -1,0 +1,85 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>Kennerz_ZM_Core</AssemblyName>
+    <RootNamespace>KennerZombies</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <!-- Only this install. Do NOT point at D:\OTHER LAUNCHERS\BSTATE GAMES. -->
+    <GamePath Condition="'$(GamePath)' == ''">D:\OTHER LAUNCHERS\BUTTERSTATE</GamePath>
+    <ManagedPath>$(GamePath)\EscapeFromTarkov_Data\Managed</ManagedPath>
+    <PluginOutputPath>$(GamePath)\BepInEx\plugins\Kennerz_ZM_Core</PluginOutputPath>
+    <!-- Release builds (-p:ReleaseBuild=true): F12 shows players only their settings (ReleaseMenu.cs) -->
+    <DefineConstants Condition="'$(ReleaseBuild)' == 'true'">$(DefineConstants);RELEASE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx" HintPath="$(GamePath)\BepInEx\core\BepInEx.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(GamePath)\BepInEx\core\0Harmony.dll" Private="false" />
+    <Reference Include="spt-reflection" HintPath="$(GamePath)\BepInEx\plugins\spt\spt-reflection.dll" Private="false" />
+    <Reference Include="spt-custom" HintPath="$(GamePath)\BepInEx\plugins\spt\spt-custom.dll" Private="false" />
+    <Reference Include="spt-common" HintPath="$(GamePath)\BepInEx\plugins\spt\spt-common.dll" Private="false" />
+    <Reference Include="Assembly-CSharp" HintPath="$(ManagedPath)\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="ItemComponent.Types" HintPath="$(ManagedPath)\ItemComponent.Types.dll" Private="false" />
+    <Reference Include="Comfort" HintPath="$(ManagedPath)\Comfort.dll" Private="false" />
+    <Reference Include="Comfort.Unity" HintPath="$(ManagedPath)\Comfort.Unity.dll" Private="false" />
+    <Reference Include="Newtonsoft.Json" HintPath="$(ManagedPath)\Newtonsoft.Json.dll" Private="false" />
+    <Reference Include="Sirenix.Serialization" HintPath="$(ManagedPath)\Sirenix.Serialization.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(ManagedPath)\UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(ManagedPath)\UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="UnityEngine.IMGUIModule" HintPath="$(ManagedPath)\UnityEngine.IMGUIModule.dll" Private="false" />
+    <Reference Include="UnityEngine.ImageConversionModule" HintPath="$(ManagedPath)\UnityEngine.ImageConversionModule.dll" Private="false" />
+    <Reference Include="UnityEngine.TextRenderingModule" HintPath="$(ManagedPath)\UnityEngine.TextRenderingModule.dll" Private="false" />
+    <Reference Include="UnityEngine.AnimationModule" HintPath="$(ManagedPath)\UnityEngine.AnimationModule.dll" Private="false" />
+    <Reference Include="UnityEngine.AudioModule" HintPath="$(ManagedPath)\UnityEngine.AudioModule.dll" Private="false" />
+    <Reference Include="UnityEngine.AssetBundleModule" HintPath="$(ManagedPath)\UnityEngine.AssetBundleModule.dll" Private="false" />
+    <Reference Include="UnityEngine.PhysicsModule" HintPath="$(ManagedPath)\UnityEngine.PhysicsModule.dll" Private="false" />
+    <Reference Include="UnityEngine.ParticleSystemModule" HintPath="$(ManagedPath)\UnityEngine.ParticleSystemModule.dll" Private="false" />
+    <Reference Include="UnityEngine.AIModule" HintPath="$(ManagedPath)\UnityEngine.AIModule.dll" Private="false" />
+    <Reference Include="UnityEngine.TerrainModule" HintPath="$(ManagedPath)\UnityEngine.TerrainModule.dll" Private="false" />
+    <Reference Include="UnityEngine.UI" HintPath="$(ManagedPath)\UnityEngine.UI.dll" Private="false" />
+    <Reference Include="UnityEngine.UIModule" HintPath="$(ManagedPath)\UnityEngine.UIModule.dll" Private="false" />
+    <Reference Include="UnityEngine.VideoModule" HintPath="$(ManagedPath)\UnityEngine.VideoModule.dll" Private="false" />
+    <Reference Include="Unity.TextMeshPro" HintPath="$(ManagedPath)\Unity.TextMeshPro.dll" Private="false" />
+    <Reference Include="UnityEngine.UnityWebRequestModule" HintPath="$(ManagedPath)\UnityEngine.UnityWebRequestModule.dll" Private="false" />
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule" HintPath="$(ManagedPath)\UnityEngine.UnityWebRequestAudioModule.dll" Private="false" />
+    <Reference Include="UnityEngine.InputLegacyModule" HintPath="$(ManagedPath)\UnityEngine.InputLegacyModule.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="CopyToPlugins" AfterTargets="Build">
+    <MakeDir Directories="$(PluginOutputPath)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PluginOutputPath)" />
+    <!-- The logged gun builds the box shows (data\make_guns.py writes it) -->
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\data\box_builds.json" DestinationFolder="$(PluginOutputPath)" />
+    <!-- The weapon table (mag and reserve per gun; data\make_guns.py writes it) -->
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\data\guns.json" DestinationFolder="$(PluginOutputPath)" />
+    <!-- the original score portraits for the points HUD (hud\score_char1..4.png) -->
+    <ItemGroup>
+      <HudPictures Include="$(MSBuildProjectDirectory)\..\data\hud\*.png" />
+    </ItemGroup>
+    <Copy SourceFiles="@(HudPictures)" DestinationFolder="$(PluginOutputPath)\hud" />
+    <!-- Wall decals (the original's blood hands, drips, scrawl and chalk, tinted; data\decals\*.png) -->
+    <ItemGroup>
+      <WallDecals Include="$(MSBuildProjectDirectory)\..\data\decals\*.png" />
+    </ItemGroup>
+    <Copy SourceFiles="@(WallDecals)" DestinationFolder="$(PluginOutputPath)\decals" />
+    <!-- The zombies main menu's video background (data\menu\zm_menu_bg.webm: BSG's Halloween 2026 menu loop) -->
+    <ItemGroup>
+      <MenuVideo Include="$(MSBuildProjectDirectory)\..\data\menu\*.webm;$(MSBuildProjectDirectory)\..\data\menu\*.mp4" />
+    </ItemGroup>
+    <Copy SourceFiles="@(MenuVideo)" DestinationFolder="$(PluginOutputPath)\menu" SkipUnchangedFiles="true" />
+    <!-- Map select: entering / leaving zombies mode, and the zombies menu music (damned2, cut to loop at 3:12) -->
+    <ItemGroup>
+      <MenuSounds Include="$(MSBuildProjectDirectory)\..\data\sounds\*.wav" />
+      <VoxLines Include="$(MSBuildProjectDirectory)\..\data\vox\**\*.wav" />
+    </ItemGroup>
+    <Copy SourceFiles="@(MenuSounds)" DestinationFolder="$(PluginOutputPath)\sounds" />
+    <Copy SourceFiles="@(VoxLines)" DestinationFolder="$(PluginOutputPath)\vox\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Message Importance="high" Text="Copied $(TargetFileName) -> $(PluginOutputPath)" />
+  </Target>
+
+</Project>

@@ -1,0 +1,21 @@
+# Build output
+bin/
+obj/
+*.bundle
+*.bundle.manifest
+
+# Unity generated (UnityAssets is the master copy; build_bundle.ps1 syncs it into the project)
+UnityProject/Library/
+UnityProject/Logs/
+UnityProject/UserSettings/
+UnityProject/Temp/
+UnityProject/obj/
+UnityProject/AssetBundles/
+UnityProject/Build/
+UnityProject/Assets/Zombies/
+
+# Local
+logs/
+sounds_unused/
+*.log
+.vs/
