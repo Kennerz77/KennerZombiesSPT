@@ -32,7 +32,7 @@ namespace KennerZombies
     {
         public const string PluginGuid = "com.kennerz.zmcore"; // same GUID as the server mod will have (Forge rule)
         public const string PluginName = "Kennerz-ZM_Core";     // Forge rule: "Username-ModName"
-        public const string PluginVersion = "0.1.0";
+        public const string PluginVersion = "0.1.1";
 
         internal static ManualLogSource Log;
 

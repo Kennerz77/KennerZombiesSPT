@@ -2,7 +2,7 @@
 
 Round-based zombies for SPT. Survive wave after wave on a zombies map, earn points for every hit and kill, open doors, rebuild barricades, buy guns off the walls, spin the mystery box, drink perks, Pack-a-Punch your guns and find the way out. Solo, or with up to four friends over Fika.
 
-Version **0.1.0 (alpha)**, for **SPT 4.1.6**. Made by **Kenner**.
+Version **0.1.1 (alpha)**, for **SPT 4.1.6**. Made by **Kenner**.
 
 ## Requirements
 
@@ -54,6 +54,7 @@ The same as Zombies settings in the game: the sound and music volumes, the zombi
 - Never changes another mod's files, settings or load order. Anything it needs to work alongside another mod is done inside this mod.
 - Fika is used as it is: its files, settings and load order are never changed. In zombies mode a few of Fika's on-screen panels are hidden while the zombies menus are up. Without Fika, the co-op part simply stays off.
 - Zombies matches only happen on zombies maps. Your normal raids, character and hideout are left as they are, and nothing from a zombies match is added to your character.
+- Loot mods (such as Lots of Loot): zombies maps have no map loot, so loot generation is skipped there. Your normal maps keep whatever loot your loot mods give them.
 
 ## Uninstalling
 
@@ -75,4 +76,5 @@ To remove the mod, delete `BepInEx\plugins\Kennerz_ZM_Core\` and `SPT_Runtime\us
 
 ## Changelog
 
+- **0.1.1 (alpha):** fixes a server error that stopped zombies maps from loading when Lots of Loot (or another mod that replaces the map loot) is installed.
 - **0.1.0 (alpha):** first release. Your Dr K points and statistics are saved inside the mod's folders: back them up before deleting the mod or doing a clean update (see Uninstalling).
