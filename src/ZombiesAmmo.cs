@@ -1096,6 +1096,15 @@ namespace KennerZombies
             ZombiesPlugin.Log.LogInfo($"Zombies ammo: {mag.LocalizedName()} on the {w.LocalizedName()} holds {want} (was {before})");
         }
 
+        /// <summary>A map's own starting gun: four mags in reserve (the M1911's 8 + 32), never more than its full reserve.</summary>
+        public static int StartReserveFor(Weapon weapon)
+        {
+            int mag = weapon.GetCurrentMagazine()?.MaxCount ?? 0;
+            if (mag <= 0)
+                mag = 8;
+            return Mathf.Min(4 * mag, ReserveFor(weapon));
+        }
+
         private static int ReserveFor(Weapon weapon)
         {
             if (_reserves == null)

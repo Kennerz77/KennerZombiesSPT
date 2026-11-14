@@ -55,6 +55,8 @@ namespace KennerZombies
             public int MaxPerks = 0;           // zombies maps: perks a player may hold (0: the original's four)
             public int BoxStart = -1;          // zombies maps: the entry index of the box spot the box always starts at (-1: random)
             public bool AlwaysPowered = false; // zombies maps: the power is on from the start, no power switch (Nacht style)
+            public string StartGun = null;     // zombies maps: the gun id (box_builds.json) players start and respawn with, or none: the M1911
+            public Dictionary<string, int> PerkPrices = null; // zombies maps: perk id -> price over the mode's own (Quick Revive: its co-op price)
             public List<Entry> Entries = new List<Entry>();
             public List<ZoneShape> Zones = new List<ZoneShape>(); // outlined zones (F8 "Zones")
         }
@@ -222,19 +224,65 @@ namespace KennerZombies
         private static string MapsDir => Path.Combine(ZombiesPlugin.Dir, "maps");
 
         /// <summary>
-        /// Where layout files are: each map mod's own maps\ folder (BepInEx\plugins\Kennerz_ZM_&lt;Map&gt;\maps, shipped
-        /// with the map), then the core's (dev layouts over normal maps, and new ones until a map mod holds them).
+        /// Where layout files are: every map's own folder in BepInEx\plugins\SPZombies_Maps (ZM_&lt;MapName&gt;, holding its
+        /// layout, sounds, pictures and tips: where players and the Map Kit put maps), then the older map mods'
+        /// BepInEx\plugins\Kennerz_ZM_&lt;Map&gt;\maps (Stronghold 0.1.0), then the core's (dev layouts over normal maps).
+        /// The server's ZombiesRaid.IsZombiesMap looks in the same places.
         /// </summary>
         internal static IEnumerable<string> MapsDirs()
         {
             string plugins = Path.GetDirectoryName(ZombiesPlugin.Dir);
             if (plugins != null && Directory.Exists(plugins))
+            {
+                string shared = Path.Combine(plugins, MapsFolderName);
+                if (Directory.Exists(shared))
+                    foreach (string map in Directory.GetDirectories(shared))
+                    {
+                        yield return map;
+                        if (Directory.Exists(Path.Combine(map, "maps")))
+                            yield return Path.Combine(map, "maps");
+                    }
                 foreach (string mod in Directory.GetDirectories(plugins, "Kennerz_ZM_*"))
                     if (!string.Equals(Path.GetFullPath(mod), Path.GetFullPath(ZombiesPlugin.Dir), StringComparison.OrdinalIgnoreCase)
                         && Directory.Exists(Path.Combine(mod, "maps")))
                         yield return Path.Combine(mod, "maps");
+            }
             yield return MapsDir;
         }
+
+        /// <summary>The folder in BepInEx\plugins every zombies map goes in (one ZM_&lt;MapName&gt; folder each).</summary>
+        internal const string MapsFolderName = "SPZombies_Maps";
+
+        /// <summary>
+        /// Makes BepInEx\plugins\SPZombies_Maps with its read-me when it's missing, so players see where maps go. The
+        /// release zip ships it too.
+        /// </summary>
+        internal static void EnsureMapsFolder()
+        {
+            try
+            {
+                string plugins = Path.GetDirectoryName(ZombiesPlugin.Dir);
+                if (plugins == null || !Directory.Exists(plugins))
+                    return;
+                string shared = Path.Combine(plugins, MapsFolderName);
+                Directory.CreateDirectory(shared);
+                string readme = Path.Combine(shared, "README.txt");
+                if (!File.Exists(readme))
+                    File.WriteAllText(readme, MapsFolderReadme);
+            }
+            catch (Exception e)
+            {
+                ZombiesPlugin.Log.LogWarning($"Zombies maps: couldn't make the {MapsFolderName} folder ({e.Message})");
+            }
+        }
+
+        internal const string MapsFolderReadme =
+            "Zombies maps for Dr K's SPZombies go in this folder, each in its own folder named ZM_<MapName>\r\n" +
+            "(for example ZM_Asylum). A map's folder holds its <mapid>zombies.json with its sounds, pictures and tips.\r\n\r\n" +
+            "A map download comes ready to extract into your SPT folder: it puts its zombies folder here and the map\r\n" +
+            "itself where CustomMapLoader reads it. Restart the SPT server and the game after adding a map.\r\n\r\n" +
+            "Fika headless: copy this folder (and the map's CustomMapLoader files) onto the headless too.\r\n\r\n" +
+            "Make your own with the SPZombies Map Kit (Unity) and the Tushonka Mapping SDK.\r\n";
 
         private void Awake() => Instance = this;
 

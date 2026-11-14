@@ -33,7 +33,8 @@ internal static class ZombiesRaid
     [ThreadStatic] private static bool _passThrough;
 
     /// <summary>
-    /// The zombies maps: every layout file (&lt;location&gt;zombies.json) in BepInEx\plugins\Kennerz_ZM_*\maps marked
+    /// The zombies maps: every layout file (&lt;location&gt;zombies.json) in BepInEx\plugins\SPZombies_Maps\* (or an older
+    /// map mod's Kennerz_ZM_*\maps) marked
     /// "ZombiesMap": true, the same files the client reads. Map ids starting "zm_" count too (a server without the
     /// client folders).
     /// </summary>
@@ -48,9 +49,20 @@ internal static class ZombiesRaid
             string plugins = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "BepInEx", "plugins"));
             if (!Directory.Exists(plugins))
                 return false;
-            foreach (string mod in Directory.GetDirectories(plugins, "Kennerz_ZM_*"))
+            // Maps live in BepInEx\plugins\SPZombies_Maps\ZM_<Map> (the client's MapEditor.MapsDirs); Stronghold 0.1.0 in
+            // Kennerz_ZM_Stronghold\maps
+            string shared = Path.Combine(plugins, "SPZombies_Maps");
+            var dirs = new List<string>();
+            if (Directory.Exists(shared))
+                foreach (string map in Directory.GetDirectories(shared))
+                {
+                    dirs.Add(map);
+                    dirs.Add(Path.Combine(map, "maps"));
+                }
+            dirs.AddRange(Directory.GetDirectories(plugins, "Kennerz_ZM_*").Select(m => Path.Combine(m, "maps")));
+            foreach (string dir in dirs)
             {
-                string file = Path.Combine(mod, "maps", location + "zombies.json");
+                string file = Path.Combine(dir, location + "zombies.json");
                 if (!File.Exists(file))
                     continue;
                 using JsonDocument doc = JsonDocument.Parse(File.ReadAllText(file));

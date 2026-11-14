@@ -41,8 +41,18 @@ namespace KennerZombies
         private static readonly string[] Emptied = { nameof(EquipmentSlot.Pockets), nameof(EquipmentSlot.SecuredContainer),
             nameof(EquipmentSlot.TacticalVest), nameof(EquipmentSlot.ArmorVest) };
 
-        /// <summary>The starting gun (the M1911), from the box's gun table.</summary>
-        public static BoxGuns.Gun Starter => BoxGuns.FindGun(StarterGun);
+        /// <summary>The starting gun: the map's own (its layout's StartGun) when it's in the box's gun table, else the M1911.</summary>
+        public static BoxGuns.Gun Starter
+        {
+            get
+            {
+                string own = ZombiesMatch.StartGunHere;
+                BoxGuns.Gun gun = own != null && own != StarterGun ? BoxGuns.FindGun(own) : null;
+                if (own != null && own != StarterGun && gun == null)
+                    ZombiesPlugin.Log.LogWarning($"Zombies loadout: the map's starting gun '{own}' isn't in box_builds.json, giving the M1911");
+                return gun ?? BoxGuns.FindGun(StarterGun);
+            }
+        }
 
         /// <summary>The kit is on and the M1911 racked: the match's black screen can fade in.</summary>
         // The original's starting M1911: 32 rounds in reserve on top of the 8 loaded
@@ -251,7 +261,7 @@ namespace KennerZombies
             BoxGuns.Gun starter = Starter;
             if (starter == null)
             {
-                ZombiesPlugin.Notify("No M1911 in box_builds.json for the zombies loadout.", true);
+                ZombiesPlugin.Notify("No starting gun (M1911) in box_builds.json for the zombies loadout.", true);
                 yield break;
             }
             ZombiesPlugin.Log.LogInfo($"Zombies loadout: giving the {starter.Name}");
@@ -259,17 +269,18 @@ namespace KennerZombies
             yield return BoxGive.Give(starter, player);
             Step(0.85f, "Chambering a round");
             // The original's start: the slide racked (EFT's reload did it, the cock you hear), then 7 in the mag + 1 chambered = 8
-            if (player.HandsController?.Item is Weapon m1911)
+            if (player.HandsController?.Item is Weapon started)
             {
                 for (float until = Time.realtimeSinceStartup + 5f; Time.realtimeSinceStartup < until; )
                 {
-                    if (m1911.Chambers.Length > 0 && m1911.Chambers[0].ContainedItem != null)
+                    if (started.Chambers.Length > 0 && started.Chambers[0].ContainedItem != null)
                         break;
                     yield return null;
                 }
-                ZombiesAmmo.TopUpMag(m1911);
-                // The original (Kino): 8 loaded, 32 in reserve to start; Max Ammo later fills the reserve to 80
-                ZombiesAmmo.SetReserve(m1911, StartReserve);
+                ZombiesAmmo.TopUpMag(started);
+                // The original (Kino): 8 loaded, 32 in reserve to start; Max Ammo later fills the reserve to 80. A map's own
+                // starting gun gets the same: four mags in reserve
+                ZombiesAmmo.SetReserve(started, starter.Id == StarterGun ? StartReserve : ZombiesAmmo.StartReserveFor(started));
             }
             // The scores' picture, with the kit on (mask, glasses)
             yield return new WaitForSecondsRealtime(0.5f);

@@ -233,7 +233,7 @@ namespace KennerZombies
         // ---------- Up again ----------
 
         /// <summary>Revived (a teammate, solo Quick Revive, or F12).</summary>
-        public static void Revive(Player player, string how)
+        public static void Revive(Player player, string how, bool swapBack = true)
         {
             if (Mine != State.Down || player == null)
                 return;
@@ -263,7 +263,11 @@ namespace KennerZombies
                 back = null;
             if (back == null && temp != null)
                 back = player.InventoryController.Inventory.Equipment.GetAllItems().OfType<Weapon>().FirstOrDefault(w => w != temp);
-            ZombiesPlugin.Instance.StartCoroutine(SwapBack(player, back, temp));
+            // A respawn hands out its own kit (RespawnKit): no draw of the old gun here, it's about to be taken away (user
+            // report, 2026-11-14: a friend who bled out came back next round with no gun and couldn't do anything: this
+            // draw and the respawn's emptying the hands and taking that same gun ran at once)
+            if (swapBack)
+                ZombiesPlugin.Instance.StartCoroutine(SwapBack(player, back, temp));
             _standGun = null;
             _cellsHeld = null;
             _ammoHeld = null;
@@ -342,7 +346,7 @@ namespace KennerZombies
                 return;
             ExitSpectate();
             Mine = State.Down;
-            Revive(player, "respawned");
+            Revive(player, "respawned", swapBack: false);
             ZombiesPlugin.Instance.StartCoroutine(RespawnKit(player));
         }
 
@@ -359,6 +363,23 @@ namespace KennerZombies
             float until = Time.realtimeSinceStartup + 4f;
             while (!emptied && Time.realtimeSinceStartup < until)
                 yield return null;
+            until = Time.realtimeSinceStartup + 2f;
+            while (!(player.HandsController is Player.EmptyHandsController) && Time.realtimeSinceStartup < until)
+                yield return null;
+            // Co-op: the other games' copies of us put the gun away too before it's taken off the slot (as the starting
+            // kit does, ZombiesLoadout): a gun taken while a copy still held it made that game refuse every draw after
+            if (ZombiesNet.Online)
+            {
+                if (!ZombiesNet.IsHost && ZombiesNet.HostHandsHeard)
+                {
+                    float most = Time.realtimeSinceStartup + 10f;
+                    while (ZombiesNet.HostSeesMe() != "" && Time.realtimeSinceStartup < most)
+                        yield return null;
+                    if (ZombiesNet.HostSeesMe() != "")
+                        ZombiesPlugin.Log.LogWarning($"Zombies: respawn: the host's copy of us still holds {ZombiesNet.HostSeesMe()} after 10 s: going on anyway");
+                }
+                yield return new WaitForSecondsRealtime(1f);
+            }
             foreach (EquipmentSlot s in new[] { EquipmentSlot.FirstPrimaryWeapon, EquipmentSlot.SecondPrimaryWeapon, EquipmentSlot.Holster })
             {
                 Item gun = player.InventoryController.Inventory.Equipment.GetSlot(s).ContainedItem;
@@ -384,7 +405,19 @@ namespace KennerZombies
             BoxGuns.Gun starter = ZombiesLoadout.Starter;
             if (starter != null)
                 yield return BoxGive.Give(starter, player);
-            ZombiesPlugin.Log.LogInfo("Zombies: respawned with the M1911");
+            ZombiesPlugin.Log.LogInfo($"Zombies: respawned with the {starter?.Name ?? "starting gun"}");
+            // The gun must end up in the hands: if it didn't come out, it's drawn past whatever held EFT up
+            string tpl = starter != null ? BoxGuns.Template(starter) : null;
+            Weapon given = tpl == null ? null : player.InventoryController.Inventory.Equipment.GetAllItems().OfType<Weapon>()
+                .FirstOrDefault(w => w.TemplateId.ToString() == tpl);
+            float waitHands = Time.realtimeSinceStartup + 4f;
+            while (given != null && player.HandsController?.Item != given && Time.realtimeSinceStartup < waitHands)
+                yield return null;
+            if (given != null && player.HandsController?.Item != given)
+            {
+                ZombiesPlugin.Log.LogWarning($"Zombies: respawn: the {given.LocalizedName()} didn't come out (hands: {ZombiesTrace.HandsText(player)}): drawing it again");
+                yield return ZombiesReload.ForceDraw(player, given);
+            }
         }
 
         /// <summary>

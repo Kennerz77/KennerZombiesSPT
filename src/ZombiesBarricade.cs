@@ -397,7 +397,8 @@ namespace KennerZombies
 
         private static bool Solo => ZombiesTeam.List().Count <= 1;
 
-        private int Price => Solo ? SoloPrices[Mathf.Clamp(ZombiesDowned.SoloBuys, 0, SoloPrices.Length - 1)] : TeamPrice;
+        // A map's own Quick Revive price (its layout's PerkPrices "revive") is the co-op price; solo keeps 500 / 1500 / 2500
+        private int Price => Solo ? SoloPrices[Mathf.Clamp(ZombiesDowned.SoloBuys, 0, SoloPrices.Length - 1)] : ZombiesMatch.PerkPrice("revive", TeamPrice);
 
         private void Update()
         {

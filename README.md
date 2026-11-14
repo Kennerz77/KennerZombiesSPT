@@ -2,7 +2,7 @@
 
 Round-based zombies for SPT. Survive wave after wave on a zombies map, earn points for every hit and kill, open doors, rebuild barricades, buy guns off the walls, spin the mystery box, drink perks, Pack-a-Punch your guns and find the way out. Solo, or with up to four friends over Fika.
 
-Version **0.1.1 (alpha)**, for **SPT 4.1.6**. Made by **Kenner**.
+Version **0.1.2 (alpha)**, for **SPT 4.1.6**. Made by **Kenner**.
 
 ## Requirements
 
@@ -29,11 +29,20 @@ Optional:
 2. Install the requirements above.
 3. Extract the zip into your SPT folder (the one with the `SPT_Runtime` folder). You should end up with:
    - `BepInEx\plugins\Kennerz_ZM_Core\`
+   - `BepInEx\plugins\SPZombies_Maps\` (where zombies maps go)
    - `SPT_Runtime\user\mods\Kennerz_ZM_Core\`
-4. Install a zombies map the same way.
+4. Install a zombies map the same way (see Zombies maps below).
 5. Start the server, then the game.
 
-**Fika headless:** a match hosted on a headless is run by the headless's own copy of this mod. Put the same `BepInEx\plugins` folders on the headless install too: this mod, every zombies map, and Pack-a-Punch, Ray Gun, Thundergun and Dr K's Perk Beverages. The `SPT_Runtime` parts only go on the server.
+**Fika headless:** a match hosted on a headless is run by the headless's own copy of this mod. Put the same `BepInEx\plugins` folders on the headless install too: this mod, `SPZombies_Maps` with every zombies map in it, each map's CustomMapLoader files, and Pack-a-Punch, Ray Gun, Thundergun and Dr K's Perk Beverages. The `SPT_Runtime` parts only go on the server.
+
+## Zombies maps
+
+Zombies maps go in `BepInEx\plugins\SPZombies_Maps`, each in its own folder named `ZM_<MapName>` (for example `ZM_Asylum`). A map's download comes ready to extract into your SPT folder: it puts its zombies folder there and the map itself where CustomMapLoader reads it. Restart the server and the game after adding a map; it then shows on the map screen in zombies mode.
+
+The mod makes the `SPZombies_Maps` folder (with a short read-me) the first time it starts, if it isn't there.
+
+**Make your own:** the **SPZombies Map Kit** is a Unity add-on for map makers. You build the map with the Tushonka Mapping SDK and place the zombies side with the kit: barricades, zombie spawns, perk machines, the mystery box, wall buys, doors, the power and the exfil, plus the map's own settings (starting gun, perk prices, perk limit, time, weather, sounds and loading tips). Maps made with the kit need this version (0.1.2) or newer.
 
 ## Playing
 
@@ -76,5 +85,6 @@ To remove the mod, delete `BepInEx\plugins\Kennerz_ZM_Core\` and `SPT_Runtime\us
 
 ## Changelog
 
+- **0.1.2 (alpha):** zombies maps now go in their own `SPZombies_Maps` folder (one `ZM_<MapName>` folder per map), ready for maps made with the SPZombies Map Kit. Maps can set their own starting gun and perk prices. Stronghold keeps working where it is. Fixed: after a quick knife or a perk drink, some guns from the box or a wall (ones your character had never examined) didn't come back to your hands. Fixed: in co-op, a player who bled out could come back the next round with no gun and stuck hands.
 - **0.1.1 (alpha):** fixes a server error that stopped zombies maps from loading when Lots of Loot (or another mod that replaces the map loot) is installed.
 - **0.1.0 (alpha):** first release. Your Dr K points and statistics are saved inside the mod's folders: back them up before deleting the mod or doing a clean update (see Uninstalling).

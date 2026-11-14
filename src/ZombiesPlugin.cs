@@ -32,7 +32,7 @@ namespace KennerZombies
     {
         public const string PluginGuid = "com.kennerz.zmcore"; // same GUID as the server mod will have (Forge rule)
         public const string PluginName = "Kennerz-ZM_Core";     // Forge rule: "Username-ModName"
-        public const string PluginVersion = "0.1.1";
+        public const string PluginVersion = "0.1.2";
 
         internal static ManualLogSource Log;
 
@@ -52,6 +52,8 @@ namespace KennerZombies
             ReleaseMenu.Install(this, d => new[] { "0. Main menu", "2. Zombies sounds", "2b. Zombies music", "3. Mystery box volume", "3. Zombies controls", "6. Scores on screen", "10. Zombies menu sounds" }.Contains(d.Section) && (d.Section != "6. Scores on screen" || d.Key == "Show zombies left" || d.Key == "Player photos"));
             Log = Logger;
             Instance = this;
+            // Where zombies maps go (BepInEx\plugins\SPZombies_Maps), made on first start
+            MapEditor.EnsureMapsFolder();
             var harmony = new HarmonyLib.Harmony(PluginGuid);
             HarmonyInstance = harmony;
             harmony.Patch(HarmonyLib.AccessTools.Method(typeof(HideoutPlayerOwner), nameof(HideoutPlayerOwner.Init)),
@@ -87,6 +89,8 @@ namespace KennerZombies
             Safely("gun names", () => ZombiesGunTable.PatchNames(harmony));
             Safely("gear free", () => ZombiesGearFree.Patch(harmony));
             Safely("reload guard", () => ZombiesReloadGuard.Patch(harmony));
+            // Every gun counts as examined in a match, so EFT hands it back after a knife or a drink
+            Safely("examined", () => ZombiesExamined.Patch(harmony));
             Safely("teammates' blasts and flybys", () => ZombiesBlastFeel.Patch(harmony));
             Safely("throw arm", () => ZombiesThrowArm.Patch(harmony));
             Safely("ray gun cells", () => ZombiesAmmo.PatchRaygunCells(harmony));

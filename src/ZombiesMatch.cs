@@ -226,6 +226,13 @@ namespace KennerZombies
 
         /// <summary>Perks a player may hold on this map: its layout's MaxPerks, else the original's four.</summary>
         public static int MaxPerksHere => Instance?._map != null && Instance._map.MaxPerks > 0 ? Instance._map.MaxPerks : 4;
+
+        /// <summary>The gun players start (and respawn) with on this map: its layout's StartGun, else null (the M1911).</summary>
+        public static string StartGunHere => string.IsNullOrWhiteSpace(Instance?._map?.StartGun) ? null : Instance._map.StartGun;
+
+        /// <summary>A perk's price on this map: its layout's PerkPrices entry when set (above 0), else the mode's own.</summary>
+        public static int PerkPrice(string id, int fallback) =>
+            id != null && Instance?._map?.PerkPrices != null && Instance._map.PerkPrices.TryGetValue(id, out int p) && p > 0 ? p : fallback;
         private readonly List<GameObject> _built = new List<GameObject>();
         private readonly List<Renderer> _blockerRenderers = new List<Renderer>();
 

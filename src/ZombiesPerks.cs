@@ -616,16 +616,20 @@ namespace KennerZombies
             else if (ZombiesPerks.Count >= ZombiesPerks.MaxPerks)
                 yield return ($"{_perk.Name} ({ZombiesPerks.MaxPerks} perks at most)", null);
             else
-                yield return ($"Buy {_perk.Name} ({_perk.Price})", ZombiesMatch.Afford(_perk.Price, Buy));
+                yield return ($"Buy {_perk.Name} ({Price})", ZombiesMatch.Afford(Price, Buy));
         }
+
+        // The map's own price for this perk (its layout's PerkPrices), else the mode's
+        private int Price => ZombiesMatch.PerkPrice(_perk.Id, _perk.Price);
 
         private void Buy()
         {
-            if (ZombiesPerks.Drinking || ZombiesPerks.Has(_perk.Id) || ZombiesPerks.Count >= ZombiesPerks.MaxPerks || !ZombiesMatch.Spend(_perk.Price))
+            int price = Price;
+            if (ZombiesPerks.Drinking || ZombiesPerks.Has(_perk.Id) || ZombiesPerks.Count >= ZombiesPerks.MaxPerks || !ZombiesMatch.Spend(price))
                 return;
             string id = _perk.Id;
             ZombiesPerks.StartedDrinking(id);
-            ZombiesPlugin.Log.LogInfo($"Zombies perks: bought {_perk.Name} for {_perk.Price} ({ZombiesPerks.Count + 1} of {ZombiesPerks.MaxPerks})");
+            ZombiesPlugin.Log.LogInfo($"Zombies perks: bought {_perk.Name} for {price} ({ZombiesPerks.Count + 1} of {ZombiesPerks.MaxPerks})");
             GetComponent<ZombiesMachineAudio>()?.Bought();
             ZombiesPlugin.Instance.StartCoroutine(ZombiesPerks.Drink(id, () => ZombiesPerks.Give(id)));
         }
