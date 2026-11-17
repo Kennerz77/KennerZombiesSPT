@@ -180,6 +180,21 @@ namespace KennerZombies
 
         public static void CookRemote(string from, float cooked) => Cooks[from] = (cooked, Time.time);
 
+        // The HUD's grenade and monkey counts, read again 5 times a second (only what's drawn: the rules count fresh)
+        private static int _hudGrenades, _hudMonkeys;
+        private static float _hudCountedAt = -1f;
+        private static Player _hudCountedFor;
+
+        private static void HudCounts(Player player)
+        {
+            if (player == _hudCountedFor && Time.unscaledTime < _hudCountedAt + 0.2f)
+                return;
+            _hudCountedFor = player;
+            _hudCountedAt = Time.unscaledTime;
+            _hudGrenades = Count(player);
+            _hudMonkeys = ZombiesMonkey.Count(player);
+        }
+
         public static int Count(Player player) =>
             player?.InventoryController?.Inventory.Equipment.GetAllItems().Count(i => i.TemplateId.ToString() == M67) ?? 0;
 
@@ -253,7 +268,8 @@ namespace KennerZombies
                     ZombiesPlugin.Instance.StartCoroutine(MakeIcons());
                 return;
             }
-            int n = Count(player);
+            HudCounts(player);
+            int n = _hudGrenades;
             float h = 46f * s, w = h * _picture.width / Mathf.Max(1f, _picture.height), gap = 3f * s;
             Color before = GUI.color;
             for (int i = 0; i < Most; i++)
@@ -268,7 +284,7 @@ namespace KennerZombies
             }
             // The tactical (Cymbal Monkeys) left of the grenades: its three slots, each the monkey's picture or outline
             // Kept once you've had them this life, an outline for each one thrown 
-            int monkeys = ZombiesMonkey.Count(player);
+            int monkeys = _hudMonkeys;
             if (monkeys > 0 || ZombiesMonkey.HadThisLife)
             {
                 if (_monkeyPicture == null && !_monkeyLoading)
@@ -319,9 +335,9 @@ namespace KennerZombies
                         icon.SetPixels32(px);
                         icon.Apply();
                         _monkeyPicture = icon;
-                        var cut = PictureAndOutline(icon);
-                        Object.Destroy(cut.picture);
-                        _monkeyOutline = cut.outline;
+                        // An empty slot: the picture itself, dark and faint (user, 2026-11-16: the outline was "a weird
+                        // shape"; the monkey's own edge, backpack and cymbals and all, is a round blob at this size)
+                        _monkeyOutline = Ghost(icon, 0.4f, 0.32f);
                         return;
                     }
                     Object.Destroy(icon);
@@ -345,10 +361,20 @@ namespace KennerZombies
             Object.Destroy(shot);
         }
 
+        /// <summary>A picture darkened (<paramref name="light"/>) and faded (<paramref name="opacity"/>), the same size.</summary>
+        private static Texture2D Ghost(Texture2D picture, float light, float opacity)
+        {
+            Color32[] px = picture.GetPixels32();
+            for (int i = 0; i < px.Length; i++)
+                px[i] = new Color32((byte)(px[i].r * light), (byte)(px[i].g * light), (byte)(px[i].b * light), (byte)(px[i].a * opacity));
+            Texture2D t = Make(picture.width, picture.height, px);
+            t.filterMode = FilterMode.Bilinear;
+            return t;
+        }
+
         private static (Texture2D picture, Texture2D outline) PictureAndOutline(Texture2D shot)
         {
-            int w = shot.width, h = shot.height;
-            Color32[] src = shot.GetPixels32();
+            Color32[] src = CropToSolid(shot.GetPixels32(), shot.width, shot.height, 2, out int w, out int h);
             var solid = new bool[src.Length];
             var picture = new Color32[src.Length];
             for (int i = 0; i < src.Length; i++)
@@ -396,8 +422,7 @@ namespace KennerZombies
             Object.Destroy(model);
             if (shot == null)
                 yield break;
-            int w = shot.width, h = shot.height;
-            Color32[] src = shot.GetPixels32();
+            Color32[] src = CropToSolid(shot.GetPixels32(), shot.width, shot.height, 2, out int w, out int h);
             var solid = new bool[src.Length];
             var picture = new Color32[src.Length];
             for (int i = 0; i < src.Length; i++)
@@ -425,6 +450,39 @@ namespace KennerZombies
             _picture = Make(w, h, picture);
             _outline = Make(w, h, outline);
             Object.Destroy(shot);
+        }
+
+        /// <summary>
+        /// The photo cut down to the grenade's own pixels plus a small border, so the icon fills its HUD slot whatever
+        /// the photo's framing (the chalk framing change of 2026-11-13 left the M67 tiny in a mostly empty picture:
+        /// user, 2026-11-15).
+        /// </summary>
+        private static Color32[] CropToSolid(Color32[] px, int w, int h, int pad, out int cw, out int ch)
+        {
+            int minX = w, minY = h, maxX = -1, maxY = -1;
+            for (int y = 0; y < h; y++)
+                for (int x = 0; x < w; x++)
+                    if (px[y * w + x].a > 5)
+                    {
+                        if (x < minX) minX = x;
+                        if (x > maxX) maxX = x;
+                        if (y < minY) minY = y;
+                        if (y > maxY) maxY = y;
+                    }
+            if (maxX < 0)
+            {
+                cw = w;
+                ch = h;
+                return px;
+            }
+            // A clear border all round (the outline needs a pixel outside the shape)
+            cw = maxX - minX + 1 + pad * 2;
+            ch = maxY - minY + 1 + pad * 2;
+            var outPx = new Color32[cw * ch];
+            for (int y = minY; y <= maxY; y++)
+                for (int x = minX; x <= maxX; x++)
+                    outPx[(y - minY + pad) * cw + (x - minX + pad)] = px[y * w + x];
+            return outPx;
         }
 
         private static Texture2D Make(int w, int h, Color32[] px)

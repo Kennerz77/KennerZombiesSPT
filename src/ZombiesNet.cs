@@ -37,7 +37,9 @@ namespace KennerZombies
         private enum Msg : byte
         {
             Hello = 1, State, Points, Round, Open, Power, Boards, Rebuild, BoxStart, BoxSpin, BoxTaken,
-            Down, Up, Dead, Revive, Slap, PuDrop, PuGrab, PuTake, Web, ItemAdd, ItemRemove, Kill, Rock, Pause, Lobby, Vox, Restore, Reviving, Exfil, Left, Hands, RoundEnd, Cook, Stats, Bodies, HitPay, ZombieDead, In, PauseAsk, Rules, ChangeAsk, ChangeTaken, ItemHere, ExfilVote, HostDo, PaPUse, PaPInfused, Ready, Go, HandsSpeed, GunRounds, AliveZombies, HostHands,
+            Down, Up, Dead, Revive, Slap, PuDrop, PuGrab, PuTake, Web, ItemAdd, ItemRemove, Kill, Rock, Pause, Lobby, Vox, Restore, Reviving, Exfil, Left, Hands, RoundEnd, Cook, Stats, Bodies, HitPay, ZombieDead, In, PauseAsk, Rules, ChangeAsk, ChangeTaken, ItemHere, ExfilVote, HostDo, PaPUse, PaPInfused, Ready, Go, HandsSpeed, GunRounds, AliveZombies, HostHands, ZombieSwing,
+            // Appended only (older builds read the numbers above)
+            Crawler, WarMachineM67, Traverse, Gore, Mod,
         }
 
         // A message being applied: nothing it causes is sent again
@@ -248,7 +250,26 @@ namespace KennerZombies
                     {
                         string gunId = r.ReadString();
                         int rounds = r.ReadInt32();
-                        ZombiesAmmo.RoundsRemote(PlayerOf(from), gunId, rounds);
+                        int chambered = r.BaseStream.Position + 4 <= r.BaseStream.Length ? r.ReadInt32() : -1;
+                        ZombiesAmmo.RoundsRemote(PlayerOf(from), gunId, rounds, chambered);
+                    }
+                    break;
+                case Msg.Mod:
+                    {
+                        string channel = r.ReadString();
+                        byte[] data = r.ReadBytes(r.ReadInt32());
+                        if (ModHandlers.TryGetValue(channel, out var handlers))
+                            foreach (var h in handlers)
+                            {
+                                try
+                                {
+                                    h(from, data);
+                                }
+                                catch (Exception e)
+                                {
+                                    ZombiesPlugin.Log.LogWarning($"Zombies net: a mod's {channel} message failed here ({e.Message})");
+                                }
+                            }
                     }
                     break;
                 case Msg.Ready:
@@ -440,6 +461,28 @@ namespace KennerZombies
                 case Msg.ZombieDead:
                     ZombiesLitter.DiedOnHost(r.ReadString());
                     break;
+                case Msg.ZombieSwing:
+                    ZombiesZombieVox.SwingRemote(r.ReadString(), r.ReadByte() == 1);
+                    break;
+                case Msg.Crawler:
+                    ZombiesCrawlers.MakeRemote(r.ReadString());
+                    break;
+                case Msg.Gore:
+                    {
+                        string id = r.ReadString();
+                        Vector3 point = ReadVector(r), direction = ReadVector(r);
+                        ZombiesGore.Remote(id, point, direction);
+                    }
+                    break;
+                case Msg.Traverse:
+                    ZombiesTraverse.PlayRemote(r.ReadString(), r.ReadString(), r.ReadSingle(), r.ReadSingle());
+                    break;
+                case Msg.WarMachineM67:
+                    {
+                        Vector3 start = ReadVector(r), velocity = ReadVector(r);
+                        ZombiesWarMachine.FiredRemote(start, velocity, r.ReadString(), r.ReadString());
+                    }
+                    break;
                 case Msg.In:
                     if (PlayersIn.Add(from) && Headless)
                         ZombiesPlugin.Log.LogInfo($"Zombies over Fika (headless): {from} is in the match");
@@ -450,7 +493,7 @@ namespace KennerZombies
                     break;
                 case Msg.Kill:
                     if (r.ReadString() == Me)
-                        ZombiesStats.Killed(r.ReadBoolean(), r.ReadBoolean());
+                        ZombiesStats.Killed(r.ReadBoolean(), r.ReadBoolean(), r.ReadByte());
                     break;
                 case Msg.ItemAdd:
                     ItemAddRemote(from, r);
@@ -667,10 +710,33 @@ namespace KennerZombies
         }, always: true);
 
         /// <summary>The held gun's mag holds this many rounds now (ZombiesAmmo.SyncLoaded).</summary>
-        internal static void GunRounds(string gunId, int count) => Send(Msg.GunRounds, w =>
+        internal static void GunRounds(string gunId, int count, int chambered = -1) => Send(Msg.GunRounds, w =>
         {
             w.Write(gunId);
             w.Write(count);
+            // Appended (older builds stop reading before it): whether a round is chambered, -1 unknown. The Wunderwaffe's
+            // bulbs count it, and a teammate's copy never had it right (user, 2026-11-17)
+            w.Write(chambered);
+        }, always: true);
+
+        // ---------- Other mods' own messages (ZombiesApi.SendToTeam / OnTeamMessage) ----------
+        private static readonly Dictionary<string, List<Action<string, byte[]>>> ModHandlers = new Dictionary<string, List<Action<string, byte[]>>>();
+
+        internal static void ListenMod(string channel, Action<string, byte[]> handler)
+        {
+            if (string.IsNullOrEmpty(channel) || handler == null)
+                return;
+            if (!ModHandlers.TryGetValue(channel, out var list))
+                ModHandlers[channel] = list = new List<Action<string, byte[]>>();
+            list.Add(handler);
+        }
+
+        internal static void SendMod(string channel, byte[] data) => Send(Msg.Mod, w =>
+        {
+            w.Write(channel ?? "");
+            w.Write(data?.Length ?? 0);
+            if (data != null)
+                w.Write(data);
         }, always: true);
 
         internal static void AskPause(bool on) => Send(Msg.PauseAsk, w => w.Write(on), always: true);
@@ -697,9 +763,27 @@ namespace KennerZombies
         internal static void PowerUpGrab(int id) => Send(Msg.PuGrab, w => w.Write(id));
         // The host decides a grab while applying the client's request: it has to go out (it never did: the client kept it)
         internal static void PowerUpTaken(int id, ZombiesPowerUps.Kind kind, string by) => Send(Msg.PuTake, w => { w.Write(id); w.Write((byte)kind); w.Write(by ?? ""); }, always: true);
+        // A zombie swings (a slap at a player, or a board ripped): its yell, whoosh and swing on every game
+        /// <summary>The host's zombie climbs in / jumps down now: every game plays the clip on it.</summary>
+        internal static void Traverse(string id, string clip, float sill, float speed) =>
+            Send(Msg.Traverse, w => { w.Write(id); w.Write(clip); w.Write(sill); w.Write(speed); });
+
+        /// <summary>The host made this zombie a crawler: every game shows it.</summary>
+        internal static void Crawler(string id) => Send(Msg.Crawler, w => w.Write(id));
+
+        /// <summary>The host opened a zombie's head (headshot gore): every game shows it.</summary>
+        internal static void Gore(string id, Vector3 point, Vector3 direction) =>
+            Send(Msg.Gore, w => { w.Write(id); WriteVector(w, point); WriteVector(w, direction); });
+
+        /// <summary>Your plain War Machine fired an M67: the others fly their own copy (no damage from theirs).</summary>
+        internal static void WarMachineM67(Vector3 start, Vector3 velocity, string who, string ammoTpl) =>
+            Send(Msg.WarMachineM67, w => { WriteVector(w, start); WriteVector(w, velocity); w.Write(who); w.Write(ammoTpl); });
+
+        internal static void ZombieSwing(string id, bool rip) => Send(Msg.ZombieSwing, w => { w.Write(id); w.Write((byte)(rip ? 1 : 0)); });
         internal static void ZombieDied(string id) => Send(Msg.ZombieDead, w => w.Write(id), always: true);
         internal static void HitBy(string who) => Send(Msg.HitPay, w => w.Write(who), always: true);
-        internal static void KillBy(string who, bool head, bool knife) => Send(Msg.Kill, w => { w.Write(who); w.Write(head); w.Write(knife); });
+        internal static void KillBy(string who, bool head, bool knife, byte wonder) =>
+            Send(Msg.Kill, w => { w.Write(who); w.Write(head); w.Write(knife); w.Write(wonder); });
         internal static void Web(Vector3 at) => Send(Msg.Web, w => WriteVector(w, at));
 
         // ---------- Teammates ----------

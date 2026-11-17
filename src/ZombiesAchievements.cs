@@ -43,7 +43,7 @@ namespace KennerZombies
             // whole patch failed, 2026-11-09)
             foreach (var init in AccessTools.GetDeclaredMethods(typeof(EFT.UI.AchievementNotificationView)).Where(m => m.Name == "Init" && !m.IsAbstract))
                 harmony.Patch(init, postfix: new HarmonyMethod(typeof(ZombiesAchievements), nameof(HidePopup)));
-            // The notification itself, before any view is made for it (the view hook alone missed "Welcome to Tarkov")
+            // The notification itself, before any view is made for it (the view hook alone missed the welcome one)
             foreach (string name in new[] { "NotificationReceivedHandler", "ShowNotification" })
             {
                 var m = AccessTools.Method(typeof(EFT.UI.NotifierView), name);

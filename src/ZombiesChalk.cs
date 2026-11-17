@@ -90,9 +90,9 @@ namespace KennerZombies
             Renderer[] renderers = model.GetComponentsInChildren<Renderer>(true);
             if (renderers.Length == 0)
                 return null;
-            Bounds b = renderers[0].bounds;
-            foreach (Renderer r in renderers)
-                b.Encapsulate(r.bounds);
+            // Framed on the gun as seen (its drawn meshes only): every renderer's box, hidden parts off to one side
+            // included, left pistols and SMGs off-centre on a too-wide board and the Thundergun a thin line (2026-11-13)
+            Bounds b = BoxGuns.VisibleBounds(model);
 
             // The picture's frame: the model's extent across and up the wall
             Vector3 right = Vector3.Cross(up, outOfWall).normalized;

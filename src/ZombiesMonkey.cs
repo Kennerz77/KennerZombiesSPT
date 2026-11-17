@@ -333,12 +333,15 @@ namespace KennerZombies
             {
                 if (c.relativeVelocity.magnitude < 1.2f || Time.time - _last < 0.12f)
                     return;
-                // Two short hops from the first impact, then it stays put
-                if (++_hits >= 3)
+                // One short hop from the first impact (half its run along the ground taken off), then it stays put
+                // (user, 2026-11-16: it slid and bounced too much; was two hops, then a fifth of its run left)
+                var body = GetComponent<Rigidbody>();
+                if (body != null)
                 {
-                    var body = GetComponent<Rigidbody>();
-                    if (body != null)
-                        body.velocity = new Vector3(body.velocity.x * 0.2f, Mathf.Min(0f, body.velocity.y), body.velocity.z * 0.2f);
+                    float keep = ++_hits >= 2 ? 0.05f : 0.5f;
+                    body.velocity = new Vector3(body.velocity.x * keep, _hits >= 2 ? Mathf.Min(0f, body.velocity.y) : body.velocity.y, body.velocity.z * keep);
+                    if (_hits >= 2)
+                        body.drag = Mathf.Max(body.drag, 4f);
                 }
                 _last = Time.time;
                 float loud = Mathf.Clamp01(c.relativeVelocity.magnitude / 8f);
@@ -417,8 +420,10 @@ namespace KennerZombies
             Grenade g = live.Grenade;
             // Bouncy: everything it hits throws it back up a little (the original's monkey skitters about)
             if (_bouncy == null)
-                _bouncy = new PhysicMaterial("zm_monkey_bounce") { bounciness = 0.28f, bounceCombine = PhysicMaterialCombine.Maximum,
-                    dynamicFriction = 0.6f, staticFriction = 0.8f, frictionCombine = PhysicMaterialCombine.Maximum };
+                // Less than it was (user, 2026-11-16: "slides and bounces too much"): a small hop, and grippy enough that
+                // a monkey that can't roll doesn't skate along the floor (was bounce 0.28 / grip 0.6 / 0.8)
+                _bouncy = new PhysicMaterial("zm_monkey_bounce") { bounciness = 0.12f, bounceCombine = PhysicMaterialCombine.Average,
+                    dynamicFriction = 1.1f, staticFriction = 1.4f, frictionCombine = PhysicMaterialCombine.Maximum };
             foreach (Collider c in g.GetComponentsInChildren<Collider>(true))
                 c.sharedMaterial = _bouncy;
             // A clatter on every hard bounce (the original's equipment bounces, a take at random)

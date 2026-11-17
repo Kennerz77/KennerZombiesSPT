@@ -22,7 +22,7 @@ namespace KennerZombies
     /// </summary>
     internal static class ZombiesReload
     {
-        public static ConfigEntry<bool> Rescue;
+        public static ConfigEntry<bool> Rescue, CancelOnSwap;
         private static bool _patched;
 
         public static void Bind(ConfigFile config)
@@ -30,6 +30,8 @@ namespace KennerZombies
             Rescue = config.Bind("19. Debug: logging", "Reload rescue", true, new ConfigDescription(
                 "When EFT refuses every mag you carry for a reload, a mag with rounds that fits the gun goes straight in.",
                 null, new ZombiesPlugin.ConfigurationManagerAttributes { Order = 90 }));
+            CancelOnSwap = config.Bind("3. Zombies controls", "Swapping cancels a reload", true,
+                "Swapping guns (or anything else that puts the gun away) before the new mag is in cancels the reload: the gun keeps the rounds it had.");
         }
 
         public static void Patch(Harmony harmony)
@@ -45,9 +47,15 @@ namespace KennerZombies
                 {
                     var m = AccessTools.DeclaredMethod(t, nameof(Player.FirearmController.ReloadMag),
                         new[] { typeof(Magazine), typeof(ItemAddress), typeof(Callback) });
-                    if (m != null && !m.IsAbstract)
-                        harmony.Patch(m, prefix: new HarmonyMethod(typeof(ZombiesReload), nameof(ReloadAsked)));
+                    if (m == null || m.IsAbstract)
+                        continue;
+                    harmony.Patch(m, prefix: new HarmonyMethod(typeof(ZombiesReload), nameof(ReloadAsked)));
+                    // Before and after every other mod's prefix: the Thundergun's spent canister keeps its place
+                    harmony.Patch(m, prefix: new HarmonyMethod(typeof(ZombiesReload), nameof(NotePlace)) { priority = Priority.First });
+                    harmony.Patch(m, prefix: new HarmonyMethod(typeof(ZombiesReload), nameof(KeepPlace)) { priority = Priority.Last });
                 }
+                harmony.Patch(AccessTools.Method(typeof(Player.FirearmController.BaseReloadOperation), nameof(Player.FirearmController.BaseReloadOperation.HideWeapon)),
+                    postfix: new HarmonyMethod(typeof(ZombiesReload), nameof(HideDuringReload)));
                 harmony.Patch(AccessTools.Method(typeof(Player.FirearmController), nameof(Player.FirearmController.ReloadMagNotFound)),
                     prefix: new HarmonyMethod(typeof(ZombiesReload), nameof(NoMagFound)));
                 // EFT threw in here on Fika clients (FirearmsAnimator gone: a leftover gun controller still told of
@@ -105,6 +113,45 @@ namespace KennerZombies
         // Off: dropped models hung in mid-air (the user 2026-11-07); the cell drop is off too
         private const bool DropCartridge = false;
 
+        // ---------- The Thundergun's spent canister (user, 2026-11-11) ----------
+        // In normal play the Thundergun mod drops the spent canister at the player's feet on a reload (its ReloadMag
+        // prefix sets the place for the old canister to none). In a zombies match that left a real canister on the
+        // floor that could be picked up. Here the old canister goes where the new one came from instead (EFT's normal
+        // swap), and the zombies ammo takes it as the gun's spare and refills it from the reserve, like every other gun's
+        // mag. The Thundergun mod is unchanged: normal play still drops it.
+        private static ItemAddress _place;
+        private static Player.FirearmController _placeFor;
+
+        // First of all prefixes: the place EFT was asked to put the old mag
+        private static void NotePlace(Player.FirearmController __instance, ItemAddress itemAddress)
+        {
+            _place = itemAddress;
+            _placeFor = __instance;
+        }
+
+        // Last of all prefixes: a Thundergun's place taken away in a zombies match is put back
+        private static void KeepPlace(Player.FirearmController __instance, ref ItemAddress itemAddress)
+        {
+            try
+            {
+                if (itemAddress == null && _place != null && ReferenceEquals(_placeFor, __instance) && ZombiesMatch.Active
+                    && __instance.Item is Weapon gun && ZombiesAmmo.IsThundergun(gun))
+                {
+                    itemAddress = _place;
+                    Log("Thundergun: the spent canister goes back into the pockets (no canister dropped in zombies)");
+                }
+            }
+            catch (Exception e)
+            {
+                ZombiesPlugin.Log.LogWarning($"Zombies reload: Thundergun canister place: {e.Message}");
+            }
+            finally
+            {
+                _place = null;
+                _placeFor = null;
+            }
+        }
+
         // One drop per reload (a subclass's ReloadMag can call its base: both are patched)
         private static readonly HashSet<object> _dropped = new HashSet<object>();
 
@@ -139,12 +186,83 @@ namespace KennerZombies
             }
             _askedAt = Time.time;
             _askedBy = __instance;
+            // What the gun and the mag going in hold now, for a swap that cancels it (CancelForSwap)
+            _snapGun = gun;
+            _snapNext = magazine;
+            _snapNextCount = magazine?.Count ?? 0;
+            _snapOld = gun?.GetCurrentMagazine();
+            _snapOldTotal = (_snapOld?.Count ?? 0) + (gun?.ChamberAmmoCount ?? 0);
             callback = result =>
             {
                 _askedAt = -1f;
+                if (_snapGun == gun)
+                    _snapGun = null;
                 Log(result == null || !result.Failed ? $"finished: {ZombiesTrace.GunText(gun)}" : $"FAILED: {result.Error}; {ZombiesTrace.GunText(gun)}");
                 inner?.Invoke(result);
             };
+        }
+
+        // ---------- A reload cancelled by a swap (user, 2026-11-15) ----------
+        // "Swapping gun halfway through a reload: it doesn't count the reload as happening, cancels it and does the action the
+        // player asked for." EFT's reload has already moved the mags in the inventory when it starts (the animation only
+        // shows it), and holds a swap until it's over. Here: before the new mag is in, the reload is fast-forwarded (EFT's own
+        // way to finish it at once, so its inventory stays right) and the rounds are put back as they were (ZombiesAmmo), then
+        // the swap goes ahead at once. Mag guns only (shotgun tubes keep the shells already in, as in the original); never the
+        // wonder weapons' cells.
+        private static Weapon _snapGun;
+        private static Magazine _snapOld, _snapNext;
+        private static int _snapOldTotal, _snapNextCount;
+
+        /// <summary>Your gun's mag reload, if one is under way and its mag not in yet: cancelled (true) before a swap.</summary>
+        public static bool CancelForSwap(Player me)
+        {
+            if (!ZombiesMatch.Active || CancelOnSwap?.Value == false || !(me?.HandsController is Player.FirearmController fc))
+                return false;
+            if (!(fc.CurrentOperation is Player.FirearmController.ReloadExternalMagOperation op) || op.State == Player.EOperationState.Finished
+                || op._magInsertedToWeapon)
+                return false;
+            Weapon gun = fc.Item;
+            if (gun == null || gun != _snapGun || _snapNext == null || ZombiesAmmo.IsWonderWeapon(gun))
+                return false;
+            Magazine next = _snapNext, old = _snapOld;
+            int oldTotal = _snapOldTotal, nextCount = _snapNextCount;
+            _snapGun = null;
+            try
+            {
+                op.FastForward();
+            }
+            catch (Exception e)
+            {
+                Log($"cancel: the fast-forward threw ({e.Message})");
+                return false;
+            }
+            try
+            {
+                ZombiesAmmo.ReloadCancelled(me, gun, next, oldTotal - gun.ChamberAmmoCount, old, nextCount);
+            }
+            catch (Exception e)
+            {
+                Log($"cancel: putting the rounds back threw ({e.Message})");
+            }
+            _askedAt = -1f;
+            Log($"cancelled by a swap: {ZombiesTrace.GunText(gun)}");
+            return true;
+        }
+
+        // Anything that puts the gun away mid-reload (EFT's own slot keys, a grenade, going down): the same cancel. EFT
+        // stores the hide and runs it once the reload is over; the fast-forward ends it now, so the hide runs at once
+        private static void HideDuringReload(Player.FirearmController.BaseReloadOperation __instance)
+        {
+            try
+            {
+                Player p = __instance?.Player;
+                if (p != null && p.IsYourPlayer && __instance is Player.FirearmController.ReloadExternalMagOperation)
+                    CancelForSwap(p);
+            }
+            catch (Exception e)
+            {
+                Log($"cancel on hide threw ({e.Message})");
+            }
         }
 
         // ---------- A reload that never ends (user, 2026-11-09, Fika client) ----------

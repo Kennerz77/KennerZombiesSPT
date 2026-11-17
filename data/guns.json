@@ -209,9 +209,9 @@
       "class": "smg",
       "role": "box",
       "wallPrice": null,
-      "mag": 30,
-      "reserve": 270,
-      "forceMag": false,
+      "mag": 50,
+      "reserve": 450,
+      "forceMag": true,
       "fireModes": null,
       "baseLogged": true,
       "pap": {
@@ -220,8 +220,8 @@
         "adds": "same build, stats only",
         "fireModes": null,
         "ubgl": null,
-        "mag": 50,
-        "reserve": 450
+        "mag": 75,
+        "reserve": 675
       }
     },
     {

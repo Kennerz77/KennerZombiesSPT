@@ -330,7 +330,7 @@ namespace KennerZombies
             }
         }
 
-        // The Tarkov map picture behind the location buttons (found as CustomMapLoader finds it: the first parent with an
+        // The game's map picture behind the location buttons (found as CustomMapLoader finds it: the first parent with an
         // Image and an AspectRatioFitter)
         private static Image MapPicture(MatchMakerSelectionLocationScreen screen)
         {

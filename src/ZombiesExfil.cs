@@ -40,7 +40,7 @@ namespace KennerZombies
 
         public static float BonusFactor => _bonus?.Value ?? 0.5f;
 
-        // ---------- The swarm (user, 2026-11-10: Cold War's exfil) ----------
+        // ---------- The swarm (user, 2026-11-10: a later game's exfil) ----------
         private static ConfigEntry<float> _drain, _swarmDelay, _perExtra, _solo;
         private static ConfigEntry<int> _swarmMax;
         private static ConfigEntry<bool> _swarmSprint;

@@ -66,18 +66,28 @@ namespace KennerZombies
                 Base = new JObject { ["tpl"] = ZombiesMonkey.Template } });
             // Guns other mods registered through ZombiesApi, and (F12, off by default) every other mod's gun found
             foreach (Gun gun in ZombiesApi.Registered)
-                if (_guns.All(g => g.PresetTemplate != gun.PresetTemplate && (string)g.Base?["tpl"] != gun.PresetTemplate))
+                if (_guns.All(g => Template(g) != Template(gun)))
                     _guns.Add(gun);
             if (ZombiesPlugin.OtherModsGuns.Value)
             {
                 int found = 0;
                 foreach (Gun gun in ZombiesApi.DetectModdedWeapons())
-                    if (_guns.All(g => g.PresetTemplate != gun.PresetTemplate && (string)g.Base?["tpl"] != gun.PresetTemplate))
+                    if (_guns.All(g => Template(g) != Template(gun)))
                     {
                         _guns.Add(gun);
                         found++;
                     }
                 ZombiesPlugin.Log.LogInfo($"Mystery box: {found} guns from other mods added");
+            }
+            // Guns whose item isn't in this game (an optional mod not installed: the Thundergun is in box_builds.json but
+            // its mod is optional since 0.2.0) are left out, or the box failed to make them
+            var templates = Singleton<ItemFactory>.Instance?.ItemTemplates;
+            if (templates != null)
+            {
+                int before = _guns.Count;
+                _guns.RemoveAll(g => g.Id != MonkeyId && Template(g) is string tpl && !templates.ContainsKey(tpl));
+                if (_guns.Count < before)
+                    ZombiesPlugin.Log.LogInfo($"Mystery box: {before - _guns.Count} gun(s) left out (their mods aren't installed)");
             }
             return _guns;
         }
@@ -89,8 +99,10 @@ namespace KennerZombies
             {
                 string path = Path.Combine(ZombiesPlugin.Dir, "box_builds.json");
                 JObject o = JArray.Parse(File.ReadAllText(path)).OfType<JObject>().FirstOrDefault(g => (string)g["id"] == id);
-                return o == null ? null
-                    : new Gun { Id = id, Name = (string)o["name"], Role = (string)o["role"], Base = o["base"] as JObject, Pap = o["pap"] as JObject };
+                if (o == null)
+                    // A gun another mod registered (the MP40: "mp40"), when its mod is installed
+                    return ZombiesApi.Registered.FirstOrDefault(g => g.Id == id);
+                return new Gun { Id = id, Name = (string)o["name"], Role = (string)o["role"], Base = o["base"] as JObject, Pap = o["pap"] as JObject };
             }
             catch (Exception e)
             {

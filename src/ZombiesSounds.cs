@@ -236,7 +236,8 @@ namespace KennerZombies
             if (!name.Contains("#"))
                 return Clips.TryGetValue(name, out AudioClip c) ? ZombiesWav.Fresh(c) : null;
             var takes = new List<AudioClip>();
-            for (int i = 0; i < 10; i++)
+            // Up to 20 takes (the zombies' attack growls have 16)
+            for (int i = 0; i < 20; i++)
                 if (Clips.TryGetValue(name.Replace("#", i.ToString()), out AudioClip c))
                     takes.Add(ZombiesWav.Fresh(c));
             return takes.Count == 0 ? null : takes[UnityEngine.Random.Range(0, takes.Count)];

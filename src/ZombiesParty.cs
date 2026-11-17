@@ -42,6 +42,9 @@ namespace KennerZombies
             [JsonProperty("state")] public string State;
             [JsonProperty("private")] public bool Private;
             [JsonProperty("headless")] public bool Headless;
+            // The host's wonder weapon picks and ANY NUMBER (ZombiesWonder)
+            [JsonProperty("wonder")] public List<string> Wonder = new List<string>();
+            [JsonProperty("wonderAny")] public bool WonderAny;
             [JsonProperty("countdown")] public double Countdown = -1;
             // The Fika match to join: a headless's profile id when a headless hosts, else empty (= the leader's id)
             [JsonProperty("fikaMatch")] public string FikaMatch;
@@ -121,7 +124,7 @@ namespace KennerZombies
         private static readonly string[] Guids =
         {
             "com.kennerz.zmcore", "com.kennerz.paphideoutmodule", "com.kennerz.perkbeverages", "com.kennerz.raygun",
-            "com.kennerz.thundergun", "com.mizmii.custommaploader", "com.fika.core",
+            "com.kennerz.thundergun", "com.fika.core",
         };
 
         private static Dictionary<string, string> Mods()
@@ -307,9 +310,18 @@ namespace KennerZombies
         // ---------- What the zombies menu does ----------
 
         /// <summary>CREATE LOBBY: a new lobby, private, with this player as host.</summary>
+        /// <summary>No zombies map is installed (SPZombies without a map download): nothing can be played.</summary>
+        private static bool NoMap()
+        {
+            if (ZombiesMaps.All.Any())
+                return false;
+            Toast("No zombies map installed: get Dr K's SPZombies Stronghold Map.");
+            return true;
+        }
+
         public static void CreateLobby()
         {
-            if (!HasFika)
+            if (!HasFika || NoMap())
                 return;
             _wantPrivate = true;
             _wantReady = false;
@@ -461,7 +473,7 @@ namespace KennerZombies
         /// <summary>SOLO: EFT's map screen in zombies mode, with only the zombies maps and BACK; its NEXT plays solo.</summary>
         public static void GoSolo()
         {
-            if (Mine != null)
+            if (Mine != null || NoMap())
                 return;
             Go(Goal.Solo, null);
         }
@@ -666,7 +678,12 @@ namespace KennerZombies
             };
             // The host's Fika mode, for everyone's lobby
             if (mine != null && mine.Id == MyId)
+            {
                 body["headless"] = UseHeadless;
+                // and its wonder weapon picks, for everyone's lobby card and their boxes
+                body["wonder"] = ZombiesWonder.MyPicks;
+                body["wonderAny"] = ZombiesWonder.MyAny;
+            }
             // This player's statistics, sent up whenever there's a new match in them (others can open them)
             try
             {
@@ -930,9 +947,21 @@ namespace KennerZombies
         {
             if (string.IsNullOrEmpty(id))
                 return "no map yet";
-            // Our maps by their layout's own name (Stronghold)
+            // A zombies map: its own name (its locale.json, e.g. Stronghold; maps made by others too), else its id made readable
             if (ZombiesMaps.Is(id))
+            {
+                try
+                {
+                    var zl = Location(id);
+                    string zn = zl != null ? (zl._Id + " Name").Localized() : null;
+                    if (!string.IsNullOrEmpty(zn) && !zn.EndsWith(" Name"))
+                        return zn;
+                }
+                catch
+                {
+                }
                 return id.StartsWith("zm_") && id.Length > 3 ? char.ToUpperInvariant(id[3]) + id.Substring(4) : id;
+            }
             try
             {
                 var loc = Location(id);

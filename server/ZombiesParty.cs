@@ -47,7 +47,6 @@ public class ZombiesPartyService(SaveServer saveServer, MailSendService mailSend
         ["com.kennerz.perkbeverages"] = "Dr K's Perk Beverages",
         ["com.kennerz.raygun"] = "Ray Gun",
         ["com.kennerz.thundergun"] = "Thundergun",
-        ["com.mizmii.custommaploader"] = "CustomMapLoader",
         ["com.fika.core"] = "Fika",
     };
 
@@ -82,6 +81,10 @@ public class ZombiesPartyService(SaveServer saveServer, MailSendService mailSend
         [JsonPropertyName("private")] public bool Private { get; set; }
         // The host's Fika mode: true = a free Fika headless hosts the match (when one is free), false = the host's game
         [JsonPropertyName("headless")] public bool Headless { get; set; }
+        // The host's wonder weapon picks for the box (ids like "thundergun"; the Ray Gun is always in) and the "any
+        // number" switch (costs everyone 30% of the match's points): user, 2026-11-16
+        [JsonPropertyName("wonder")] public List<string> Wonder { get; set; } = new();
+        [JsonPropertyName("wonderAny")] public bool WonderAny { get; set; }
         [JsonPropertyName("members")] public List<Member> Members { get; set; } = new();
         [JsonIgnore] public HashSet<string> Invited { get; } = new();
         // Players asking to join this (private) lobby: id -> when asked (the host answers ACCEPT / DECLINE)
@@ -269,6 +272,10 @@ public class ZombiesPartyService(SaveServer saveServer, MailSendService mailSend
                     mine.Map = req.Map;
                 if (mine.Id == sessionId && mine.State == "open" && req.Headless != null)
                     mine.Headless = req.Headless.Value;
+                if (mine.Id == sessionId && mine.State == "open" && req.Wonder != null)
+                    mine.Wonder = req.Wonder.Take(8).ToList();
+                if (mine.Id == sessionId && mine.State == "open" && req.WonderAny != null)
+                    mine.WonderAny = req.WonderAny.Value;
             }
             // A party stuck starting or hosted when the match it was for is gone (the host's game crashed or quit, then
             // came back to the menu: user, 2026-11-10, the only fix was a server restart). The leader is back, in no
@@ -947,6 +954,9 @@ public record PartyRequest : IRequestData
     [JsonPropertyName("raidMap")] public string? RaidMap { get; set; }
     // The leader's Fika mode (headless when free / host)
     [JsonPropertyName("headless")] public bool? Headless { get; set; }
+    // The leader's wonder weapon picks and "any number" switch
+    [JsonPropertyName("wonder")] public List<string>? Wonder { get; set; }
+    [JsonPropertyName("wonderAny")] public bool? WonderAny { get; set; }
     [JsonPropertyName("noInvites")] public bool NoInvites { get; set; }
     // This game is hosting or joining a match right now (null: an older client that doesn't say)
     [JsonPropertyName("busy")] public bool? Busy { get; set; }

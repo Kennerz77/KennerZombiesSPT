@@ -25,7 +25,7 @@ public record ModMetadata : IModMetadata
     public string Name { get; init; } = "Kennerz-ZM_Core";
     public string Author { get; init; } = "Kenner";
     public List<string>? Contributors { get; init; }
-    public SemanticVersioning.Version Version { get; init; } = new("0.1.2");
+    public SemanticVersioning.Version Version { get; init; } = new("0.2.0");
     public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.0");
     public List<string>? Incompatibilities { get; init; }
     // Pack-a-Punch and the perks are part of zombies (required); the wonder weapons are optional
@@ -34,7 +34,6 @@ public record ModMetadata : IModMetadata
         { "com.kennerz.paphideoutmodule", new SemanticVersioning.Range(">=2.2.0") },
         { "com.kennerz.perkbeverages", new SemanticVersioning.Range(">=0.1.0") },
         { "com.kennerz.raygun", new SemanticVersioning.Range(">=1.2.0") },
-        { "com.kennerz.thundergun", new SemanticVersioning.Range(">=1.2.0") },
     };
     public string? Url { get; init; } = "https://github.com/Kennerz77/KennerZombiesSPT";
     public string License { get; init; } = "MIT";

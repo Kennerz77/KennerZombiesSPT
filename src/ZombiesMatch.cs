@@ -315,6 +315,16 @@ namespace KennerZombies
             {
                 _location = location;
                 _teleportPending = true;
+                // The host's wonder weapon picks, taken now (before the box makes its guns)
+                try
+                {
+                    ZombiesWonder.NewMatch();
+                    MysteryBox.NewMatch();
+                }
+                catch (Exception e)
+                {
+                    ZombiesPlugin.Log.LogWarning($"Wonder weapons: picks not taken ({e.Message})");
+                }
                 Build();
                 _teleportPending = false;
                 if (ZombiesMaps.Is(location))
@@ -326,10 +336,14 @@ namespace KennerZombies
                     Step("ZombiesStats.PatchInventoryKey", () => ZombiesStats.PatchInventoryKey(ZombiesPlugin.HarmonyInstance));
                     Step("ZombiesAmmo.Reset", () => ZombiesAmmo.Reset());
                     Step("ZombiesRules.PatchDamage", () => ZombiesRules.PatchDamage());
+                    Step("ZombiesGore.PatchShots", () => ZombiesGore.PatchShots());
+                    Step("ZombiesGore.NewMatch", () => ZombiesGore.NewMatch());
                     Step("ZombiesRules.PatchNoChecks", () => ZombiesRules.PatchNoChecks(ZombiesPlugin.HarmonyInstance));
                     Step("ZombiesGuns.Patch", () => ZombiesGuns.Patch(ZombiesPlugin.HarmonyInstance));
                     Step("ZombiesPerks.Patch", () => ZombiesPerks.Patch(ZombiesPlugin.HarmonyInstance));
                     Step("ZombiesReload.Patch", () => ZombiesReload.Patch(ZombiesPlugin.HarmonyInstance));
+                    Step("ZombiesOnlyOurs.Patch", () => ZombiesOnlyOurs.Patch(ZombiesPlugin.HarmonyInstance));
+                    Step("ZombiesZombieVox.Patch", () => ZombiesZombieVox.Patch(ZombiesPlugin.HarmonyInstance));
                     Step("ZombiesAchievements.Patch", () => ZombiesAchievements.Patch(ZombiesPlugin.HarmonyInstance));
                     Step("ZombiesRounds.PatchPace", () => ZombiesRounds.PatchPace(ZombiesPlugin.HarmonyInstance));
                     Step("ZombiesVault.Patch", () => ZombiesVault.Patch(ZombiesPlugin.HarmonyInstance));
@@ -448,6 +462,8 @@ namespace KennerZombies
                 }
                 ZombiesProfile.Measure("ZombiesMonkey.Tick", () => ZombiesMonkey.Tick());
                 ZombiesProfile.Measure("ZombiesVox.Tick", () => ZombiesVox.Tick(me));
+                ZombiesProfile.Measure("ZombiesZombieVox.Tick", () => ZombiesZombieVox.Tick(me));
+                ZombiesProfile.Measure("ZombiesAnim.Tick", () => ZombiesAnim.Tick());
                 if (ZombiesDebug.MarkShotKey != null && ZombiesDebug.MarkShotKey.Value.IsDown())
                     ZombiesProfile.Measure("ZombiesGameOver.MarkShot", () => ZombiesGameOver.MarkShot());
                 ZombiesProfile.Measure("ZombiesPowerUps.Tick", () => ZombiesPowerUps.Tick());
@@ -1306,10 +1322,10 @@ namespace KennerZombies
                 SetGunShown(true);
                 yield break;
             }
+            // The gun as seen (its drawn meshes only: some carry hidden parts off to one side that pulled the board off
+            // the gun, 2026-11-13), measured while it's still shown
+            Bounds b = BoxGuns.VisibleBounds(_gunModel.gameObject);
             SetGunShown(false);
-            Bounds b = new Bounds(_gunModel.position, Vector3.zero);
-            foreach (Renderer r in _gunModel.GetComponentsInChildren<Renderer>(true))
-                b.Encapsulate(r.bounds);
             // The board just behind the gun's back, the chalk on its face
             // On the wall's face: the wall buy's own spot is where it was snapped onto the wall. (Behind the gun's back
             // was inside the wall: the gun sits half in it, so the board and the chalk never showed.)

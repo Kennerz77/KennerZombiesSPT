@@ -46,6 +46,8 @@ namespace KennerZombies
         private Animator _box, _weaponPivot, _teddyPivot;
         private Transform _weaponTag;
         private Light _light;
+        // Where the light stays (the box's own space): under the box, put back every frame
+        private Vector3 _lightSpot;
         private float _lightFull;
         private readonly Dictionary<string, AudioSource> _audio = new Dictionary<string, AudioSource>();
         private readonly Dictionary<AudioSource, float> _baseVolume = new Dictionary<AudioSource, float>();
@@ -107,7 +109,35 @@ namespace KennerZombies
             _weaponTag = transform.Find("WeaponPivot/tag_origin");
             _light = transform.Find("BoxLight")?.GetComponent<Light>();
             if (_light != null)
+            {
                 _light.range *= BoxScale; // about 2.5 m in game
+                // Underneath the box, held there (user, 2026-11-15): first it sat just over the box, then a little inside
+                // it (2026-11-13), and both times the cycling guns passed a few cm from it: with no shadows each
+                // differently shaped gun caught its own hot spot, which read as a flashing light. From under the box's
+                // floor it glows up round the box and lights every gun evenly from below
+                BoxCollider body = transform.Find("Colliders")?.GetComponent<BoxCollider>();
+                if (body != null)
+                    _lightSpot = body.center + Vector3.down * (body.size.y * 0.5f + 0.15f);
+                else
+                    _lightSpot = _light.transform.localPosition + Vector3.down * 0.6f;
+                _light.transform.localPosition = _lightSpot;
+                // Still flashing on the cycling guns (user, 2026-11-16): the box's own animation keys BoxLight, and the
+                // animator writes it after Update, so every frame it was back up among the guns whatever we set. Our own
+                // light instead, on an object no animation knows, and the box's one removed
+                Light own = new GameObject("KZ_BoxGlow").AddComponent<Light>();
+                own.transform.SetParent(transform, false);
+                own.transform.localPosition = _lightSpot;
+                own.gameObject.layer = _light.gameObject.layer;
+                own.type = LightType.Point;
+                own.color = _light.color;
+                own.range = _light.range;
+                own.intensity = _light.intensity;
+                own.shadows = LightShadows.None;
+                own.renderMode = _light.renderMode;
+                own.cullingMask = _light.cullingMask;
+                Destroy(_light);
+                _light = own;
+            }
             foreach (AudioSource s in GetComponentsInChildren<AudioSource>(true))
             {
                 _audio[s.name.Replace("Audio_", "")] = s;
@@ -176,6 +206,9 @@ namespace KennerZombies
             _loadingModels = true;
             foreach (BoxGuns.Gun gun in BoxGuns.BoxGunList())
             {
+                // A special wonder weapon the host didn't pick isn't in this box at all, not even in the spin (ZombiesWonder)
+                if (ZombiesWonder.LeftOut(BoxGuns.Template(gun)))
+                    continue;
                 yield return BoxGuns.MakeModel(gun, m =>
                 {
                     m.Go.SetActive(false);
@@ -202,7 +235,11 @@ namespace KennerZombies
             if (_state != State.Away && ZombiesPlugin.CurrentPlayer(out GamePlayerOwner owner, out Player player))
                 _menu.Tick(owner, ((Component)player).transform, transform, InteractDistance, Options);
             if (_light != null)
+            {
                 _light.intensity = Mathf.MoveTowards(_light.intensity, _lightFull, Time.deltaTime * 4f);
+                // One spot, always: nothing (an animation, a re-seat) gets to move it
+                _light.transform.localPosition = _lightSpot;
+            }
         }
 
         private void LateUpdate()
@@ -210,6 +247,9 @@ namespace KennerZombies
             // The shown gun hangs on the rising pivot at its own size (the box is scaled, the gun isn't)
             if (_shown?.Go != null && _weaponTag != null)
             {
+                // Lights its scripts added since it was shown: lighting nothing too (see Unlit)
+                if (Time.frameCount % 10 == 0)
+                    Unlit(_shown.Go);
                 Quaternion turn = transform.rotation * _shown.Align;
                 Vector3 down = Vector3.down * Sink();
                 _shown.Go.transform.SetPositionAndRotation(_weaponTag.position + turn * _shownOffset + down, turn);
@@ -470,30 +510,62 @@ namespace KennerZombies
             // the whole match, never while any player has it; once its owner swaps it away it's back in the box for
             // anyone, them too (the check reads everyone's gear now). Never both on one player (the user, 2026-11-08:
             // holding one, the box won't give the other). Both still show in the spin.
+            // Every special wonder weapon (Thundergun, Mark II, Wunderwaffe) is one per team the same way, and only the
+            // ones the host picked are in the box at all (ZombiesWonder, user 2026-11-16); the Ray Gun stays one each
             HashSet<string> held = WonderGunsHeldByAnyone();
-            bool buyerHasOne = carried.Contains(ZombiesAmmo.RaygunId) || carried.Contains(ZombiesAmmo.ThundergunId);
+            bool buyerHasOne = carried.Contains(ZombiesAmmo.RaygunId) || carried.Any(ZombiesWonder.IsSpecial);
             List<BoxGuns.Model> allowed = _models.Where(m =>
             {
                 // The monkeys once a life (the user, 2026-11-08): still in the spin, never the pick once you've had them
                 if (m.Gun.Id == BoxGuns.MonkeyId)
                     return !ZombiesMonkey.HadThisLife && ZombiesMonkey.Count(Comfort.Common.Singleton<GameWorld>.Instance?.MainPlayer) == 0;
                 string tpl = BoxGuns.Template(m.Gun);
-                if (tpl == ZombiesAmmo.RaygunId || tpl == ZombiesAmmo.ThundergunId)
-                    if ((tpl == ZombiesAmmo.ThundergunId && held.Contains(tpl)) || buyerHasOne)
+                if (ZombiesWonder.LeftOut(tpl))
+                    return false;
+                if (tpl == ZombiesAmmo.RaygunId || ZombiesWonder.IsSpecial(tpl))
+                    if ((ZombiesWonder.IsSpecial(tpl) && held.Contains(tpl)) || buyerHasOne)
                         return false;
                 return tpl != null && !carried.Contains(tpl) && !(m.Gun.Role == "box_wonder" && lobby.Contains(tpl));
             }).ToList();
             if (allowed.Count == 0)
                 return Pick(null);
-            // Wonder weapons come up a little less often than the rest (the user, 2026-11-01)
-            float total = allowed.Sum(Weight), roll = (float)Dice.NextDouble() * total;
+            // Wonder weapons come up a little less often than the rest (the user, 2026-11-01), and the gun this player
+            // just had, or had earlier this match, less often again (the pity rule, user 2026-11-16)
+            float W(BoxGuns.Model m) => Weight(m) * Repeat(m);
+            float total = allowed.Sum(W), roll = (float)Dice.NextDouble() * total;
+            BoxGuns.Model chosen = allowed[allowed.Count - 1];
             foreach (BoxGuns.Model m in allowed)
             {
-                roll -= Weight(m);
+                roll -= W(m);
                 if (roll <= 0f)
-                    return m;
+                {
+                    chosen = m;
+                    break;
+                }
             }
-            return allowed[allowed.Count - 1];
+            string got = BoxGuns.Template(chosen.Gun);
+            if (got != null)
+                Had.Add(got);
+            return chosen;
+        }
+
+        // ---------- The pity rule: what this player's box rolls gave them this match ----------
+
+        private static readonly List<string> Had = new List<string>();
+        // Against 1 for a gun not had yet: the last one a quarter as likely, any earlier one a bit over half
+        private const float LastAgain = 0.25f, HadBefore = 0.6f;
+
+        /// <summary>A new match: nothing had yet.</summary>
+        public static void NewMatch() => Had.Clear();
+
+        private static float Repeat(BoxGuns.Model m)
+        {
+            string tpl = BoxGuns.Template(m.Gun);
+            if (tpl == null || Had.Count == 0)
+                return 1f;
+            if (Had[Had.Count - 1] == tpl)
+                return LastAgain;
+            return Had.Contains(tpl) ? HadBefore : 1f;
         }
 
         // The wonder guns (Ray Gun, Thundergun) any player in the match has on them, teammates too (their kit is synced)
@@ -512,7 +584,7 @@ namespace KennerZombies
                     foreach (var it in items)
                     {
                         string tpl = it?.TemplateId.ToString();
-                        if (tpl == ZombiesAmmo.RaygunId || tpl == ZombiesAmmo.ThundergunId)
+                        if (tpl == ZombiesAmmo.RaygunId || ZombiesWonder.IsSpecial(tpl))
                             held.Add(tpl);
                     }
                 }
@@ -568,6 +640,7 @@ namespace KennerZombies
             if (model?.Go != null && _weaponTag != null)
             {
                 model.Go.SetActive(true);
+                Unlit(model.Go);
                 // Placed at the pivot, then moved so the centre of its drawn bounds (attachments included) sits there
                 Quaternion turn = transform.rotation * model.Align;
                 model.Go.transform.SetPositionAndRotation(_weaponTag.position, turn);
@@ -576,6 +649,20 @@ namespace KennerZombies
                 LateUpdate();
             }
             return model;
+        }
+
+        /// <summary>
+        /// A gun shown in the spin lights nothing around it: a build's flashlight, or a wonder weapon's own glow lights
+        /// (the Wunderwaffe's bulbs, the Ray Gun's cells), jumped from gun to gun as the spin swapped them, a white glow
+        /// dancing round the box (user, 2026-11-17, after the box's own light was fixed). Their culling mask is emptied
+        /// rather than the lights switched off or removed: the guns' own scripts keep driving them, harmlessly. Run on
+        /// every show, as those scripts add their lights a moment after the model is made.
+        /// </summary>
+        private static void Unlit(GameObject gun)
+        {
+            foreach (Light l in gun.GetComponentsInChildren<Light>(true))
+                if (l != null && l.cullingMask != 0)
+                    l.cullingMask = 0;
         }
 
         /// <summary>The gun's hit area: its drawn bounds, a little bigger, on the box (so the box's prompt sees it).</summary>

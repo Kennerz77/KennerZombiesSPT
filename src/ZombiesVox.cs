@@ -107,7 +107,11 @@ namespace KennerZombies
                 return;
             // The original's pace (the user's gameplay video, 2026-11-07: a line every 15-20 s, nearly all reactions to the box,
             // power-ups, perks and the nuke): the chatter (kills, ammo, boards) waits 8 s after any line
-            if ((category.StartsWith("kill_") || category == "ammo_low" || category == "rebuild_boards") && Time.time < _lastLineAt + ChatterGap)
+            // The wonder weapons' kill lines (user, 2026-11-15) only wait for the last line to have had its moment
+            bool wonderKill = category == "kill_ray" || category == "kill_thunder";
+            if (wonderKill && Time.time < _lastLineAt + 3f)
+                return;
+            if (!wonderKill && (category.StartsWith("kill_") || category == "ammo_low" || category == "rebuild_boards") && Time.time < _lastLineAt + ChatterGap)
                 return;
             if (Random.value > chance)
                 return;
@@ -209,6 +213,12 @@ namespace KennerZombies
                 // The Ray Gun out of the box: now and then the "I got the Ray Gun!" line (Dempsey's, from the user,
                 // 2026-11-09; the others fall back to their own lines). Only the box: the PaP'd one says "pap" lines
                 bool raygun = gun.Id == "raygun" || gun.Id == ZombiesAmmo.RaygunId;
+                // The Thundergun: its own pickup lines (Kino's wpck_thunder, user 2026-11-15)
+                if (gun.Id == "thundergun" || gun.Id == ZombiesAmmo.ThundergunId)
+                {
+                    Say("wpck_thunder", 1f, 2f);
+                    return;
+                }
                 Say(raygun && Random.value < RaygunLineChance ? "wpck_raygun" : "wpck_ray", 1f, 2f);
                 return;
             }

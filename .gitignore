@@ -19,3 +19,8 @@ logs/
 sounds_unused/
 *.log
 .vs/
+
+# Internal notes (kept on disk, not published)
+ZOMBIES_PLAN.md
+data/pap_names_draft.md
+__pycache__/

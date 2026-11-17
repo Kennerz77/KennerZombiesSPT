@@ -156,6 +156,14 @@ public class ZombiesRaidHook(ISptLogger<ZombiesRaidHook> logger, ProfileHelper p
         {
             logger.Error($"[Zombies] Zombies map loot hook failed: other mods' loot generators may run on zombies maps. {e.GetBaseException().Message}");
         }
+        try
+        {
+            new ZombiesNoBotsPatch().Enable();
+        }
+        catch (Exception e)
+        {
+            logger.Error($"[Zombies] Zombies map bot hook failed: other mods' bosses and waves may reach zombies maps. {e.GetBaseException().Message}");
+        }
         return Task.CompletedTask;
     }
 }

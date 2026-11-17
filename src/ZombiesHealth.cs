@@ -81,6 +81,15 @@ namespace KennerZombies
 
         public static void Clear() => Pools.Clear();
 
+        /// <summary>A zombie's health left cut to at most <paramref name="share"/> of the round's full (a new crawler).</summary>
+        public static void CapPool(Player zombie, float share)
+        {
+            if (zombie == null)
+                return;
+            float cap = Full * Mathf.Clamp01(share);
+            Pools[zombie] = Pools.TryGetValue(zombie, out float pool) ? Mathf.Min(pool, cap) : cap;
+        }
+
         /// <summary>A zombie's full health this round (the original's curve, times F12's toughness).</summary>
         public static float Full => ZombiesRounds.BoHealth(ZombiesRounds.Round) * Mathf.Max(0.1f, ZombiesRounds.Toughness?.Value ?? 1f);
 
@@ -101,9 +110,11 @@ namespace KennerZombies
                 && shooter.HandsController?.Item is Weapon held)
                 hit.Weapon = held;
             pool -= BoDamage(hit);
-            // The Thundergun's blast kills whatever it reaches, every round , and its kill throws the body
+            // The Thundergun's blast kills whatever it reaches, every round , and its kill throws the body. The
+            // Wunderwaffe's lightning too: every zombie in the chain dies, every round, as in the original (user, 2026-11-16)
             bool thundergun = hit.Weapon != null && ZombiesAmmo.IsThundergun(hit.Weapon as Item);
-            if (pool <= 0f || ZombiesPowerUps.InstaKill || thundergun)
+            bool wunderwaffe = hit.Weapon is Item w && w.TemplateId.ToString() == ZombiesAmmo.WunderwaffeId;
+            if (pool <= 0f || ZombiesPowerUps.InstaKill || thundergun || wunderwaffe)
             {
                 Pools.Remove(zombie);
                 hit.Damage = 100000f;
@@ -111,6 +122,8 @@ namespace KennerZombies
             }
             Pools[zombie] = pool;
             hit.Damage = 0.01f;
+            // Lived through a blast: from round 10 it may lose its legs (crawler)
+            ZombiesCrawlers.AfterHit(zombie, hit);
             ZombiesDebug.Log($"zombie hit: {pool:0} of {Full:0} left ({(hit.HittedBallisticCollider is BodyPartCollider c ? c.BodyPartType.ToString() : ZombiesRules.HitPart?.ToString() ?? "part unknown")}, {(hit.Weapon as Item)?.ShortName?.Localized() ?? "no gun"})");
         }
 
@@ -130,6 +143,16 @@ namespace KennerZombies
                 float x2 = ZombiesPaP.Infused(ray) ? 2f : 1f;
                 bool blast = hit.DamageType == EDamageType.Explosion || hit.DamageType == EDamageType.GrenadeFragment;
                 return blast ? hit.Damage / 60f * (_raySplash?.Value ?? 300f) * x2 : hit.Damage / 115f * (_rayHit?.Value ?? 1000f) * x2;
+            }
+            // The Ray Gun Mark II (the original: 2000 a bolt, 3500 Pack-a-Punched, no blast damage). Its bolt is an
+            // explosive round here (EFT's bolt 160, a 45-strength burst): the hit at the original's number, the burst a
+            // small splash. It was scored as a grenade: barely an SMG by round 16, and every blast made crawlers (user, 2026-11-16)
+            if (hit.Weapon is Weapon mk2 && mk2.TemplateId.ToString() == ZombiesAmmo.RaygunMk2Id)
+            {
+                bool up = ZombiesPaP.Infused(mk2);
+                bool blast = hit.DamageType == EDamageType.Explosion || hit.DamageType == EDamageType.GrenadeFragment;
+                return blast ? hit.Damage / 45f * (_mk2Splash?.Value ?? 400f) * (up ? 1.75f : 1f)
+                    : hit.Damage / 160f * (up ? _mk2HitUp?.Value ?? 3500f : _mk2Hit?.Value ?? 2000f);
             }
             if (hit.DamageType == EDamageType.Explosion || hit.DamageType == EDamageType.GrenadeFragment)
                 return hit.Damage * scale * 2f;
@@ -157,7 +180,7 @@ namespace KennerZombies
         // The original roughly: pistols 50-80, SMGs 75-110, ARs 110-150, LMGs 120-160, marksman ~200+, snipers 500+, shotguns per pellet.
         private const string M1911 = "5e81c3cbac2bb513793cdc75", M1A = "5aafa857e5b5b00018480968";
         private static ConfigEntry<float> _nadePerRound;
-        private static ConfigEntry<float> _dmgPistol, _dmgSmg, _dmgRifle, _dmgLmg, _dmgMarksman, _dmgSniper, _dmgPellet, _dmgStarter, _dmgM14, _dmgDeagle, _dmgRsh, _rayHit, _raySplash;
+        private static ConfigEntry<float> _dmgPistol, _dmgSmg, _dmgRifle, _dmgLmg, _dmgMarksman, _dmgSniper, _dmgPellet, _dmgStarter, _dmgM14, _dmgDeagle, _dmgRsh, _rayHit, _raySplash, _mk2Hit, _mk2HitUp, _mk2Splash, _dmgMp40;
 
         public static void BindGuns(ConfigFile config, string s)
         {
@@ -165,10 +188,17 @@ namespace KennerZombies
             _dmgStarter = config.Bind(s, "Damage: starting M1911", 20f, D("A body shot from the starting pistol (20: 7 leg shots then the knife on round 1).", 500f, 88));
             _dmgM14 = config.Bind(s, "Damage: M1A", 110f, D("A body shot from the M1A, the early wall rifle: 2 body shots or 1 to the head at round 2.", 1000f, 87));
             _dmgPistol = config.Bind(s, "Damage: pistols", 65f, D("A body shot from a typical pistol round (9x19 / 5.7: ~60). A round 4 zombie has 450.", 1000f, 87));
-            _dmgDeagle = config.Bind(s, "Damage: Desert Eagle", 220f, D("A body shot from any .50 AE Desert Eagle, whatever the round. Round 5 (550): 3 body shots or 1 to the head.", 2000f, 87));
+            // 220 -> 500 (user, 2026-11-15: "a big damage gun for its big calibre"); new key so the saved 220 doesn't carry over
+            _dmgDeagle = config.Bind(s, "Damage: Desert Eagle body shot", 500f, D("A body shot from any .50 AE Desert Eagle, whatever the round (x3 to the head). Round 10 (950): 2 body shots or 1 to the head.", 2000f, 87));
             _dmgRsh = config.Bind(s, "Damage: RSh-12", 300f, D("A body shot from the RSh-12 revolver, whatever the round. Round 5 (550): 2 body shots or 1 to the head.", 2000f, 87));
             _rayHit = config.Bind(s, "Damage: Ray Gun hit", 1000f, D("A Ray Gun bolt hitting a zombie (about 1000: one shot to about round 9). Pack-a-Punched doubles it.", 5000f, 86));
             _raySplash = config.Bind(s, "Damage: Ray Gun splash", 300f, D("The Ray Gun blast at its centre (less further out). Pack-a-Punched doubles it.", 5000f, 86));
+            _mk2Hit = config.Bind(s, "Damage: Ray Gun Mark II hit", 2000f, D("A Ray Gun Mark II bolt hitting a zombie (the original's 2000).", 10000f, 86));
+            _mk2HitUp = config.Bind(s, "Damage: Ray Gun Mark II hit (Pack-a-Punched)", 3500f, D("The same, Pack-a-Punched (the original's 3500).", 10000f, 86));
+            _mk2Splash = config.Bind(s, "Damage: Ray Gun Mark II splash", 400f, D("Its small burst at the centre (less further out); x1.75 Pack-a-Punched. Never makes crawlers.", 5000f, 86));
+            // The MP40: slower in zombies (ZombiesPerks) and hitting much harder than an SMG (user, 2026-11-17: "way slower
+            // fire rate and more damage")
+            _dmgMp40 = config.Bind(s, "Damage: MP40 body shot", 160f, D("A body shot from the MP40 (x3 to the head). It fires slower in zombies to match.", 2000f, 86));
             _dmgSmg = config.Bind(s, "Damage: SMGs", 85f, D("A body shot from a typical SMG round (round 4: about 6 shots).", 1000f, 86));
             _dmgRifle = config.Bind(s, "Damage: rifles", 110f, D("A body shot from a typical assault rifle / carbine round (round 5: about 5 shots).", 1000f, 85));
             _dmgLmg = config.Bind(s, "Damage: machine guns", 130f, D("A body shot from a typical machine gun round.", 1000f, 84));
@@ -176,6 +206,8 @@ namespace KennerZombies
             _dmgSniper = config.Bind(s, "Damage: sniper rifles", 550f, D("A body shot from a typical sniper round.", 5000f, 82));
             _dmgPellet = config.Bind(s, "Damage: shotgun pellet", 40f, D("Each pellet (8 a shell: about 320 up close).", 1000f, 81));
         }
+
+        internal const string Mp40Id = "6a7f3c5e9a11540000000001";
 
         private static float GunDamage(Weapon gun, float eftDamage, float oldScale)
         {
@@ -185,11 +217,14 @@ namespace KennerZombies
             // user 2026-11-09). 110 a body shot (7.62 M80 = EFT 80): round 2 takes 2 body shots or 1 to the head
             if (gun != null && gun.TemplateId == M1A)
                 return eftDamage / 80f * (_dmgM14?.Value ?? 110f);
+            // The MP40 (its 9x19: a typical round ~55)
+            if (gun != null && gun.TemplateId.ToString() == Mp40Id)
+                return eftDamage / 55f * (_dmgMp40?.Value ?? 160f);
             // Hand cannons (Desert Eagle .50 AE, RSh-12 12.7x55): a big hit, far over the Five-seveN / Glock's ~60
             // (user, 2026-11-09). Round 5 (550): Deagle 3 body / 1 head, RSh 2 body / 1 head. Scaled from a typical round
             // (.50 AE FMJ ~106, 12.7x55 PS12 ~115) so Double Tap's x2 on the EFT damage still counts
             if (HandCannon(gun, out bool rsh))
-                return rsh ? eftDamage / 115f * (_dmgRsh?.Value ?? 300f) : eftDamage / 106f * (_dmgDeagle?.Value ?? 220f);
+                return rsh ? eftDamage / 115f * (_dmgRsh?.Value ?? 300f) : eftDamage / 106f * (_dmgDeagle?.Value ?? 500f);
             float bo, eftRef;
             switch (gun?.WeapClass)
             {

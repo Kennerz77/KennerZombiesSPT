@@ -339,7 +339,11 @@ namespace KennerZombies
                 return;
             int now = guns.IndexOf(me.HandsController?.Item as Weapon);
             Weapon next = guns[((now < 0 ? 0 : now + step) % guns.Count + guns.Count) % guns.Count];
-            if (next == me.HandsController?.Item || me.HandsController != null && me.HandsController.InCanNotBeInterruptedOperation())
+            if (next == me.HandsController?.Item)
+                return;
+            // A reload under way is cancelled (its rounds put back) so the swap happens now (user, 2026-11-15)
+            ZombiesReload.CancelForSwap(me);
+            if (me.HandsController != null && me.HandsController.InCanNotBeInterruptedOperation())
                 return;
             _lastSwap = Time.time;
             ZombiesDebug.Log($"controls: swap to {next.ShortName.Localized()} ({(step > 0 ? "next" : "before")})");
@@ -455,14 +459,16 @@ namespace KennerZombies
                 ZombiesDebug.Log($"controls: tactical key ({Key(Act.Tactical)}), {ZombiesMonkey.Count(me)} monkey(s)");
                 ZombiesQuickGrenade.Press(me, lethal: false);
             }
-            if (Input.GetKeyDown(Key(Act.Melee)))
+            // The original's knife: one swing at a time, the hit on the swing, EFT's quick knife as the swing you see.
+            // Repeatable (user, 2026-11-15: "can melee happen more repeatedly with the melee key"): a press during a swing
+            // is kept and goes the moment the knife is free, and holding the key keeps swinging
+            if (Input.GetKeyDown(Key(Act.Melee)) || Input.GetKey(Key(Act.Melee)) && Time.time < _meleeQueuedUntil + 0.5f)
+                _meleeQueuedUntil = Time.time + MeleeBuffer;
+            if (Time.time < _meleeQueuedUntil && ZombiesSwipe.TrySwing(me))
             {
-                // The original's knife: one swing at a time, the hit on the swing, EFT's quick knife as the swing you see
-                if (ZombiesSwipe.TrySwing(me))
-                {
-                    Send(me, ECommand.QuickKnifeKick);
-                    ZombiesKnife.Asked(me);
-                }
+                _meleeQueuedUntil = Input.GetKey(Key(Act.Melee)) ? Time.time : -1f;
+                Send(me, ECommand.QuickKnifeKick);
+                ZombiesKnife.Asked(me);
             }
             float wheel = Input.mouseScrollDelta.y;
             bool next = wheel < -0.01f || Input.GetKeyDown(Key(Act.NextGun)), before = wheel > 0.01f || Input.GetKeyDown(Key(Act.GunBefore));
@@ -486,6 +492,9 @@ namespace KennerZombies
         // ---------- The Esc menu's ZOMBIES CONTROLS page ----------
 
         private static float _launcherLockUntil;
+        // A melee press kept this long for the knife to come free (a press mid-swing isn't lost)
+        private const float MeleeBuffer = 0.6f;
+        private static float _meleeQueuedUntil = -1f;
         private static bool _menuOpen;
         private static Act? _waiting;
         private static GUIStyle _button, _title, _label;

@@ -593,11 +593,16 @@ namespace KennerZombies
         /// <summary>The gun is put away for a revive: hands commands are held off meanwhile (ZombiesControls).</summary>
         public static bool GunIsAway => _gunAway;
 
+        // The gun in the hands when it was put away for the revive: that one comes back out (the game's "last equipped
+        // weapon" often meant the pistol slot: user, 2026-11-17, reviving a teammate left them on the M1911)
+        private static Weapon _gunBeforeRevive;
+
         private static void GunAway(Player me)
         {
             if (_gunAway)
                 return;
             _gunAway = true;
+            _gunBeforeRevive = me.HandsController?.Item as Weapon;
             try
             {
                 me.SetEmptyHands(_ => { });
@@ -618,9 +623,15 @@ namespace KennerZombies
             // Only from empty hands: something already in them (drawn meanwhile) is left as it is
             if (!(me.HandsController is Player.EmptyHandsController))
                 return;
+            Weapon before = _gunBeforeRevive;
+            _gunBeforeRevive = null;
             try
             {
-                me.TrySetLastEquippedWeapon(true, _ => { });
+                // Still on the player (in a weapon slot): drawn as it was; else the game's own last weapon
+                if (before != null && before.Parent?.Container is Slot slot && slot.ParentItem == me.InventoryController?.Inventory?.Equipment)
+                    me.SetInHands(before, _ => { });
+                else
+                    me.TrySetLastEquippedWeapon(true, _ => { });
             }
             catch (Exception e)
             {

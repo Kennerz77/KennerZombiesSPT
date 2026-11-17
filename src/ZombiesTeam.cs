@@ -192,11 +192,30 @@ namespace KennerZombies
             }
         }
 
-        /// <summary>A zombie (any bot), on the host or a Fika client alike.</summary>
-        public static bool IsZombie(Player p) => p != null && !IsHuman(p) && !ZombiesNet.IsHeadlessPlayer(p);
+        /// <summary>
+        /// A zombie: a bot with a zombie's role, on the host or a Fika client alike (the role travels with the profile, so
+        /// every game agrees at once). Other mods' AI (squads, a dog, bosses, PMC bots) never count as zombies: no zombie
+        /// health or weapons hidden, no points or power-ups for them, never hit by the Nuke or PhD (user, 2026-11-12). The
+        /// host refuses and removes them anyway (ZombiesOnlyOurs). A bot whose role can't be read counts, as before.
+        /// </summary>
+        public static bool IsZombie(Player p) => p != null && !IsHuman(p) && !ZombiesNet.IsHeadlessPlayer(p) && HasZombieRole(p);
 
         /// <summary>The same for a damage source (IPlayer).</summary>
-        public static bool IsZombieSource(IPlayer p) => p != null && (p is Player pl ? !IsHuman(pl) && !ZombiesNet.IsHeadlessPlayer(pl) : p.IsAI);
+        public static bool IsZombieSource(IPlayer p) => p != null && (p is Player pl ? IsZombie(pl) : p.IsAI);
+
+        private static bool HasZombieRole(Player p)
+        {
+            var settings = p.Profile?.Info?.Settings;
+            return settings == null || IsZombieRole(settings.Role);
+        }
+
+        /// <summary>The role our zombies spawn with: EFT's infected roles, or the one set in F12 ("Zombie bot type").</summary>
+        public static bool IsZombieRole(WildSpawnType role)
+        {
+            string name = role.ToString();
+            return name.StartsWith("infected", System.StringComparison.OrdinalIgnoreCase)
+                   || string.Equals(name, ZombiesRounds.ZombieType?.Value, System.StringComparison.OrdinalIgnoreCase);
+        }
 
         public static bool IsHuman(Player p)
         {

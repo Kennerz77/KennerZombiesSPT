@@ -27,12 +27,21 @@ namespace KennerZombies
     [BepInDependency("com.kennerz.paphideoutmodule", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.kennerz.perkbeverages", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.kennerz.raygun", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInDependency("com.kennerz.thundergun", BepInDependency.DependencyFlags.HardDependency)]
+    // Optional since 0.2.0: one of the special wonder weapons the host picks (ZombiesWonder), like the Mark II and the Wunderwaffe
+    [BepInDependency("com.kennerz.thundergun", BepInDependency.DependencyFlags.SoftDependency)]
+    // The other wonder weapon mods and the MP40, when installed: loaded first, so the box can list them (ZombiesWonder)
+    [BepInDependency("com.kennerz.raygunmk2", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.kennerz.wunderwaffe", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.kennerz.mp40", BepInDependency.DependencyFlags.SoftDependency)]
+    // Our map loader (MapLoader.Loader): after SAIN, so it can tell SAIN what zombies maps count as; after the original
+    // CustomMapLoader mod when someone has it, so we can leave it the maps it has itself. Neither is needed.
+    [BepInDependency("me.sol.sain", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.mizmii.custommaploader", BepInDependency.DependencyFlags.SoftDependency)]
     public class ZombiesPlugin : BaseUnityPlugin
     {
         public const string PluginGuid = "com.kennerz.zmcore"; // same GUID as the server mod will have (Forge rule)
         public const string PluginName = "Kennerz-ZM_Core";     // Forge rule: "Username-ModName"
-        public const string PluginVersion = "0.1.2";
+        public const string PluginVersion = "0.2.0";
 
         internal static ManualLogSource Log;
 
@@ -49,11 +58,13 @@ namespace KennerZombies
         private void Awake()
         {
             // Release builds: F12 shows players only their own settings
-            ReleaseMenu.Install(this, d => new[] { "0. Main menu", "2. Zombies sounds", "2b. Zombies music", "3. Mystery box volume", "3. Zombies controls", "6. Scores on screen", "10. Zombies menu sounds" }.Contains(d.Section) && (d.Section != "6. Scores on screen" || d.Key == "Show zombies left" || d.Key == "Player photos"));
+            ReleaseMenu.Install(this, d => new[] { "0. Main menu", "2. Zombies sounds", "2b. Zombies music", "3. Mystery box volume", "3. Zombies controls", "6. Scores on screen", "10. Zombies menu sounds", ZombiesGore.Section }.Contains(d.Section) && (d.Section != "6. Scores on screen" || d.Key == "Show zombies left" || d.Key == "Player photos"));
             Log = Logger;
             Instance = this;
             // Where zombies maps go (BepInEx\plugins\SPZombies_Maps), made on first start
             MapEditor.EnsureMapsFolder();
+            // The zombies maps themselves (bundles in each map's folder): no other mod needed
+            Safely("map loader", MapLoader.Loader.Init);
             var harmony = new HarmonyLib.Harmony(PluginGuid);
             HarmonyInstance = harmony;
             harmony.Patch(HarmonyLib.AccessTools.Method(typeof(HideoutPlayerOwner), nameof(HideoutPlayerOwner.Init)),
@@ -63,6 +74,18 @@ namespace KennerZombies
                 ZombiesApi.RegisterBoxWeapon("6a7e5a71d9a1160000000001", "Ray Gun", true);
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.kennerz.thundergun"))
                 ZombiesApi.RegisterBoxWeapon("6a7e5a71d9a1150000000001", "Thundergun", true);
+            // The Ray Gun Mark II and the Wunderwaffe with their own magazines (which of the special ones a match's box
+            // holds is the host's pick: ZombiesWonder)
+            Safely("wonder weapons", ZombiesWonder.RegisterInstalled);
+            // The MP40: an ordinary box gun and a wall buy ("mp40" in a map's layout), not a wonder weapon (user, 2026-11-16)
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.kennerz.mp40"))
+                Safely("MP40", () =>
+                {
+                    ZombiesApi.RegisterBoxWeapon("6a7f3c5e9a11540000000001", "MP40", false, "6a7f3c5e9a11540000000002");
+                    BoxGuns.Gun mp40 = ZombiesApi.Registered.FirstOrDefault(g => (string)g.Base?["tpl"] == "6a7f3c5e9a11540000000001");
+                    if (mp40 != null)
+                        mp40.Id = "mp40";
+                });
             ZombiesMapSelect.Patch(harmony);
             ZombiesLogo.Patch(harmony);
             Safely("main menu mode", () => ZombiesMainMenu.Patch(harmony));
@@ -135,8 +158,19 @@ namespace KennerZombies
             Safely("logging", () => ZombiesTrace.Bind(Config, (label, action) =>
                 new ConfigurationManagerAttributes { HideDefaultButton = true, CustomDrawer = _ => Button(label, action) }));
             Safely("reload rescue", () => ZombiesReload.Bind(Config));
+            Safely("zombie animations", () =>
+            {
+                ZombiesAnim.Bind(Config);
+                ZombiesAnim.Preload();
+            });
             Safely("photo tour", () => ZombiesPhotos.Bind(Config, "19. Debug: logging"));
             Safely("sound volumes", () => ZombiesSounds.Bind(Config));
+            // The original's window climbs and ledge drops
+            Safely("traversals", () => ZombiesTraverse.Bind(Config));
+            // Crawlers: blasts from round 10 can take a zombie's legs off
+            Safely("crawlers", () => ZombiesCrawlers.Bind(Config));
+            // Headshot gore on zombies
+            Safely("zombie gore", () => ZombiesGore.Install(harmony, Config));
 
             const string tools = "1. Gun library";
             Config.Bind(tools, "Log my guns", false, new ConfigDescription(

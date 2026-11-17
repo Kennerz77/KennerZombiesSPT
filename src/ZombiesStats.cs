@@ -105,16 +105,35 @@ namespace KennerZombies
             // Zombies die on the host's game (Fika): it tells a teammate their kill; a client counts only those
             if (ZombiesNet.Online && !ZombiesNet.IsHost)
                 return;
+            byte wonder = Wonder(damage, aggressor);
             if (aggressor.IsYourPlayer)
-                Killed(head, knife);
+                Killed(head, knife, wonder);
             else
-                ZombiesNet.KillBy(aggressor.ProfileId, head, knife);
+                ZombiesNet.KillBy(aggressor.ProfileId, head, knife, wonder);
+        }
+
+        public const byte NoWonder = 0, RayGun = 1, Thundergun = 2;
+
+        // Which wonder weapon made the kill (its own kill lines): the damage's weapon, else what the killer holds
+        private static byte Wonder(DamageInfo damage, IPlayer aggressor)
+        {
+            try
+            {
+                string tpl = damage.Weapon?.TemplateId.ToString();
+                if (string.IsNullOrEmpty(tpl) && aggressor is Player p)
+                    tpl = p.HandsController?.Item?.TemplateId.ToString();
+                return tpl == ZombiesAmmo.RaygunId ? RayGun : tpl == ZombiesAmmo.ThundergunId ? Thundergun : NoWonder;
+            }
+            catch
+            {
+                return NoWonder;
+            }
         }
 
         private static readonly System.Collections.Generic.Queue<float> _recent = new System.Collections.Generic.Queue<float>();
 
         /// <summary>A zombie killed by the local player (here, or told by the host).</summary>
-        public static void Killed(bool head, bool knife)
+        public static void Killed(bool head, bool knife, byte wonder = NoWonder)
         {
             Stats me = Mine;
             me.Kills++;
@@ -124,7 +143,13 @@ namespace KennerZombies
             _recent.Enqueue(Time.time);
             while (_recent.Count > 0 && Time.time - _recent.Peek() > 4f)
                 _recent.Dequeue();
-            if (_recent.Count >= 5)
+            // A Ray Gun / Thundergun kill: that gun's own kill lines first (user, 2026-11-15: "should specifically make
+            // characters say their ray gun kill lines, same with the Thundergun"; Richtofen's "glowing green balls" is one)
+            if (wonder == RayGun)
+                ZombiesVox.Say("kill_ray", 0.6f, 6f);
+            else if (wonder == Thundergun)
+                ZombiesVox.Say("kill_thunder", 0.8f, 5f);
+            else if (_recent.Count >= 5)
                 ZombiesVox.Say("kill_streak", 0.6f, 30f);
             else if (ZombiesPowerUps.InstaKillOn)
                 ZombiesVox.Say("kill_insta", 0.2f, 20f);

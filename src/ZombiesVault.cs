@@ -138,32 +138,64 @@ namespace KennerZombies
             }
             // EFT's vault check (its own per-frame look for an obstacle close in front) found nothing from the outside spot
             // 0.8 m out: "strategy None" on 12 of 13 climbs (2026-11-09 log). So: eased up to the sill, trying each frame
+            // EFT never vaults a sprinter (its own rule: no vault and no climb while sprinting) and wants the body standing
+            // on the ground: the old loop teleported it a step nearer every frame while asking, so it was never grounded
+            // ("can False" on most refusals, user's logs 2026-11-13), and sprinters were always refused. Now: sprint and
+            // mover off, eased into place once, a moment to settle on the ground, then asked each frame
+            try
+            {
+                z.Mover?.Stop();
+                z.Sprint(false);
+                body.MovementContext?.EnableSprint(false);
+            }
+            catch
+            {
+            }
             bool started = false;
+            EVaultingStrategy chosen = EVaultingStrategy.None;
             Vector3 sill = w.position + w.forward * 0.5f;
             Vector3 start = body.Transform.position;
             sill.y = start.y;
-            for (float t = 0f; t < 0.6f && !started; t += Time.deltaTime)
+            for (float t = 0f; t < 0.35f; t += Time.deltaTime)
             {
                 if (body == null || !body.HealthController.IsAlive)
                     break;
                 body.Teleport(Vector3.Lerp(start, sill, Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(t / 0.35f))), false);
                 ZombiesRounds.Face(z, inside + Vector3.up * 1.2f);
-                try
-                {
-                    _ours = true;
-                    try { started = vc.TryVaulting(); }
-                    finally { _ours = false; }
-                }
-                catch (Exception e)
-                {
-                    Note(body, "TryVaulting threw: " + e.Message);
+                yield return null;
+            }
+            for (float t = 0f; t < 0.6f && !started; t += Time.deltaTime)
+            {
+                if (body == null || !body.HealthController.IsAlive)
                     break;
+                ZombiesRounds.Face(z, inside + Vector3.up * 1.2f);
+                // Settled first: two frames at least, and grounded
+                if (t > 0.05f && Grounded(vc))
+                {
+                    try
+                    {
+                        _ours = true;
+                        try
+                        {
+                            started = vc.TryVaulting();
+                            // EFT's choice by its own rules: over a thin enough obstacle it vaults, else it climbs onto it
+                            if (started)
+                                chosen = vc.VaultingLength <= 0.41f && vc.VaultingHeight <= 1.1f ? EVaultingStrategy.Vault : EVaultingStrategy.Climb;
+                        }
+                        finally { _ours = false; }
+                    }
+                    catch (Exception e)
+                    {
+                        Note(body, "TryVaulting threw: " + e.Message);
+                        break;
+                    }
                 }
                 if (!started)
                     yield return null;
             }
             if (!started && body != null)
-                Note(body, $"EFT won't vault here (strategy {vc.GetVaultingStrategy()}, can {vc.CanVaulting()}); scripted climb instead");
+                Note(body, $"EFT won't vault here (strategy {vc.GetVaultingStrategy()}, can {vc.CanVaulting()}; {Why(vc)}); scripted climb instead");
+            Record(b, vc, started ? chosen.ToString() : "Refused", started ? "" : Why(vc));
             if (!started)
             {
                 foreach (Collider c in off)
@@ -192,13 +224,17 @@ namespace KennerZombies
                     // EFT climbs it ONTO the sill (0.55-0.6 m out, every time in the 2026-11-09 log). The old step glided
                     // it down to the floor inside: "hovering over the barricade". Now it steps forward at the sill's
                     // height, off the inner edge, and falls to the floor itself (falls don't hurt zombies)
+                    // A short step just past the window's face (not the old 1.8 m glide to the inside spot at sill height,
+                    // which read as clipping through and hovering, user 2026-11-13), then the drop
                     Vector3 from = body.Transform.position;
-                    Vector3 edge = new Vector3(inside.x, from.y + 0.05f, inside.z);
-                    for (float t = 0f; t < 0.3f; t += Time.deltaTime)
+                    Vector3 past = w.position - w.forward * 0.45f;
+                    Vector3 edge = new Vector3(past.x, from.y + 0.05f, past.z);
+                    float stepTime = Mathf.Clamp(Vector3.Distance(from, edge) / 2.2f, 0.15f, 0.45f);
+                    for (float t = 0f; t < stepTime; t += Time.deltaTime)
                     {
                         if (body == null || !body.HealthController.IsAlive)
                             break;
-                        body.Teleport(Vector3.Lerp(from, edge, t / 0.3f), false);
+                        body.Teleport(Vector3.Lerp(from, edge, Mathf.SmoothStep(0f, 1f, t / stepTime)), false);
                         yield return null;
                     }
                     // Let go: gravity takes it down (a short wait so the climb counts as done only once it's landed)
@@ -214,6 +250,109 @@ namespace KennerZombies
                     Note(body, "vaulted in");
             }
             done(true);
+        }
+
+        // ---------- What each barricade measures (user, 2026-11-13: "log the favoured heights, showable in the Unity map") ----------
+        // Per barricade (its layout entry): every climb's obstacle as EFT measured it (top above the zombie's feet, depth)
+        // and what EFT did: Vault (over), Climb (onto), Refused (and why). Written to logs\vault_spots.json beside the DLL;
+        // the map project's Kennerz > Vault Guide draws it at each barricade with EFT's own height bands.
+        private class Spot
+        {
+            public int Entry;
+            public Vector3 At, Forward;
+            public readonly List<string> Tries = new List<string>();
+            public int Vaults, Climbs, Refused;
+        }
+
+        private static readonly Dictionary<int, Spot> Spots = new Dictionary<int, Spot>();
+        private static float _nextWrite;
+
+        private static void Record(ZombiesBarricade b, VaultingComponent vc, string result, string why)
+        {
+            try
+            {
+                if (b == null || vc == null)
+                    return;
+                if (!Spots.TryGetValue(b.Entry, out Spot s))
+                    Spots[b.Entry] = s = new Spot { Entry = b.Entry, At = b.transform.position, Forward = b.transform.forward };
+                if (result == "Vault")
+                    s.Vaults++;
+                else if (result == "Climb")
+                    s.Climbs++;
+                else
+                    s.Refused++;
+                string F(float v) => v.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                s.Tries.Add($"{{\"result\":\"{result}\",\"height\":{F(vc.VaultingHeight)},\"depth\":{F(vc.VaultingLength)},\"why\":\"{why.Replace("\"", "'")}\"}}");
+                if (s.Tries.Count > 40)
+                    s.Tries.RemoveAt(0);
+                if (Time.time >= _nextWrite)
+                {
+                    _nextWrite = Time.time + 2f;
+                    WriteSpots();
+                }
+            }
+            catch (Exception e)
+            {
+                ZombiesDebug.Log($"[vault] record failed: {e.Message}");
+            }
+        }
+
+        private static void WriteSpots()
+        {
+            string F(float v) => v.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture);
+            var sb = new System.Text.StringBuilder();
+            sb.Append("{\"map\":\"").Append(Comfort.Common.Singleton<GameWorld>.Instance?.LocationId ?? "").Append("\",\"barricades\":[");
+            bool first = true;
+            foreach (Spot s in Spots.Values.OrderBy(x => x.Entry))
+            {
+                if (!first)
+                    sb.Append(',');
+                first = false;
+                sb.Append("{\"entry\":").Append(s.Entry)
+                  .Append(",\"at\":[").Append(F(s.At.x)).Append(',').Append(F(s.At.y)).Append(',').Append(F(s.At.z)).Append(']')
+                  .Append(",\"forward\":[").Append(F(s.Forward.x)).Append(',').Append(F(s.Forward.y)).Append(',').Append(F(s.Forward.z)).Append(']')
+                  .Append(",\"vaults\":").Append(s.Vaults).Append(",\"climbs\":").Append(s.Climbs).Append(",\"refused\":").Append(s.Refused)
+                  .Append(",\"tries\":[").Append(string.Join(",", s.Tries)).Append("]}");
+            }
+            sb.Append("]}");
+            string dir = System.IO.Path.Combine(ZombiesPlugin.Dir, "logs");
+            System.IO.Directory.CreateDirectory(dir);
+            System.IO.File.WriteAllText(System.IO.Path.Combine(dir, "vault_spots.json"), sb.ToString());
+        }
+
+        // EFT's vault context: is the body standing on the ground (its CanVaulting needs it)
+        private static bool Grounded(VaultingComponent vc)
+        {
+            try
+            {
+                return Traverse.Create(vc).Field("_vaultingContext").Property("IsGrounded").GetValue<bool>();
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
+        // Every input of EFT's vault decision (VaultingComponent.CanVaulting / GetVaultingStrategy), for the log
+        private static string Why(VaultingComponent vc)
+        {
+            try
+            {
+                Traverse ctx = Traverse.Create(vc).Field("_vaultingContext");
+                Traverse model = Traverse.Create(vc).Field("_vaultingModelDebug");
+                Traverse obstacle = model.Property("ObstacleCalculatorModel");
+                Traverse moves = model.Property("VaultingStatesModel");
+                bool vaultMove = moves.Property("VaultState").Method("CanMove").GetValue<bool>();
+                bool climbMove = moves.Property("ClimbState").Method("CanMove").GetValue<bool>();
+                bool stairs = model.Property("StairsCalculatorModel").Method("IsStairsCondition").GetValue<bool>();
+                return $"grounded {ctx.Property("IsGrounded").GetValue<bool>()}, moving {ctx.Property("MovementDirection").GetValue<Vector2>()}, " +
+                       $"sprinting {ctx.Property("IsSprintEnabled").GetValue<bool>()}, terrain {obstacle.Property("IsTerrain").GetValue<bool>()}, " +
+                       $"obstacle {vc.VaultingHeight:0.00} m high x {vc.VaultingLength:0.00} m deep, vault fits {vaultMove}, climb fits {climbMove}, stairs {stairs}";
+            }
+            catch (Exception e)
+            {
+                return "why unknown: " + e.Message;
+            }
         }
 
         private static bool SafeIsVaulting(VaultingComponent vc)

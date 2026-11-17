@@ -24,6 +24,9 @@ namespace KennerZombies
         private const string M1911 = "5e81c3cbac2bb513793cdc75";
         private static readonly string[] M203 = { "6357c98711fb55120211f7e1", "639c3fbbd0446708ee622ee9" };
 
+        // The M203's blast reach (m): further than the other shells' 7 m (user, 2026-11-13)
+        private const float UbglRadius = 9.5f;
+
         private static ConfigEntry<float> _wmNear, _wmPapNear, _ubglNear, _sallyNear, _far, _raySplash, _rayReach;
         private static bool _applying;
 
@@ -53,6 +56,33 @@ namespace KennerZombies
             harmony.Patch(m, postfix: new HarmonyMethod(typeof(ZombiesShells), nameof(Blast)));
         }
 
+        // A bigger-looking blast for the 40mm shells (War Machine and M203 only; user, 2026-11-13): EFT's effect can't be
+        // scaled, so extra silent grenade fireballs go off with it, one in the middle and a ring round it. On every game
+        // (this runs wherever the explosion runs); the sound and the damage are unchanged
+        private const string BlastEffect = "Grenade_new";
+        private const float BlastRing = 0.9f;
+
+        private static void BiggerBlast(Vector3 at)
+        {
+            try
+            {
+                if (!Singleton<Systems.Effects.Effects>.Instantiated)
+                    return;
+                var fx = Singleton<Systems.Effects.Effects>.Instance;
+                fx.EmitGrenade(BlastEffect, at + Vector3.up * 0.4f, Vector3.up, 0f);
+                float turn = Random.value * 360f;
+                for (int i = 0; i < 3; i++)
+                {
+                    Vector3 side = Quaternion.Euler(0f, turn + i * 120f, 0f) * Vector3.forward * BlastRing;
+                    fx.EmitGrenade(BlastEffect, at + side + Vector3.up * 0.2f, Vector3.up, 0f);
+                }
+            }
+            catch (System.Exception e)
+            {
+                ZombiesDebug.Log($"shell blast look: {e.Message}");
+            }
+        }
+
         /// <summary>A gun whose explosion hits are shell hits (EFT's own are dropped in a zombies match: ours land instead).</summary>
         public static bool IsShellGun(Item gun)
         {
@@ -78,6 +108,8 @@ namespace KennerZombies
                     return;
                 if (!ray && !IsShellGun(originalWeaponItem))
                     return;
+                // (The bigger-looking blast for War Machine / M203 shells is off: user, 2026-11-15, "way too dense and big".
+                // BiggerBlast is kept, not called)
                 GameWorld world = Singleton<GameWorld>.Instance;
                 Player me = world?.MainPlayer;
                 if (me == null || playerProfileIDWhoThrew != me.ProfileId)
@@ -123,6 +155,7 @@ namespace KennerZombies
                 else
                 {
                     near = _ubglNear?.Value ?? 600f;
+                    radius = UbglRadius;
                     what = "M203";
                 }
                 if (far < 0f)

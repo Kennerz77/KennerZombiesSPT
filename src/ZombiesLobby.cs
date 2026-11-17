@@ -217,7 +217,7 @@ namespace KennerZombies
             GUI.color = Color.white;
 
             float y = box.y + 20f * s;
-            GUI.Label(new Rect(box.x, y, w, 44f * s), "STRONGHOLD", _title);
+            GUI.Label(new Rect(box.x, y, w, 44f * s), MapTitle().ToUpperInvariant(), _title);
             y += 44f * s;
             GUI.Label(new Rect(box.x, y, w, 26f * s), $"ZOMBIES LOBBY  ·  {rows.Count + loading} / 4", _sub);
             y += 50f * s;
@@ -273,7 +273,21 @@ namespace KennerZombies
             }
             y += 62f * s;
             GUI.Label(new Rect(box.x + pad, y, w - 2f * pad, 40f * s),
-                CanStart ? "Friends join from Fika's raid list: ZOMBIES mode, Stronghold." : "Waiting for the host to start the match.", _hint);
+                CanStart ? $"Friends join from Fika's raid list: ZOMBIES mode, {MapTitle()}." : "Waiting for the host to start the match.", _hint);
+        }
+
+        private static string _titleFor, _title2;
+
+        // The match's own map (any zombies map, not only Stronghold), worked out once per map
+        private static string MapTitle()
+        {
+            string id = ZombiesMatch.LocationHere;
+            if (id != _titleFor)
+            {
+                _titleFor = id;
+                _title2 = ZombiesParty.MapName(id);
+            }
+            return _title2;
         }
     }
 }

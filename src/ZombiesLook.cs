@@ -19,10 +19,10 @@ namespace KennerZombies
     {
         private static ConfigEntry<float> _dingy, _fog;
 
-        // The camera's world fog (TOD_Scattering) the weather drives. CustomMapLoader keeps it at least the map's own
-        // density every frame (its WeatherFogDensityPatch: max(map's fog, weather's fog)), so the weather's fog could
-        // only thicken it, never thin it (the user, 2026-11-08: "fog does nothing, it's one fog setting"). Our own
-        // value is set after that each frame, in LateUpdate, without touching CustomMapLoader.
+        // The camera's world fog (TOD_Scattering) the weather drives. The map loader keeps it at least the map's own
+        // density every frame (MapLoader's WeatherFogDensityPatch, from CustomMapLoader: max(map's fog, weather's fog)),
+        // so the weather's fog could only thicken it, never thin it (the user, 2026-11-08: "fog does nothing, it's one fog
+        // setting"). Our own value is set after that each frame, in LateUpdate, leaving the loader's patch as it is.
         private static readonly AccessTools.FieldRef<WeatherController, TOD_Scattering> Scattering =
             AccessTools.FieldRefAccess<WeatherController, TOD_Scattering>("tod_Scattering_0");
 
@@ -64,7 +64,7 @@ namespace KennerZombies
         private static float _weatherFog;
         private static bool _hooked;
 
-        /// <summary>Our own hook on the weather's fog (after CustomMapLoader's, which stays as it is): what it asks for, kept.</summary>
+        /// <summary>Our own hook on the weather's fog (after the map loader's, which stays as it is): what it asks for, kept.</summary>
         public static void Patch(Harmony harmony)
         {
             if (_hooked)

@@ -28,8 +28,10 @@ namespace KennerZombies
                 "Guns that fire 3-round bursts in a zombies match (any part of the gun's name, comma separated). Every other gun fires full auto.");
             _single = config.Bind(section, "Single fire guns", "SA58",
                 "Guns that only fire single shots in a zombies match (any part of the gun's name, comma separated).");
-            _burst4 = config.Bind(section, "4-round burst guns", "Glock 18",
-                "Guns that fire 4-round bursts in a zombies match (any part of the gun's name, comma separated).");
+            // Was "4-round burst guns": the Glock 18C bursts 3 like the rest now (user, 2026-11-13); a new key, so an old
+            // saved list doesn't carry over
+            _burst4 = config.Bind(section, "Pistol burst guns", "Glock 18",
+                "Pistols that fire 3-round bursts in a zombies match, Pack-a-Punched or not (any part of the gun's name, comma separated).");
             _auto = config.Bind(section, "Full auto guns", "Saiga",
                 "Guns that fire full auto in a zombies match even without an auto mode of their own (any part of the name, comma separated).");
             _crosshair = config.Bind(section, "Crosshair", true, "A small crosshair in the middle of the screen in a zombies match (hidden while aiming).");
@@ -56,10 +58,7 @@ namespace KennerZombies
         {
             if (!ZombiesMatch.Active)
                 return;
-            if (__instance?.Item is Weapon gun && Named(gun, _burst4?.Value))
-                __result = 4;
-            else
-                __result = 3; // The original's 3-round bursts (the G36C's own is 2)
+            __result = 3; // The original's 3-round bursts (the G36C's own is 2; the Glock 18C's was 4)
         }
 
         /// <summary>Every half second: the player's guns on their mode.</summary>
@@ -101,7 +100,7 @@ namespace KennerZombies
             // The burst list wins over the table (the Glock 18: 3-round bursts, not single)
             if (IsBurst(gun))
                 want = Weapon.EFireMode.burst;
-            // The named lists win: single-only (SA-58), full auto by force (Saiga-12), 4-round bursts (Glock 18)
+            // The named lists win: single-only (SA-58), full auto by force (Saiga-12), pistol bursts (Glock 18)
             // Full auto by force on a gun EFT only lets fire single (the Saiga-12): EFT's auto mode made it rack over and
             // over, so it stays single and holding the trigger re-pulls it at its fire rate (Tick)
             if (Named(gun, _auto?.Value))
@@ -170,7 +169,10 @@ namespace KennerZombies
             if (_crosshair != null && !_crosshair.Value || me == null || ZombiesPause.Paused || MapEditor.IsOpen)
                 return;
             float cook = ZombiesQuickGrenade.CookStarted;
-            if (cook < 0f && me.ProceduralWeaponAnimation != null && me.ProceduralWeaponAnimation.IsAiming)
+            // Aiming hides it, except with an underbarrel launcher up (the PaP'd M16's M203 has no sight of its own:
+            // user, 2026-11-13 "give it a crosshair")
+            if (cook < 0f && me.ProceduralWeaponAnimation != null && me.ProceduralWeaponAnimation.IsAiming
+                && !(me.HandsController is Player.FirearmController lfc && ZombiesAmmo.SafeLauncherMode(lfc)))
                 return;
             if (_white == null)
             {

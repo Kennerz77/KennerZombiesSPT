@@ -218,6 +218,12 @@ namespace KennerZombies
         }
 
         // Perk Beverages' perks cleared too (down)
+        /// <summary>
+        /// The game over: Perk Beverages' perk icons off the screen (user, 2026-11-11: still drawn on the game over after
+        /// getting out through the exfil). Its HUD only draws the perks it holds, so they're cleared there; the match is over.
+        /// </summary>
+        public static void HideBeverageIcons() => ClearBeverages();
+
         private static void ClearBeverages()
         {
             Look();
@@ -413,6 +419,8 @@ namespace KennerZombies
 
         // RSh-12 up again (user, 2026-11-10: "needs to be much higher": was 2.4, x2.76 with the base)
         private const float LauncherReloadBoost = 2f, RevolverReloadBoost = 3.4f;
+        // The PaP'd M16's M203: quicker again than the War Machine (user, 2026-11-13; was 2 like it)
+        private const float UbglReloadBoost = 3f;
 
         // The UMP 45's reload, quicker (user, 2026-11-10)
         private const string UmpId = "5fc3e272f8b6a877a729eac5";
@@ -433,7 +441,7 @@ namespace KennerZombies
                 try
                 {
                     if (fc.IsInLauncherMode())
-                        return LauncherReloadBoost;
+                        return UbglReloadBoost;
                 }
                 catch
                 {
@@ -546,9 +554,25 @@ namespace KennerZombies
             // (user, 2026-11-09). EFT times the cock-and-fire cycle from the fire rate
             if (__instance.WeapClass == "revolver" || __instance.GetCurrentMagazine() is CylinderMagazine && __instance.WeapClass != "grenadeLauncher")
                 __result = Mathf.RoundToInt(__result * RevolverFireRate);
+            // The MP40: way slower in zombies, hitting much harder to make up for it (ZombiesHealth; user, 2026-11-17)
+            if (__instance.TemplateId.ToString() == ZombiesHealth.Mp40Id)
+                __result = Mathf.Max(1, Mathf.RoundToInt(__result * Mp40ZombiesRate));
             if (Has("dtap"))
-                __result = Mathf.RoundToInt(__result * DoubleTapRate);
+                __result = Mathf.RoundToInt(__result * DoubleTapRateFor(__instance.TemplateId.ToString()));
         }
+
+        // The MP40's fire rate in zombies, of its own 517 a minute (about 310)
+        private const float Mp40ZombiesRate = 0.6f;
+
+        // Guns Double Tap speeds up less than the rest (template -> fire rate x). The PPSh-41 already fires about
+        // 1,000 rounds a minute and was a menace with the full third (user, 2026-11-12)
+        private static readonly Dictionary<string, float> DoubleTapRateCap = new Dictionary<string, float>
+        {
+            { "5ea03f7400685063ec28bfa8", 1.1f }, // PPSh-41
+        };
+
+        private static float DoubleTapRateFor(string template) =>
+            template != null && DoubleTapRateCap.TryGetValue(template, out float rate) ? rate : DoubleTapRate;
 
         private const float RevolverFireRate = 2.2f;
 

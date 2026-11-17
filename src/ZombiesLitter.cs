@@ -143,6 +143,110 @@ namespace KennerZombies
             }
             if (models + bodies > 0)
                 ZombiesPlugin.Log.LogInfo($"Zombies: round start cleared {bodies} bodies and {models} dropped things");
+            ClearDecals();
+            if (CleanMemory)
+                ZombiesPlugin.Instance.StartCoroutine(CollectSoon());
+        }
+
+        // ---------- Blood and memory at the round change (user, 2026-11-16) ----------
+
+        /// <summary>
+        /// The game's blood and bullet-hole marks (the headshot gore's splatter among them) wiped, as the bodies are: they
+        /// never went (the game keeps its last 500 each). The map's own painted decals are a different renderer, untouched.
+        /// </summary>
+        private static void ClearDecals()
+        {
+            try
+            {
+                var renderer = Singleton<Systems.Effects.Effects>.Instance?.DeferredDecals;
+                if (renderer == null)
+                    return;
+                renderer.Clear();
+                // Its cameras redraw the (now empty) marks
+                if (HarmonyLib.AccessTools.Field(renderer.GetType(), "_cameras")?.GetValue(renderer) is System.Collections.IDictionary cams)
+                    foreach (object data in cams.Values)
+                        HarmonyLib.AccessTools.Field(data.GetType(), "IsStaticBufferDirty")?.SetValue(data, true);
+            }
+            catch (System.Exception e)
+            {
+                ZombiesPlugin.Log.LogWarning($"Zombies: blood marks not cleared ({e.Message})");
+            }
+        }
+
+        /// <summary>
+        /// The game turns its garbage collection off for a raid and cleans up only now and then; a zombies match runs far
+        /// longer than a raid, and its heap grew about a gigabyte a round (20 GB by round 18) with frame hitches growing in
+        /// step from about round 8. Once each round change (no zombies alive, the bodies just cleared) the game's own clean-up
+        /// is run: a short pause there instead of the slow build-up.
+        /// </summary>
+        public static bool CleanMemory = true;
+
+        // Rounds since the last full clean (when the game can't clean in slices)
+        private static int _roundsSinceFull;
+
+        private static System.Collections.IEnumerator CollectSoon()
+        {
+            // The cleared bodies and models are destroyed at the end of the frame: a moment for that first
+            yield return new WaitForSeconds(0.5f);
+            float started = Time.realtimeSinceStartup;
+            long before = System.GC.GetTotalMemory(false);
+            // In slices of 2 ms a frame over the round break, not one blocking clean (user, 2026-11-17: "massive pauses on
+            // round changes", the full clean took over a second). Manual mode lets these calls run while automatic
+            // collection stays off as the game wants it
+            if (UnityEngine.Scripting.GarbageCollector.isIncremental)
+            {
+                var mode = UnityEngine.Scripting.GarbageCollector.GCMode;
+                int frames = 0;
+                try
+                {
+                    if (mode == UnityEngine.Scripting.GarbageCollector.Mode.Disabled)
+                        UnityEngine.Scripting.GarbageCollector.GCMode = UnityEngine.Scripting.GarbageCollector.Mode.Manual;
+                }
+                catch (System.Exception e)
+                {
+                    ZombiesPlugin.Log.LogWarning($"Zombies: memory clean-up skipped ({e.Message})");
+                    yield break;
+                }
+                // At most 20 s of slices, and stopped if the match ends
+                while (ZombiesMatch.Active && Time.realtimeSinceStartup - started < 20f)
+                {
+                    bool more;
+                    try
+                    {
+                        more = UnityEngine.Scripting.GarbageCollector.CollectIncremental(2_000_000UL);
+                    }
+                    catch
+                    {
+                        more = false;
+                    }
+                    frames++;
+                    if (!more)
+                        break;
+                    yield return null;
+                }
+                try
+                {
+                    UnityEngine.Scripting.GarbageCollector.GCMode = mode;
+                }
+                catch
+                {
+                }
+                ZombiesPlugin.Log.LogInfo($"Zombies: memory cleaned in slices at the round change: heap {before / (1024 * 1024)} -> {System.GC.GetTotalMemory(false) / (1024 * 1024)} MB over {frames} frames ({(Time.realtimeSinceStartup - started):0.0} s)");
+                yield break;
+            }
+            // No slices in this build: one full clean every third round (each is a pause)
+            if (++_roundsSinceFull < 3)
+                yield break;
+            _roundsSinceFull = 0;
+            try
+            {
+                float freed = InGameMemoryManagement.Collect(force: true);
+                ZombiesPlugin.Log.LogInfo($"Zombies: memory cleaned at the round change (full, incremental collection not available): heap was {before / (1024 * 1024)} MB, {(Time.realtimeSinceStartup - started) * 1000f:0} ms");
+            }
+            catch (System.Exception e)
+            {
+                ZombiesPlugin.Log.LogWarning($"Zombies: memory clean-up skipped ({e.Message})");
+            }
         }
 
         // ---------- Body piles (user, 2026-11-09): bodies don't wait for the round's end ----------

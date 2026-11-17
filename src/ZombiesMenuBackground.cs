@@ -12,8 +12,7 @@ namespace KennerZombies
     /// A moving background behind the main menu in zombies mode (user, 2026-11-09): a video looping silently, full
     /// screen and cropped to fill it, under every menu button (first child of the menu's own canvas, over EFT's 3D
     /// scene). It fades in with zombies mode and pauses when hidden. The video ships with the mod:
-    /// plugins\Kennerz_ZM_Core\menu\zm_menu_bg.webm (from data\menu; BSG's own Halloween 2026 menu loop, found in a
-    /// Wallpaper Engine wallpaper, "Parallax Halloween | Escape from Tarkov"); none there = EFT's own menu as before.
+    /// plugins\Kennerz_ZM_Core\menu\zm_menu_bg.webm (from data\menu); none there = the game's own menu as before.
     /// </summary>
     internal class ZombiesMenuBackground : MonoBehaviour
     {

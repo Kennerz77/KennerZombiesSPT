@@ -120,6 +120,8 @@ namespace KennerZombies
         {
             // The easter egg song stops: the game over plays its own (user, 2026-11-10)
             ZombiesRock.StopSong();
+            // No perk icons over the game over (an exfiled player still held theirs)
+            ZombiesPerks.HideBeverageIcons();
             _player = me;
             _why = why;
             _started = Time.realtimeSinceStartup;

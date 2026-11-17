@@ -36,7 +36,7 @@ namespace KennerZombies
         private static TMP_FontAsset _regular, _bold;
         private static bool _fontsLogged;
 
-        /// <summary>The font for a text: EFT's own Bender (user, 2026-11-11: "use Tarkov's fonts"); bold ones in its bold style.</summary>
+        /// <summary>The font for a text: EFT's own Bender (user, 2026-11-11: "use the game's fonts"); bold ones in its bold style.</summary>
         public static TMP_FontAsset Font(bool bold)
         {
             if (_regular == null || _bold == null)
@@ -69,6 +69,39 @@ namespace KennerZombies
             {
                 ZombiesPlugin.Log.LogWarning($"Zombies menus: EFT's fonts weren't found ({e.Message})");
             }
+        }
+
+        // Crisper text (user, 2026-11-12): the same font, size and weight, with the SDF shader's edge sharpness raised a
+        // little so small text ("Offline", "Nobody") isn't soft on 1440p / 4K screens. A copy of the font's material:
+        // EFT's own menus keep theirs. Skipped if the shader has no sharpness setting.
+        private const float TextSharpness = 0.25f;
+        private static readonly Dictionary<TMP_FontAsset, Material> SharpMaterials = new Dictionary<TMP_FontAsset, Material>();
+
+        private static Material SharpMaterial(TMP_FontAsset font)
+        {
+            if (font == null || font.material == null)
+                return null;
+            if (SharpMaterials.TryGetValue(font, out Material m))
+                return m;
+            m = null;
+            try
+            {
+                if (font.material.HasProperty("_Sharpness"))
+                {
+                    m = new Material(font.material) { name = font.material.name + " (KennerZombies sharp)", hideFlags = HideFlags.HideAndDontSave };
+                    m.SetFloat("_Sharpness", Mathf.Clamp(font.material.GetFloat("_Sharpness") + TextSharpness, -1f, 1f));
+                    ZombiesPlugin.Log.LogInfo($"Zombies menus: text sharpness {m.GetFloat("_Sharpness"):0.00} on {font.name} ({font.material.shader?.name})");
+                }
+                else
+                    ZombiesPlugin.Log.LogInfo($"Zombies menus: {font.name}'s shader ({font.material.shader?.name}) has no sharpness setting: text left as it is");
+            }
+            catch (Exception e)
+            {
+                ZombiesPlugin.Log.LogWarning($"Zombies menus: sharper text skipped ({e.Message})");
+                m = null;
+            }
+            SharpMaterials[font] = m;
+            return m;
         }
 
         /// <summary>No font of our own any more: the menus use EFT's (kept so callers read the same).</summary>
@@ -115,12 +148,27 @@ namespace KennerZombies
             return outside + Mathf.Min(Mathf.Max(qx, qy), 0f) - r;
         }
 
-        private static Texture2D NewTex(int w, int h, string name, bool repeat = false) =>
-            new Texture2D(w, h, TextureFormat.RGBA32, false)
+        private static Texture2D NewTex(int w, int h, string name, bool repeat = false, bool mips = false) =>
+            new Texture2D(w, h, TextureFormat.RGBA32, mips)
             {
                 name = "KennerZombies " + name, wrapMode = repeat ? TextureWrapMode.Repeat : TextureWrapMode.Clamp,
-                filterMode = FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave,
+                filterMode = mips ? FilterMode.Trilinear : FilterMode.Bilinear, hideFlags = HideFlags.HideAndDontSave,
             };
+
+        // ---------- Sharper menus (user, 2026-11-12: "nicer textures on the backgrounds", nothing else changed) ----------
+        // The menus are laid out for 1080p and scaled up on bigger screens (1.33x at 1440p, 2x at 4K), and a 9-sliced
+        // panel stretches the middle of its texture over the whole panel: the old 64 px glass stretched its grain into
+        // soft blotches and its corners went soft. Now every glass panel is drawn 4x finer for the uGUI menus (with
+        // mipmaps, so 1080p looks as before) and with a far bigger middle, so the grain stays fine film grain. Same
+        // colours, corners, edges and sizes on screen: only sharper. IMGUI draws a 9-slice border in screen pixels, so
+        // IMGUI (HUD, scoreboard, report, settings pages) gets its own twin at the old pixel scale but with the bigger
+        // middle; Tex / Border / Style hand that twin out.
+        private const int Fine = 4;          // texels per 1080p pixel in the menus' glass
+        private const int GlassSize = 128;   // glass texture size in 1080p pixels (was 64): a bigger stretch-free middle
+        private const int ImguiGlassSize = 256;
+        private static readonly Dictionary<Sprite, Sprite> ImguiTwin = new Dictionary<Sprite, Sprite>();
+
+        private static Sprite ForImgui(Sprite s) => s != null && ImguiTwin.TryGetValue(s, out Sprite twin) && twin != null ? twin : s;
 
         private static float Grain(int x, int y, int seed)
         {
@@ -141,30 +189,41 @@ namespace KennerZombies
             string key = $"glass {top} {bottom} {edge} {r} {topLight} {grain}";
             return Cached(key, () =>
             {
-                const int n = 64;
-                Texture2D tex = NewTex(n, n, "glass");
-                var px = new Color[n * n];
-                for (int y = 0; y < n; y++)
-                    for (int x = 0; x < n; x++)
-                    {
-                        float d = RoundDist(x + 0.5f, y + 0.5f, n, n, r);
-                        float inside = Mathf.Clamp01(0.5f - d);
-                        Color c = Color.Lerp(bottom, top, y / (n - 1f));
-                        // edge: 1 px band at the outline
-                        float e = Mathf.Clamp01(1f - Mathf.Abs(d + 1f));
-                        c = Color.Lerp(c, new Color(edge.r, edge.g, edge.b, Mathf.Max(c.a, edge.a)), e * edge.a);
-                        // the top light just inside the top edge
-                        if (y >= n - 3 && d < -1.5f)
-                            c = new Color(Mathf.Min(1f, c.r + topLight), Mathf.Min(1f, c.g + topLight), Mathf.Min(1f, c.b + topLight), c.a);
-                        float g = (Grain(x, y, 7) - 0.5f) * grain;
-                        c = new Color(Mathf.Clamp01(c.r + g), Mathf.Clamp01(c.g + g), Mathf.Clamp01(c.b + g), c.a * inside);
-                        px[y * n + x] = c;
-                    }
-                tex.SetPixels(px);
-                tex.Apply();
-                float b = Mathf.Max(r + 2f, 10f);
-                return Sprite.Create(tex, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect, new Vector4(b, b, b, b));
+                Sprite fine = MakeGlass(top, bottom, edge, r, topLight, grain, GlassSize, Fine);
+                ImguiTwin[fine] = MakeGlass(top, bottom, edge, r, topLight, grain, ImguiGlassSize, 1);
+                return fine;
             });
+        }
+
+        // One glass texture: size in 1080p pixels, k texels per pixel. At k = 1 and size 64 this is exactly the old one;
+        // every shape (corner radius, the 1 px edge band, the 3 px top light) is measured in 1080p pixels, only drawn finer
+        private static Sprite MakeGlass(Color top, Color bottom, Color edge, float r, float topLight, float grain, int size, int k)
+        {
+            int n = size * k;
+            Texture2D tex = NewTex(n, n, k > 1 ? "glass fine" : "glass", false, k > 1);
+            var px = new Color[n * n];
+            for (int y = 0; y < n; y++)
+                for (int x = 0; x < n; x++)
+                {
+                    // In 1080p pixels: distance to the outline (negative inside)
+                    float d = RoundDist((x + 0.5f) / k, (y + 0.5f) / k, size, size, r);
+                    // Anti-aliased over one texel (at k = 1: the old 0.5 - d)
+                    float inside = Mathf.Clamp01((0.5f - d) * k);
+                    Color c = Color.Lerp(bottom, top, y / (n - 1f));
+                    // edge: 1 px band at the outline (at k = 1: the old 1 - |d + 1|)
+                    float e = Mathf.Clamp01((0.5f - Mathf.Abs(d + 1f)) * k + 0.5f);
+                    c = Color.Lerp(c, new Color(edge.r, edge.g, edge.b, Mathf.Max(c.a, edge.a)), e * edge.a);
+                    // the top light just inside the top edge (its top 3 px)
+                    if (y >= n - 3 * k && d < -1.5f)
+                        c = new Color(Mathf.Min(1f, c.r + topLight), Mathf.Min(1f, c.g + topLight), Mathf.Min(1f, c.b + topLight), c.a);
+                    float g = (Grain(x, y, 7) - 0.5f) * grain;
+                    c = new Color(Mathf.Clamp01(c.r + g), Mathf.Clamp01(c.g + g), Mathf.Clamp01(c.b + g), c.a * inside);
+                    px[y * n + x] = c;
+                }
+            tex.SetPixels(px);
+            tex.Apply(k > 1, false);
+            float b = Mathf.Max(r + 2f, 10f) * k;
+            return Sprite.Create(tex, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f * k, 0, SpriteMeshType.FullRect, new Vector4(b, b, b, b));
         }
 
         /// <summary>The standard panel: smoked glass, near black with a little warmth.</summary>
@@ -235,24 +294,26 @@ namespace KennerZombies
         /// <summary>An anti-aliased disc with a faint glow ring (ready lights).</summary>
         public static Sprite Dot => Cached("dot", () =>
         {
-            const int n = 48;
-            Texture2D tex = NewTex(n, n, "dot");
+            // Drawn 4x finer (same size on screen); measured in the old 48 px dot's pixels
+            const int size = 48, k = Fine, n = size * k;
+            Texture2D tex = NewTex(n, n, "dot", false, true);
             var px = new Color[n * n];
-            float c = (n - 1) / 2f;
+            float c = (size - 1) / 2f;
             for (int y = 0; y < n; y++)
                 for (int x = 0; x < n; x++)
                 {
-                    float d = new Vector2(x - c, y - c).magnitude;
-                    float core = Mathf.Clamp01(11f - d);
+                    float fx = (x + 0.5f) / k - 0.5f, fy = (y + 0.5f) / k - 0.5f;
+                    float d = new Vector2(fx - c, fy - c).magnitude;
+                    float core = Mathf.Clamp01((11f - d) * k * 0.5f + 0.5f);
                     float glow = Mathf.Clamp01(1f - (d - 10f) / 13f) * 0.35f;
-                    float shine = Mathf.Clamp01(1f - new Vector2(x - c + 3f, y - c - 4f).magnitude / 6f) * 0.5f;
+                    float shine = Mathf.Clamp01(1f - new Vector2(fx - c + 3f, fy - c - 4f).magnitude / 6f) * 0.5f;
                     float a = Mathf.Max(core, glow);
                     float v = 0.8f + shine * core;
                     px[y * n + x] = new Color(Mathf.Min(1f, v), Mathf.Min(1f, v), Mathf.Min(1f, v), a);
                 }
             tex.SetPixels(px);
-            tex.Apply();
-            return Sprite.Create(tex, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f);
+            tex.Apply(true, false);
+            return Sprite.Create(tex, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), 100f * k);
         });
 
         /// <summary>A line fading out at both ends (dividers under headings).</summary>
@@ -367,7 +428,12 @@ namespace KennerZombies
             TextMeshProUGUI t = rt.gameObject.AddComponent<TextMeshProUGUI>();
             TMP_FontAsset f = Font(bold);
             if (f != null)
+            {
                 t.font = f;
+                Material sharp = SharpMaterial(f);
+                if (sharp != null)
+                    t.fontSharedMaterial = sharp;
+            }
             t.text = text ?? "";
             t.fontSize = size;
             t.color = color;
@@ -469,10 +535,11 @@ namespace KennerZombies
         private static readonly Dictionary<string, Texture2D> ImguiTex = new Dictionary<string, Texture2D>();
 
         /// <summary>A sprite's texture for a GUIStyle (with Border() as its 9-slice border).</summary>
-        public static Texture2D Tex(Sprite s) => s != null ? s.texture : Texture2D.whiteTexture;
+        // IMGUI's texture and 9-slice border for a sprite (a glass panel's IMGUI twin: see "Sharper menus")
+        public static Texture2D Tex(Sprite s) => (s = ForImgui(s)) != null ? s.texture : Texture2D.whiteTexture;
 
         public static RectOffset Border(Sprite s) =>
-            s == null ? new RectOffset() : new RectOffset((int)s.border.x, (int)s.border.z, (int)s.border.w, (int)s.border.y);
+            (s = ForImgui(s)) == null ? new RectOffset() : new RectOffset((int)s.border.x, (int)s.border.z, (int)s.border.w, (int)s.border.y);
 
         /// <summary>A rounded button face of one flat colour (IMGUI hover / active states).</summary>
         public static Sprite Flat(Color top, Color bottom, float r = 5f) => Glass(top, bottom, new Color(1f, 1f, 1f, 0.18f), r, 0.10f);

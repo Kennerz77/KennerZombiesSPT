@@ -34,6 +34,8 @@ namespace KennerZombies
 
         /// <summary>Whether it's for a match: copied map props then keep their own colliders (solid as on the map).</summary>
         private bool _forMatch;
+        // A map prop still being looked for (SceneLater): in a match its stand-in box is never shown
+        private bool _waitingScene;
 
         /// <summary>True when a copied map prop kept its own colliders (a match needs no box round it then).</summary>
         public bool HasOwnColliders { get; private set; }
@@ -64,7 +66,7 @@ namespace KennerZombies
                     break;
                 case MapEditor.Kind.Door:
                     GameObject door = ZombiesAssets.Model("zm_door_" + Entry.What);
-                    // Not one of our looks: a Tarkov door of the map, by its name (the Unity Placer keeps a template copy)
+                    // Not one of our looks: a door of the map, by its name (the Unity Placer keeps a template copy)
                     if (door == null && !string.IsNullOrEmpty(Entry.What))
                     {
                         SceneProp(AssetCatalog.SceneTemplate(Entry.What));
@@ -124,7 +126,10 @@ namespace KennerZombies
                         if (found != null)
                             SceneProp(found);
                         else
+                        {
+                            _waitingScene = true;
                             StartCoroutine(SceneLater(propName)); // its part of the map may still be loading
+                        }
                     }
                     else if (Entry.What != null && Entry.What.StartsWith(AssetCatalog.ItemPrefix))
                         StartCoroutine(ItemProp(Entry.What.Substring(AssetCatalog.ItemPrefix.Length)));
@@ -134,6 +139,14 @@ namespace KennerZombies
                 MakeBox();
             Apply();
             if (_forMatch && Entry.Type == MapEditor.Kind.Lightning)
+                ShowBox(false);
+            // A power light or lamp whose fixture isn't on the map (or none named): only its light in a match, no stand-in box
+            // (maps made with the Map Kit may give a light no fixture)
+            if (_forMatch && (Entry.Type == MapEditor.Kind.PowerLight || Entry.Type == MapEditor.Kind.Lamp) && _model == null)
+                ShowBox(false);
+            // Players never see the stand-in box of a map prop that isn't found (user, 2026-11-11: a blue cube on
+            // Stronghold from an old F8 fence copy): hidden while it's looked for, removed if it never turns up
+            if (_forMatch && _waitingScene)
                 ShowBox(false);
         }
 
@@ -481,7 +494,15 @@ namespace KennerZombies
                 if (found == null)
                     continue;
                 ZombiesPlugin.Log.LogInfo($"Map prop '{propName}' found after {(i + 1) * 2} s");
+                _waitingScene = false;
                 SceneProp(found);
+                yield break;
+            }
+            if (_forMatch)
+            {
+                // In a match: gone altogether (no box, no invisible solid, no hole cut in the navmesh)
+                ZombiesPlugin.Log.LogWarning($"Map prop '{propName}' isn't on this map (or couldn't be found): left out of the match");
+                Destroy(gameObject);
                 yield break;
             }
             SceneProp(null);

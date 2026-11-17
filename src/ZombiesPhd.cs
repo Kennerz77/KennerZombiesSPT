@@ -23,7 +23,7 @@ namespace KennerZombies
         public static bool Has => ZombiesMatch.Active && ZombiesPerks.Has("phd");
 
         /// <summary>One of your own blasts went off at a place: without PHD and close enough, it slaps you.</summary>
-        public static void SelfBlast(Player me, Vector3 at, string what)
+        public static void SelfBlast(Player me, Vector3 at, string what, bool raygun = false)
         {
             if (!ZombiesMatch.Active || me == null || Has || Time.time - _lastSelf < 0.5f)
                 return;
@@ -33,6 +33,14 @@ namespace KennerZombies
             _lastSelf = Time.time;
             // The original: right on top of your own blast it downs you without Jugger-Nog (two hits), further off it's one
             float d = Vector3.Distance(at, chest);
+            // Your own Ray Gun bolt: half a slap each, however close (user, 2026-11-15)
+            if (raygun)
+            {
+                ZombiesPlugin.Log.LogInfo($"Zombies: hurt by your own Ray Gun bolt at {d:0.0} m (half a slap, no PHD Flopper)");
+                if (ZombiesDebug.NoSlaps?.Value != true)
+                    ZombiesSlaps.Hit(me, false, 0.5f);
+                return;
+            }
             int hits = d <= SelfClose ? 2 : 1;
             ZombiesPlugin.Log.LogInfo($"Zombies: hurt by your own {what} at {d:0.0} m ({hits} hit{(hits > 1 ? "s" : "")}, no PHD Flopper)");
             // The second goes in at once (a slap's own gap would swallow it); F12's god mode still stops both

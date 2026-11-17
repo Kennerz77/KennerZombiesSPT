@@ -101,9 +101,12 @@ namespace KennerZombies
                 new AcceptableValueRange<int>(5, 100)));
             Toughness = config.Bind(section, "Zombie toughness x", 1f, new ConfigDescription(
                 "On top of the health per round (150 at round 1, +100 a round to 9, then 10% more each round).", new AcceptableValueRange<float>(0.1f, 5f)));
-            WaddleRounds = config.Bind(section, "Waddle rounds", 5, new ConfigDescription(
+            // User, 2026-11-15: "by round 4 or 5 zombies should be moving a bit quicker": 3 slow rounds (was 5) and
+            // +0.035 a round after (was 0.02: round 6 was barely faster than round 1). Keys renamed so saved values don't hold
+            // the old ones (round 5 now ~1.7x round 1's walk, round 10 ~3.5x)
+            WaddleRounds = config.Bind(section, "Slow walker rounds", 3, new ConfigDescription(
                 "Rounds of nothing but slow walkers before they start speeding up.", new AcceptableValueRange<int>(1, 30)));
-            SpeedUp = config.Bind(section, "Speed-up per round", 0.02f, new ConfigDescription(
+            SpeedUp = config.Bind(section, "Speed-up each round", 0.035f, new ConfigDescription(
                 "How much faster (0-1 of EFT's walk) zombies get each round after the waddle.", new AcceptableValueRange<float>(0f, 0.2f)));
             SprintersFrom = config.Bind(section, "Sprinters from round", 18, new ConfigDescription(
                 "The round some zombies start sprinting (the later rounds).", new AcceptableValueRange<int>(2, 60)));
@@ -137,6 +140,8 @@ namespace KennerZombies
             foreach (BotOwner z in Alive.Keys.ToList())
                 Despawn(z);
             Alive.Clear();
+            ZombiesOnlyOurs.Reset();
+            ZombiesZombieVox.Reset();
             FeedRoute.Clear();
             ZombiesTrails.Clear();
             ClimbFree.Clear();
@@ -151,9 +156,11 @@ namespace KennerZombies
             NextThrow.Clear();
             NextThrowAt.Clear();
             Pace.Clear();
+            ZombiesCrawlers.Clear();
             Rising.Clear();
             Busy.Clear();
             HeldUntil.Clear();
+            ZombiesShock.Clear();
             Feeds.Clear();
             LoggedWeapons.Clear();
             Progress.Clear();
@@ -196,15 +203,24 @@ namespace KennerZombies
             if (ZombiesExfil.Swarming && ZombiesExfil.SwarmSprint)
                 return 1.4f;
             float walk = WalkSpeed?.Value ?? 0.1f;
-            int waddle = WaddleRounds?.Value ?? 5;
+            int waddle = WaddleRounds?.Value ?? 3;
             int r = Hard(Round); // held at "Hardest round"
             float spread = UnityEngine.Random.Range(0.93f, 1.07f);
             if (r <= waddle)
                 return walk * spread;
-            float pace = Mathf.Min(1f, (walk + (r - waddle) * (SpeedUp?.Value ?? 0.02f)) * spread);
+            float pace = Mathf.Min(1f, (walk + (r - waddle) * (SpeedUp?.Value ?? 0.035f)) * spread);
             if (r >= (SprintersFrom?.Value ?? 18) && UnityEngine.Random.value < Mathf.Min(0.5f, 0.15f + (r - (SprintersFrom?.Value ?? 18)) * 0.03f))
                 return 1.4f;
             return pace;
+        }
+
+        /// <summary>A crawler (ZombiesCrawlers) drags itself on: a share of a walker's pace, never sprinting.</summary>
+        internal static void Crawl(BotOwner z)
+        {
+            if (z == null)
+                return;
+            float crawl = (WalkSpeed?.Value ?? 0.131f) * ZombiesCrawlers.SpeedOfWalker;
+            Pace[z] = Pace.TryGetValue(z, out float now) ? Mathf.Min(Mathf.Min(1f, now), crawl) : crawl;
         }
 
         // EFT's infected brain sets its own speed and sprints every frame (a walker ran): our zombies keep their pace
@@ -322,6 +338,23 @@ namespace KennerZombies
                 return 1f;
             }
             return since / PaceEaseIn;
+        }
+
+        /// <summary>Held where it stands this long (a shocked zombie: ZombiesShock).</summary>
+        internal static void HoldFor(BotOwner z, float seconds) => Hold(z, seconds);
+
+        /// <summary>Busy this long (no swings, no throws), unless it already was (that one ends itself).</summary>
+        internal static void BusyFor(BotOwner z, float seconds)
+        {
+            if (z == null || !Busy.Add(z))
+                return;
+            ZombiesPlugin.Instance.StartCoroutine(Unbusy(z, seconds));
+        }
+
+        private static System.Collections.IEnumerator Unbusy(BotOwner z, float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            Busy.Remove(z);
         }
 
         private static void Hold(BotOwner z, float seconds)
@@ -525,7 +558,9 @@ namespace KennerZombies
         private static readonly Dictionary<string, float> StraySeen = new Dictionary<string, float>();
 
         // EFT's own bot spawning (scavs, raiders...) finds the map's bot zone and fills it; on a zombies map only our
-        // infected belong: any other bot is taken off the map as soon as it shows up
+        // infected belong: any other bot is taken off the map as soon as it shows up. Since 2026-11-12 (user: strictly the
+        // players and our zombies) that's every AI the core didn't spawn itself, other mods' squads, dogs and bosses too,
+        // and an infected-role bot someone else made (ZombiesOnlyOurs refuses most of them before they're even made)
         private static void RemoveStrays()
         {
             GameWorld world = Singleton<GameWorld>.Instance;
@@ -534,7 +569,7 @@ namespace KennerZombies
             foreach (Player p in world.AllAlivePlayersList.Where(x => x != null && x.IsAI).ToList())
             {
                 string role = p.Profile?.Info?.Settings?.Role.ToString() ?? "";
-                if (role.StartsWith("infected", StringComparison.OrdinalIgnoreCase))
+                if (ZombiesOnlyOurs.IsOurs(p))
                     continue;
                 BotOwner bot = p.AIData?.BotOwner;
                 // Not the moment it shows up: taken off right after spawning, it was still in EFT's waiting list of new
@@ -549,7 +584,10 @@ namespace KennerZombies
                 if (Time.time - seen < 4f || (bot != null && bot.BotState != EBotState.Active))
                     continue;
                 StraySeen.Remove(p.ProfileId);
-                ZombiesPlugin.Log.LogInfo($"Zombies rounds: a {role} bot isn't a zombie: taken off the map");
+                // Made, then turned into ours by its spawn callback in the meantime: one of ours after all
+                if (ZombiesOnlyOurs.IsOurs(p))
+                    continue;
+                ZombiesPlugin.Log.LogInfo($"Zombies rounds: a {role} bot isn't one of our zombies: taken off the map");
                 try
                 {
                     if (bot != null)
@@ -714,7 +752,31 @@ namespace KennerZombies
                 .Select(kv => kv.Key).OrderBy(o => o.Id).ToList();
             int k = Mathf.Max(0, queue.IndexOf(z));
             float side = (k % 3 - 1) * 0.65f, back = 0.8f + (k / 3) * 0.9f;
-            return OutsideGround(b, b.transform.position + b.transform.forward * back + b.transform.right * side);
+            // A spot in the queue is only one a zombie can stand on and walk to from the window's own outside spot
+            // (user's log, 2026-11-13: the upstairs window #8's back rows were off its ledge, in mid-air, so "no path",
+            // and those zombies walked straight at a spot over the yard and stood under it for good). Off the ledge:
+            // pulled in towards the window row by row; nothing fits: the window's outside spot itself
+            Vector3 front = OutsidePoint(b);
+            for (float b2 = back; b2 >= 0.8f - 0.01f; b2 -= 0.9f)
+                foreach (float s2 in side == 0f ? new[] { 0f } : new[] { side, 0f })
+                {
+                    Vector3 spot = OutsideGround(b, b.transform.position + b.transform.forward * b2 + b.transform.right * s2);
+                    if (QueueSpotOk(front, spot, out Vector3 onMesh))
+                        return onMesh;
+                }
+            return front;
+        }
+
+        private static bool QueueSpotOk(Vector3 front, Vector3 spot, out Vector3 onMesh)
+        {
+            onMesh = spot;
+            if (!UnityEngine.AI.NavMesh.SamplePosition(spot, out UnityEngine.AI.NavMeshHit hit, 0.6f, UnityEngine.AI.NavMesh.AllAreas)
+                || Mathf.Abs(hit.position.y - front.y) > 1.2f)
+                return false;
+            if (!UnityEngine.AI.NavMesh.SamplePosition(front, out UnityEngine.AI.NavMeshHit f, 1f, UnityEngine.AI.NavMesh.AllAreas))
+                return true; // the window's own spot is off the navmesh too: nothing to check against
+            onMesh = hit.position;
+            return !UnityEngine.AI.NavMesh.Raycast(f.position, hit.position, out _, UnityEngine.AI.NavMesh.AllAreas);
         }
 
         // ---------- Which window a spawn feeds ----------
@@ -755,7 +817,8 @@ namespace KennerZombies
                 return known.ok;
             ZombiesBarricade feeds = FeedFor(spawn, FeedReach);
             Vector3 from = feeds != null ? feeds.transform.position - feeds.transform.forward * 1.5f : spawn;
-            bool ok = players.Any(p => Reaches(from, p.Transform.position));
+            // On foot: not over a ledge (they're shortcuts down for zombies already in, not a way in)
+            bool ok = players.Any(p => Reaches(from, p.Transform.position, noLedges: true));
             if (!SpawnLeads.TryGetValue(spawn, out var before) || before.ok != ok)
                 ZombiesDebug.Log($"spawn at {spawn} {(ok ? "leads to a player" : "doesn't lead to any player yet")} (way in: {(feeds != null ? "barricade " + feeds.Entry : "none")})");
             SpawnLeads[spawn] = (ok, Time.time + 3f);
@@ -843,9 +906,12 @@ namespace KennerZombies
                     Id = Guid.NewGuid().ToString(), Name = "zm_spawn", Position = position, Rotation = rotation,
                     Sides = EPlayerSideMask.All, Categories = ESpawnCategoryMask.All, BotZone = zone, DelayToCanSpawnSec = 0f,
                 };
+                ZombiesOnlyOurs.Expect(data);
                 spawner.SpawnBotsInZoneOnPositions(new List<ISpawnPoint> { point }, zone, data, owner =>
                 {
                     Release();
+                    ZombiesOnlyOurs.Done(data);
+                    ZombiesOnlyOurs.Mark(owner);
                     Alive[owner] = -1f;
                     SpawnedAt[owner] = Time.time;
                     if (ZombiesExfil.Swarming)
@@ -1110,13 +1176,14 @@ namespace KennerZombies
         private static readonly UnityEngine.AI.NavMeshPath ScratchPath = new UnityEngine.AI.NavMeshPath();
 
         // A walkable route on the navmesh from one place to another (both snapped to it)
-        private static bool Reaches(Vector3 from, Vector3 to)
+        private static bool Reaches(Vector3 from, Vector3 to, bool noLedges = false)
         {
             if (!UnityEngine.AI.NavMesh.SamplePosition(from, out UnityEngine.AI.NavMeshHit a, 3f, UnityEngine.AI.NavMesh.AllAreas)
                 || !UnityEngine.AI.NavMesh.SamplePosition(to, out UnityEngine.AI.NavMeshHit b, 2f, UnityEngine.AI.NavMesh.AllAreas))
                 return false;
-            return UnityEngine.AI.NavMesh.CalculatePath(a.position, b.position, UnityEngine.AI.NavMesh.AllAreas, ScratchPath)
-                   && ScratchPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete;
+            bool Whole() => UnityEngine.AI.NavMesh.CalculatePath(a.position, b.position, UnityEngine.AI.NavMesh.AllAreas, ScratchPath)
+                            && ScratchPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete;
+            return noLedges ? ZombiesNavLinks.WithoutLedges(Whole) : Whole();
         }
 
         private static readonly Dictionary<BotOwner, float> NextReroute = new Dictionary<BotOwner, float>();
@@ -1367,8 +1434,18 @@ namespace KennerZombies
                 float here = Vector3.Distance(from, goal), there = Vector3.Distance(to, goal);
                 if (there > here - 0.5f)
                     continue;
+                // A ledge (ends 0.6 m or more apart in height): only when its player is nearer the far end's floor too
+                // (Map Kit ledges, user 2026-11-15: up to a player above, down to one below)
+                if (Mathf.Abs(to.y - from.y) >= 0.6f && Mathf.Abs(goal.y - to.y) >= Mathf.Abs(goal.y - from.y))
+                    continue;
                 NextCross[z] = Time.time + 4f;
-                ZombiesPlugin.Instance.StartCoroutine(CrossLink(z, to));
+                // A drop (the far end well below): the original's jump-down; a rise: its jump-up; else the plain walk across
+                if (from.y - to.y >= 0.6f && ZombiesTraverse.CanDrop)
+                    ZombiesPlugin.Instance.StartCoroutine(LedgeLink(z, from, to, false));
+                else if (to.y - from.y >= 0.6f && ZombiesTraverse.CanJumpUp)
+                    ZombiesPlugin.Instance.StartCoroutine(LedgeLink(z, from, to, true));
+                else
+                    ZombiesPlugin.Instance.StartCoroutine(CrossLink(z, to));
                 return true;
             }
             return false;
@@ -1376,6 +1453,27 @@ namespace KennerZombies
 
         private static bool Near(Vector3 at, Vector3 end) =>
             new Vector2(at.x - end.x, at.z - end.z).magnitude < 1.8f && Mathf.Abs(at.y - end.y) < 1.5f;
+
+        // Down a ledge: to its edge, then the original's jump-down (stumble and all) to the far end; up one: the
+        // original's jump-up from where it stands to the top. The walk across if the clip can't run
+        private static System.Collections.IEnumerator LedgeLink(BotOwner z, Vector3 from, Vector3 to, bool up)
+        {
+            Player body = z?.GetPlayer;
+            if (body == null)
+                yield break;
+            Busy.Add(z);
+            Hold(z, up ? 16f : 6f);
+            bool dropped = false;
+            bool sprinter = Pace.TryGetValue(z, out float pace) && pace > 1f;
+            // From where it stands (within the link's reach) to the far end
+            yield return up ? ZombiesTraverse.JumpUp(z, body.Transform.position, to, sprinter, ok => dropped = ok)
+                : ZombiesTraverse.Drop(z, body.Transform.position, to, sprinter, ok => dropped = ok);
+            Hold(z, 0.05f);
+            Busy.Remove(z);
+            LastGoal.Remove(z);
+            if (!dropped && body != null && body.HealthController.IsAlive)
+                ZombiesPlugin.Instance.StartCoroutine(CrossLink(z, to));
+        }
 
         // A short straight walk across the link (through a doorway too tight for the bake): its pace, on the ground
         private static System.Collections.IEnumerator CrossLink(BotOwner z, Vector3 to)
@@ -1517,7 +1615,7 @@ namespace KennerZombies
                         {
                             status = z.GoToPoint(reach, false, 0.6f, false, false, true, false, false);
                             if (status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
-                                ZombiesDebug.Log($"[ai] zombie at {at}: no full way to its player, heading to the nearest reachable point {reach} ({Vector3.Distance(reach, goal):0.0} m from them)");
+                                ZombiesPlugin.Log.LogInfo($"[ai] zombie at {at}: no full way to its player at {target.Transform.position} ({target.Profile?.Nickname}), heading to the nearest reachable point {reach} ({Vector3.Distance(reach, goal):0.0} m from them): the navmesh doesn't join the player's spot to the rest");
                         }
                     }
                     finally
@@ -1596,7 +1694,7 @@ namespace KennerZombies
             return flat.magnitude <= SlapReach + extra + Mathf.Max(0f, up) * 0.15f;
         }
 
-        // ---------- Rubble thrown at a player they can't get to (Cold War's answer to glitch spots) ----------
+        // ---------- Rubble thrown at a player they can't get to (a later game's answer to glitch spots) ----------
 
         // In with the players, in sight, close, and no way to them (up out of reach, or no full route) for a few seconds:
         // the zombie throws a chunk of rubble that counts as a slap. Each zombie now and then, and not a hail at once.
@@ -1805,6 +1903,10 @@ namespace KennerZombies
                     arms.MakeKnifeKick();
                 else
                     ZombiesDebug.Log($"zombie slap: no knife hands ({body.HandsController?.GetType().Name ?? "none"}), no swing shown");
+                // Its yell, whoosh and swing (the original's), here and on every other game
+                ZombiesZombieVox.Swing(body, false);
+                if (ZombiesNet.Online)
+                    ZombiesNet.ZombieSwing(body.ProfileId, false);
             }
             catch (Exception e)
             {
@@ -1847,6 +1949,9 @@ namespace KennerZombies
                 Face(z, b.transform.position + Vector3.up * 1.2f);
                 if (TearSwing?.Value != false && body.HandsController is Player.KnifeController arms)
                     arms.MakeKnifeKick();
+                ZombiesZombieVox.Swing(body, true);
+                if (ZombiesNet.Online)
+                    ZombiesNet.ZombieSwing(body.ProfileId, true);
             }
             catch (Exception e)
             {
@@ -1885,6 +1990,22 @@ namespace KennerZombies
                 body.Teleport(Vector3.Lerp(start, from, k), false);
                 Face(z, to + Vector3.up * 1.2f);
                 yield return null;
+            }
+            // The original's own climb-through (user, 2026-11-15): its clip, the body moved along it. The game's vault
+            // and the arc below only if it can't run
+            if (b != null && ZombiesTraverse.CanClimb)
+            {
+                Hold(z, 6f);
+                bool climbed = false;
+                bool sprinter = Pace.TryGetValue(z, out float climbPace) && climbPace > 1f;
+                yield return ZombiesTraverse.Climb(z, b, from, to, sprinter, ok => climbed = ok);
+                if (climbed)
+                {
+                    Hold(z, 0.05f);
+                    LastGoal.Remove(z);
+                    Busy.Remove(z);
+                    yield break;
+                }
             }
             // EFT's own vault over the sill (2026-11-08: the scripted arc read as floating); the arc below only when
             // EFT says no

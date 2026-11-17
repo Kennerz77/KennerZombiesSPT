@@ -62,7 +62,9 @@ namespace KennerZombies
         private string _inviteHeard;
 
         // Main menu
-        private ZButton _create, _report;
+        private ZButton _solo, _create, _report;
+        // "No zombies map installed" beside SOLO when no map download is in (user, 2026-11-11)
+        private TextMeshProUGUI _noMap;
         private SocialPanel _menuSocial, _lobbySocial;
 
         // Lobby
@@ -73,6 +75,11 @@ namespace KennerZombies
         private CanvasGroup _deployGroup;
         private MapCard _deployCard;
         private float _deployA;
+        // The wonder weapons in the box (user, 2026-11-16): under the lobby's map card, and on EFT's map screen for SOLO
+        // (user, 2026-11-16: picked from the zombies main menu for SOLO, in the lobby by its host; shown while loading in)
+        private WonderPanel _lobbyWonder, _deployWonder;
+        private TextMeshProUGUI _menuWonder;
+        private string _menuWonderShown;
         private readonly List<MemberRow> _rows = new List<MemberRow>();
 
         // Pop-ups
@@ -174,6 +181,8 @@ namespace KennerZombies
             _deployA = Mathf.MoveTowards(_deployA, deploy ? 1f : 0f, dt * 4f);
             Fade(_deployGroup, _deploy, _deployA, false);
             if (deploy)
+                _deployWonder.Set(ZombiesWonder.ShownPicks, ZombiesWonder.ShownAny, false);
+            if (deploy)
                 _deployCard.Set(ZombiesParty.DeployMap ?? ZombiesParty.LobbyMap);
             Fade(_menuGroup, _menu, _menuA, show && !lobby);
             Fade(_lobbyGroup, _lobby, _lobbyA, lobby);
@@ -270,6 +279,8 @@ namespace KennerZombies
                 _deploy = Layer(_mainRoot, "Deploy", out _deployGroup);
                 _deployCard = new MapCard(_deploy, new Vector2(620f, 530f));
                 _deployCard.Root.Place(new Vector2(1f, 0.5f), new Vector2(1f, 0.5f), new Vector2(-90f, 40f), new Vector2(620f, 530f));
+                _deployWonder = new WonderPanel(_deploy, new Vector2(620f, 140f), null);
+                _deployWonder.Root.Place(new Vector2(1f, 0.5f), new Vector2(1f, 0.5f), new Vector2(-90f, -315f), new Vector2(620f, 140f));
                 BuildMatch();
                 BuildMenu();
                 BuildLobby();
@@ -341,6 +352,7 @@ namespace KennerZombies
             {
                 ("Solo", () => ZombiesParty.GoSolo()),
                 ("Create lobby", () => ZombiesParty.CreateLobby()),
+                ("Wonder weapons", OpenWonderWindow),
                 ("Customise", () => ZombiesMainMenu.Menu?.Click(EMenuType.Player)),
                 ("Match report", () =>
                 {
@@ -354,12 +366,21 @@ namespace KennerZombies
             for (int i = 0; i < items.Length; i++)
             {
                 ZButton b = ZombiesUi.Button(_menu, "Button " + items[i].label, items[i].label, 30f, items[i].click, true);
-                ((RectTransform)b.transform).Place(new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(70f, -362f - i * 87f), new Vector2(470f, 74f));
+                // Eight buttons now (WONDER WEAPONS): a little closer together
+                ((RectTransform)b.transform).Place(new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(70f, -362f - i * 82f), new Vector2(470f, 70f));
+                if (i == 0)
+                    _solo = b;
                 if (i == 1)
                     _create = b;
-                if (i == 3)
+                if (i == 4)
                     _report = b;
             }
+            _noMap = ZombiesUi.Text(_menu, "NoMap", "No zombies map installed: get Dr K's SPZombies Stronghold Map", 24f, ZombiesUi.Red, TextAlignmentOptions.Left, true);
+            ((RectTransform)_noMap.transform).Place(new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(560f, -362f), new Vector2(620f, 74f));
+            _noMap.gameObject.SetActive(false);
+            _menuWonder = ZombiesUi.Text(_menu, "WonderPicks", "", 21f, ZombiesUi.Dim, TextAlignmentOptions.Left);
+            _menuWonder.enableWordWrapping = true;
+            ((RectTransform)_menuWonder.transform).Place(new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(560f, -362f - 2 * 82f), new Vector2(560f, 70f));
             ZButton exit = ZombiesUi.Button(_menu, "Button Exit", "Exit zombies mode", 28f, () => ZombiesMainMenu.LeaveZombies(), true);
             exit.ClickSound = "back";
             ((RectTransform)exit.transform).Place(new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 56f), new Vector2(420f, 72f));
@@ -368,8 +389,21 @@ namespace KennerZombies
 
         private void UpdateMenu()
         {
-            _create.Interactable = ZombiesParty.HasFika;
+            // Without any zombies map (SPZombies on its own) SOLO opened an empty map screen and a lobby could never start
+            bool anyMap = ZombiesMaps.All.Any();
+            _solo.Interactable = anyMap;
+            _create.Interactable = anyMap && ZombiesParty.HasFika;
+            if (_noMap.gameObject.activeSelf != !anyMap)
+                _noMap.gameObject.SetActive(!anyMap);
             _report.Interactable = ZombiesReport.HasSaved;
+            // What SOLO's box will hold (a lobby uses its host's)
+            string picks = ZombiesWonder.Describe(ZombiesWonder.MyPicks, ZombiesWonder.MyAny).Replace(", ", "  ·  ")
+                           + (ZombiesWonder.MyAny ? $"\n<color=#{ColorUtility.ToHtmlStringRGB(ZombiesUi.NotReady)}>ANY NUMBER: {ZombiesWonder.AnyNumberCut * 100f:0}% LESS DR. K POINTS</color>" : "");
+            if (picks != _menuWonderShown)
+            {
+                _menuWonderShown = picks;
+                _menuWonder.text = picks;
+            }
             _menuSocial.Refresh(false);
         }
 
@@ -381,6 +415,8 @@ namespace KennerZombies
             _lobbyCard.Root.Place(new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(40f, -40f), new Vector2(630f, 545f));
 
             _changeMap = LobbyButton(0, "Change map", OpenMapWindow);
+            _lobbyWonder = new WonderPanel(_lobby, new Vector2(630f, 140f), OpenWonderWindow);
+            _lobbyWonder.Root.Place(new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(40f, -905f), new Vector2(630f, 140f));
             LobbyButton(1, "Zombies settings", () => ZombiesControls.OpenPage());
             LobbyButton(2, "Game settings", () => ZombiesMainMenu.Menu?.Click(EMenuType.Settings));
             _startButton = LobbyButton(3, "Start match", StartPressed);
@@ -433,7 +469,7 @@ namespace KennerZombies
         private ZButton LobbyButton(int i, string label, Action click)
         {
             ZButton b = ZombiesUi.Button(_lobby, "Button " + label, label, 28f, click, true);
-            ((RectTransform)b.transform).Place(new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(70f, -625f - i * 90f), new Vector2(390f, 76f));
+            ((RectTransform)b.transform).Place(new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(70f, -603f - i * 74f), new Vector2(390f, 64f));
             return b;
         }
 
@@ -459,6 +495,7 @@ namespace KennerZombies
             bool open = mine.State == "open";
             bool starting = ZombiesParty.Starting || !open;
             _lobbyCard.Set(ZombiesParty.LobbyMap);
+            _lobbyWonder.Set(ZombiesWonder.ShownPicks, ZombiesWonder.ShownAny, host && open && !ZombiesParty.Counting);
             _changeMap.Interactable = host && open && !ZombiesParty.Counting;
             _backButton.Interactable = open && !starting;
             if (host)
@@ -1349,6 +1386,118 @@ namespace KennerZombies
                 _status.text = host ? "HOST" : ready ? "READY" : "NOT READY";
                 _status.color = host ? ZombiesUi.Gold : ready ? ZombiesUi.Ready : ZombiesUi.NotReady;
                 _dot.color = ready ? ZombiesUi.Ready : ZombiesUi.NotReady;
+            }
+        }
+
+        // ----- WONDER WEAPONS: tick up to two special ones (the Ray Gun is always in), or ANY NUMBER for 30% less Dr. K points (user, 2026-11-16: never mistaken for the match points) -----
+
+        private void OpenWonderWindow()
+        {
+            if (ZombiesParty.Mine != null && !ZombiesParty.IsHost)
+                return;
+            List<ZombiesWonder.Special> specials = ZombiesWonder.Installed;
+            RectTransform m = OpenModal("wonder", null, 0.65f);
+            ZombiesUi.Sound("open");
+            float h = 250f + specials.Count * 66f + 76f;
+            RectTransform w = Window(m, "WONDER WEAPONS", new Vector2(720f, h));
+            TextMeshProUGUI head = ZombiesUi.Text(w, "Head", $"The Ray Gun is always in the box. Pick up to {ZombiesWonder.MaxPicks} more.", 20f, ZombiesUi.Dim, TextAlignmentOptions.Center);
+            head.rectTransform.Place(new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -84f), new Vector2(660f, 30f));
+            var rows = new List<(ZombiesWonder.Special s, ZButton b)>();
+            ZButton any = null;
+            void Refresh()
+            {
+                List<string> picks = ZombiesWonder.MyPicks;
+                bool on = ZombiesWonder.MyAny;
+                foreach (var (s, b) in rows)
+                {
+                    bool ticked = on || picks.Contains(s.Key);
+                    b.Selected = ticked;
+                    b.SetLabel((ticked ? "[X]  " : "[  ]  ") + s.Name);
+                }
+                any.Selected = on;
+                any.SetLabel(on ? $"Any number: ON  ({ZombiesWonder.AnyNumberCut * 100f:0}% less Dr. K points)" : "Any number: OFF");
+            }
+            for (int i = 0; i < specials.Count; i++)
+            {
+                ZombiesWonder.Special s = specials[i];
+                ZButton b = ZombiesUi.Button(w, "Wonder " + s.Key, s.Name, 24f, () =>
+                {
+                    // With ANY NUMBER on, every one is in: nothing to tick
+                    if (ZombiesWonder.MyAny)
+                        return;
+                    ZombiesUi.Sound(ZombiesWonder.Toggle(s.Key) ? "toggle" : "denied");
+                    Refresh();
+                });
+                b.ClickSound = null;
+                ((RectTransform)b.transform).Place(new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -128f - i * 66f), new Vector2(520f, 56f));
+                rows.Add((s, b));
+            }
+            any = ZombiesUi.Button(w, "Wonder any", "Any number", 22f, () =>
+            {
+                ZombiesWonder.SetAny(!ZombiesWonder.MyAny);
+                if (ZombiesWonder.MyAny)
+                    ZombiesParty.Toast($"Every wonder weapon in the box: everyone gets {ZombiesWonder.AnyNumberCut * 100f:0}% less Dr. K points this match.");
+                Refresh();
+            });
+            any.ClickSound = "toggle";
+            ((RectTransform)any.transform).Place(new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -140f - specials.Count * 66f), new Vector2(520f, 52f));
+            if (specials.Count == 0)
+            {
+                TextMeshProUGUI none = ZombiesUi.Text(w, "None", "No other wonder weapon mods are installed.", 20f, ZombiesUi.Faint, TextAlignmentOptions.Center);
+                none.rectTransform.Place(new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -130f), new Vector2(660f, 30f));
+                any.gameObject.SetActive(false);
+            }
+            ZButton done = ZombiesUi.Button(w, "Done", "Done", 24f, () => CloseModal(true));
+            done.ClickSound = "back";
+            ((RectTransform)done.transform).Place(new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 26f), new Vector2(300f, 56f));
+            Refresh();
+        }
+
+        // ---------- The wonder weapons panel: which ones this match's box holds ----------
+
+        private class WonderPanel
+        {
+            public readonly RectTransform Root;
+            private readonly TextMeshProUGUI _list, _note;
+            private readonly ZButton _change;
+            private string _shown;
+
+            public WonderPanel(RectTransform parent, Vector2 size, Action change)
+            {
+                Root = ZombiesUi.PanelWithShadow(parent, "WonderWeapons");
+                Root.sizeDelta = size;
+                TextMeshProUGUI title = ZombiesUi.Text(Root, "Title", "WONDER WEAPONS", 20f, ZombiesUi.Gold, TextAlignmentOptions.Left, true, 2f);
+                title.rectTransform.Place(new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(26f, -12f), new Vector2(size.x - 220f, 30f));
+                _list = ZombiesUi.Text(Root, "List", "", 23f, ZombiesUi.Ink, TextAlignmentOptions.TopLeft);
+                _list.enableWordWrapping = true;
+                _list.enableAutoSizing = true;
+                _list.fontSizeMin = 16f;
+                _list.fontSizeMax = 23f;
+                _list.rectTransform.Place(new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(26f, -46f), new Vector2(size.x - 220f, 56f));
+                _note = ZombiesUi.Text(Root, "Note", "", 16f, ZombiesUi.Faint, TextAlignmentOptions.BottomLeft);
+                _note.rectTransform.Place(new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(26f, 10f), new Vector2(size.x - 220f, 24f));
+                if (change != null)
+                {
+                    _change = ZombiesUi.Button(Root, "Change", "Change", 22f, change);
+                    ((RectTransform)_change.transform).Place(new Vector2(1f, 0.5f), new Vector2(1f, 0.5f), new Vector2(-22f, 0f), new Vector2(170f, 54f));
+                }
+            }
+
+            public void Set(List<string> picks, bool any, bool canChange)
+            {
+                bool others = ZombiesWonder.Installed.Count > 0;
+                _change?.gameObject.SetActive(canChange && others);
+                string key = string.Join(",", picks) + any + canChange + others;
+                if (key == _shown)
+                    return;
+                _shown = key;
+                _list.text = ZombiesWonder.Describe(picks, any).Replace(", ", "  ·  ");
+                _note.text = any
+                    ? $"<color=#{ColorUtility.ToHtmlStringRGB(ZombiesUi.NotReady)}>ANY NUMBER: {ZombiesWonder.AnyNumberCut * 100f:0}% LESS DR. K POINTS FOR EVERYONE</color>"
+                    : others ? (canChange ? $"The Ray Gun is always in. Pick up to {ZombiesWonder.MaxPicks} more."
+                        : ZombiesParty.Mine != null && !ZombiesParty.Solo ? "Chosen by the host. One of each per team (Ray Gun: one each)."
+                        : "In this match's box.")
+                    : "Install more wonder weapon mods to pick from them.";
             }
         }
 

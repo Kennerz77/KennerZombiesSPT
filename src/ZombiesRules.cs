@@ -22,6 +22,8 @@ namespace KennerZombies
         private static bool _damagePatched;
         private static float _nextTopUp;
 
+        private static bool IsRayGun(EFT.InventoryLogic.Item item) => item != null && item.TemplateId.ToString() == ZombiesAmmo.RaygunId;
+
         public static void Patch(Harmony harmony)
         {
             _harmony = harmony;
@@ -80,7 +82,7 @@ namespace KennerZombies
         }
 
         /// <summary>
-        /// Arcade guns: no inspecting (L), mag check, chamber check, fire mode check or sight zeroing (its distance isn't
+        /// Arcade guns: no mag check, chamber check, fire mode check or sight zeroing (its distance isn't
         /// shown either) for your own player in a zombies match; the rounds are on the HUD. Every hands controller that has them (EFT's and Fika's) is patched.
         /// </summary>
         public static void PatchNoChecks(Harmony harmony)
@@ -99,13 +101,14 @@ namespace KennerZombies
             // The sight's zeroing distance ("50" by the ammo): never shown
             harmony.Patch(AccessTools.Method(typeof(Player), nameof(Player.ShowAmmoCountZeroingPanel)),
                 prefix: new HarmonyMethod(typeof(ZombiesRules), nameof(NoZeroingPanel)));
-            ZombiesPlugin.Log.LogInfo($"Zombies rules: no inspect or ammo checks ({patched} methods)");
+            ZombiesPlugin.Log.LogInfo($"Zombies rules: no ammo checks (inspect allowed) ({patched} methods)");
         }
 
         private static bool _checksPatched;
 
-        // Inspect, the ammo checks, and zeroing the sight up / down
-        private static readonly string[] Checks = { "ExamineWeapon", "CheckAmmo", "CheckChamber", "CheckFireMode", "OpticCalibrationSwitchUp", "OpticCalibrationSwitchDown" };
+        // The ammo checks and zeroing the sight up / down. Inspecting is allowed (user, 2026-11-16: "allow weapon inspects in
+        // zombies mode too", on the game's own Inspect key)
+        private static readonly string[] Checks = { "CheckAmmo", "CheckChamber", "CheckFireMode", "OpticCalibrationSwitchUp", "OpticCalibrationSwitchDown" };
 
         private static bool NoZeroingPanel(Player __instance) => !(ZombiesMatch.Active && __instance.IsYourPlayer);
 
@@ -294,13 +297,16 @@ namespace KennerZombies
                     ZombiesDebug.Log($"hit on a busy zombie (climbing/swinging): {damageInfo.DamageType} {damageInfo.Damage:0} from {(from != null && from.IsYourPlayer ? "you" : from?.ProfileId)}");
                 // A teammate's hit, here on the host (Fika sent it): the host pays their 10 points, as it credits kills
                 // (their own game missed most hits: user, 2026-11-09)
+                // No hit points off a zombie the Wunderwaffe is electrocuting: it stands a few seconds before it drops, and
+                // shooting it meanwhile farmed points (user, 2026-11-17). The host holds the shock; it pays every hit point
+                bool shocked = ZombiesShock.Shocked(target.AIData?.BotOwner);
                 if (from != null && !from.IsYourPlayer && ZombiesNet.IsHost && ZombiesNet.Online && target.HealthController?.IsAlive == true
-                    && !ZombiesTeam.IsZombieSource(from))
+                    && !ZombiesTeam.IsZombieSource(from) && !shocked)
                     ZombiesNet.HitBy(from.ProfileId);
                 if (from != null && from.IsYourPlayer && target.HealthController?.IsAlive == true)
                 {
                     // Offline or the host: your own 10 points here; a Fika client gets them from the host
-                    if (!ZombiesNet.Online || ZombiesNet.IsHost)
+                    if ((!ZombiesNet.Online || ZombiesNet.IsHost) && !shocked)
                         ZombiesStats.Hit();
                     // PHD Flopper: the knife blows up round the zombie now and then
                     if (damageInfo.DamageType == EDamageType.Melee)
@@ -324,7 +330,8 @@ namespace KennerZombies
             // Your own blast (Sally's shell, the Ray Gun's bolt) near you: a slap without PHD Flopper
             if (target.IsYourPlayer && from != null && from.ProfileId == target.ProfileId
                 && (damageInfo.DamageType == EDamageType.Explosion || damageInfo.DamageType == EDamageType.GrenadeFragment))
-                ZombiesPhd.SelfBlast(target, damageInfo.MasterOrigin != Vector3.zero ? damageInfo.MasterOrigin : target.Transform.position, "explosion");
+                ZombiesPhd.SelfBlast(target, damageInfo.MasterOrigin != Vector3.zero ? damageInfo.MasterOrigin : target.Transform.position, "explosion",
+                    damageInfo.Weapon != null ? IsRayGun(damageInfo.Weapon) : IsRayGun(target.HandsController?.Item));
             // A zombie's own hit on a player does nothing: only its slap (swung, ZombiesRounds) counts, so a crowd
             // can't tag you down in an instant
             // F12 can let players hurt each other again (EFT's damage)

@@ -34,3 +34,29 @@ internal sealed class ZombiesNoLootPatch : AbstractPatch
     }
 }
 
+/// <summary>
+/// A zombies match is only its 1-4 players and the core's own zombies (user, 2026-11-12). Our maps ship no boss
+/// spawns and no waves, but other mods add them to every map (a team of bosses, extra waves): the raid's location
+/// handed to the game has them cleared for zombies maps, so none of them reach a match. The client refuses and
+/// removes any AI that still turns up. Every other map is untouched; no other mod is referenced or changed.
+/// </summary>
+internal sealed class ZombiesNoBotsPatch : AbstractPatch
+{
+    protected override MethodBase? GetTargetMethod() =>
+        typeof(SPTarkov.Server.Core.Services.InRaid.LocationLifecycleService).GetMethod(
+            nameof(SPTarkov.Server.Core.Services.InRaid.LocationLifecycleService.GenerateLocationAndLoot));
+
+    [PatchPostfix]
+    [HarmonyPriority(Priority.Last)]
+    private static void Postfix(string name, LocationBase __result)
+    {
+        if (__result == null || !ZombiesRaid.IsZombiesMap(name))
+            return;
+        int bosses = __result.BossLocationSpawn?.Count ?? 0, waves = __result.Waves?.Count ?? 0;
+        if (bosses == 0 && waves == 0)
+            return;
+        __result.BossLocationSpawn = new List<BossLocationSpawn>();
+        __result.Waves = new List<Wave>();
+        ZombiesRaid.Log?.Info($"[Zombies] {name}: {bosses} boss spawn(s) and {waves} wave(s) added by other mods cleared (zombies matches have only our zombies)");
+    }
+}

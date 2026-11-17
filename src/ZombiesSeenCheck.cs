@@ -19,11 +19,14 @@ namespace KennerZombies
         private static float _next;
         private static readonly HashSet<string> Suspect = new HashSet<string>();
         private static readonly HashSet<string> Reported = new HashSet<string>();
+        // Zombies already logged as switched on but not seen (once each)
+        private static readonly HashSet<string> OddLogged = new HashSet<string>();
 
         public static void Clear()
         {
             Suspect.Clear();
             Reported.Clear();
+            OddLogged.Clear();
         }
 
         public static void Tick(Player me)
@@ -58,6 +61,26 @@ namespace KennerZombies
                         drawn++;
                 }
                 string id = p.ProfileId;
+                // Switched on but still not seen (user, 2026-11-16: "invisible zombies, just floating eyes"): the meshes'
+                // boxes nowhere near the head (culled where they aren't), squashed flat, or none visible to any camera
+                if (drawn > 0 && !OddLogged.Contains(id))
+                {
+                    Transform head = p.PlayerBones?.Head?.Original;
+                    Vector3 headAt = head != null ? head.position : p.Transform.position + Vector3.up * 1.6f;
+                    var on = skins.Where(r => r != null && r.enabled && r.gameObject.activeInHierarchy && !r.forceRenderingOff).ToList();
+                    bool near = on.Any(r => r.bounds.SqrDistance(headAt) < 0.8f * 0.8f);
+                    bool flat = on.All(r => r.bounds.size.y < 0.3f);
+                    bool seen = on.Any(r => r.isVisible);
+                    if ((!near || flat) && dist < 25f)
+                    {
+                        OddLogged.Add(id);
+                        Renderer biggest = on.OrderByDescending(r => r.bounds.size.sqrMagnitude).FirstOrDefault();
+                        ZombiesPlugin.Log.LogWarning($"Zombies seen check: zombie {p.Profile?.Nickname} ({id}) at {dist:0} m has {on.Count} meshes on but "
+                            + $"{(near ? "" : "none near its head")}{(flat ? " all squashed flat" : "")} (visible to a camera: {seen}); head {headAt}, "
+                            + $"body {p.Transform.position}, biggest mesh {biggest?.name} box {biggest?.bounds.center} size {biggest?.bounds.size}, "
+                            + $"crawler {ZombiesCrawlers.Is(p)}, anim player {((Component)p).GetComponentInChildren<ZombieAnimPlayer>() != null}, round {ZombiesRounds.Round}");
+                    }
+                }
                 if (drawn > 0)
                 {
                     if (Reported.Remove(id))

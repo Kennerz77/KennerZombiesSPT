@@ -21,18 +21,63 @@ namespace KennerZombies
     {
         internal static readonly List<BoxGuns.Gun> Registered = new List<BoxGuns.Gun>();
 
-        /// <summary>Adds a weapon to the mystery box. Set <paramref name="wonderWeapon"/> for a rare one.</summary>
-        public static void RegisterBoxWeapon(string templateId, string displayName = null, bool wonderWeapon = false)
+        /// <summary>
+        /// A zombie shocked by your weapon (the Wunderwaffe DG-2's lightning): the original's tesla death played on it
+        /// (stood up jerking, then down), held where it is, no swings. Returns the seconds until its body is down: kill
+        /// it then (this only holds it), so its fall carries on as the ragdoll. <paramref name="seconds"/> is the hold
+        /// when the clips aren't there (a jerking hold instead).
+        /// </summary>
+        public static float Shock(Player zombie, float seconds) => ZombiesShock.Shock(zombie, seconds);
+
+        /// <summary>
+        /// In a zombies match with teammates (Fika): true. Your mod's own messages then reach every other game in the match
+        /// through <see cref="SendToTeam"/>, picked up by whatever it registered with <see cref="OnTeamMessage"/>.
+        /// </summary>
+        public static bool TeamOnline => ZombiesMatch.Active && ZombiesNet.Online;
+
+        /// <summary>Sends <paramref name="data"/> on <paramref name="channel"/> to every other game in this zombies match.</summary>
+        public static void SendToTeam(string channel, byte[] data)
         {
-            if (string.IsNullOrEmpty(templateId) || Registered.Any(g => g.PresetTemplate == templateId))
+            if (TeamOnline)
+                ZombiesNet.SendMod(channel, data);
+        }
+
+        /// <summary>Calls <paramref name="handler"/>(sender's profile id, data) for each message on <paramref name="channel"/>.</summary>
+        public static void OnTeamMessage(string channel, Action<string, byte[]> handler) => ZombiesNet.ListenMod(channel, handler);
+
+        /// <summary>Adds a weapon to the mystery box. Set <paramref name="wonderWeapon"/> for a rare one.</summary>
+        public static void RegisterBoxWeapon(string templateId, string displayName = null, bool wonderWeapon = false) =>
+            RegisterBoxWeapon(templateId, displayName, wonderWeapon, null);
+
+        /// <summary>
+        /// Adds a weapon to the mystery box with its own magazine: the gun is built as just the weapon with that magazine
+        /// (filled, loaded and racked by the box, with a reserve), not its template's preset. Use this when the preset
+        /// has no magazine (it came out with one round chambered and nothing to reload).
+        /// </summary>
+        public static void RegisterBoxWeapon(string templateId, string displayName, bool wonderWeapon, string magazineTemplateId)
+        {
+            if (string.IsNullOrEmpty(templateId) || Registered.Any(g => g.PresetTemplate == templateId || (string)g.Base?["tpl"] == templateId))
                 return;
-            Registered.Add(new BoxGuns.Gun
+            var gun = new BoxGuns.Gun
             {
                 Id = "api_" + templateId,
                 Name = displayName ?? templateId,
                 Role = wonderWeapon ? "box_wonder" : "box",
-                PresetTemplate = templateId,
-            });
+                PresetTemplate = string.IsNullOrEmpty(magazineTemplateId) ? templateId : null,
+            };
+            if (!string.IsNullOrEmpty(magazineTemplateId))
+            {
+                gun.Base = new Newtonsoft.Json.Linq.JObject
+                {
+                    ["tpl"] = templateId,
+                    ["parts"] = new Newtonsoft.Json.Linq.JArray
+                    {
+                        new Newtonsoft.Json.Linq.JObject { ["slot"] = "mod_magazine", ["tpl"] = magazineTemplateId, ["parts"] = new Newtonsoft.Json.Linq.JArray() },
+                    },
+                };
+                gun.Pap = (Newtonsoft.Json.Linq.JObject)gun.Base.DeepClone();
+            }
+            Registered.Add(gun);
             BoxGuns.Reload();
             ZombiesPlugin.Log?.LogInfo($"Mystery box: {displayName ?? templateId} registered by another mod");
         }

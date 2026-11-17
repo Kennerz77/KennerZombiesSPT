@@ -44,7 +44,7 @@ GUNS = [
      {"mag": 20, "papMag": 30, "fireModes": ["single"], "papFireModes": ["single"]}),
     ("scarl", "SCAR-L", "ar", True, True, "ROMEO7, SF3P + Mini Monster suppressor, Hera CQR grip", {}),
     ("mp7", "MP7A1", "smg", True, True, "Walther MRS reflex", {}),
-    ("ppsh", "PPSh-41", "smg", True, True, "same build, stats only", {}),
+    ("ppsh", "PPSh-41", "smg", True, True, "same build, stats only", {"mag": 50, "papMag": 75, "forceMag": True}),  # 50 (PaP 75), the user 2026-11-12; Double Tap capped at x1.1 for it (ZombiesPerks.DoubleTapRateCap)
     ("sr2m", "SR-2M Veresk", "smg", True, True, "B-17 mount + Aimpoint H-2", {}),
     ("mp5", "MP5", "smg", True, True, "50-round X-5 drum, Tri-Rail + Magpul AFG, Illusion 9 suppressor, MRS",
      {"fireModes": ["fullauto"]}),

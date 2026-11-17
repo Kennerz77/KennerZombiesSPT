@@ -250,6 +250,24 @@ namespace KennerZombies
             yield return MapsDir;
         }
 
+        /// <summary>
+        /// Every installed map's own folder: SPZombies_Maps\ZM_&lt;MapName&gt; and the map mods' Kennerz_ZM_&lt;Map&gt; (not the
+        /// core's). Each holds the map itself in bundles\maps (our map loader serves it) and its server files in server\.
+        /// </summary>
+        internal static IEnumerable<string> MapFolders()
+        {
+            string plugins = Path.GetDirectoryName(ZombiesPlugin.Dir);
+            if (plugins == null || !Directory.Exists(plugins))
+                yield break;
+            string shared = Path.Combine(plugins, MapsFolderName);
+            if (Directory.Exists(shared))
+                foreach (string map in Directory.GetDirectories(shared))
+                    yield return map;
+            foreach (string mod in Directory.GetDirectories(plugins, "Kennerz_ZM_*"))
+                if (!string.Equals(Path.GetFullPath(mod), Path.GetFullPath(ZombiesPlugin.Dir), StringComparison.OrdinalIgnoreCase))
+                    yield return mod;
+        }
+
         /// <summary>The folder in BepInEx\plugins every zombies map goes in (one ZM_&lt;MapName&gt; folder each).</summary>
         internal const string MapsFolderName = "SPZombies_Maps";
 
@@ -267,7 +285,8 @@ namespace KennerZombies
                 string shared = Path.Combine(plugins, MapsFolderName);
                 Directory.CreateDirectory(shared);
                 string readme = Path.Combine(shared, "README.txt");
-                if (!File.Exists(readme))
+                // Also replaces the 0.1.x read-me, which still sent players to another mod for the map itself
+                if (!File.Exists(readme) || File.ReadAllText(readme).Contains("CustomMapLoader"))
                     File.WriteAllText(readme, MapsFolderReadme);
             }
             catch (Exception e)
@@ -278,11 +297,13 @@ namespace KennerZombies
 
         internal const string MapsFolderReadme =
             "Zombies maps for Dr K's SPZombies go in this folder, each in its own folder named ZM_<MapName>\r\n" +
-            "(for example ZM_Asylum). A map's folder holds its <mapid>zombies.json with its sounds, pictures and tips.\r\n\r\n" +
-            "A map download comes ready to extract into your SPT folder: it puts its zombies folder here and the map\r\n" +
-            "itself where CustomMapLoader reads it. Restart the SPT server and the game after adding a map.\r\n\r\n" +
-            "Fika headless: copy this folder (and the map's CustomMapLoader files) onto the headless too.\r\n\r\n" +
-            "Make your own with the SPZombies Map Kit (Unity) and the Tushonka Mapping SDK.\r\n";
+            "(for example ZM_Asylum). A map's folder holds everything for it: its <mapid>zombies.json with its sounds,\r\n" +
+            "pictures and tips, the map itself (bundles\\maps) and its server files (server). SPZombies loads it:\r\n" +
+            "no other mod is needed.\r\n\r\n" +
+            "A map download comes ready to extract into your SPT folder. Restart the SPT server and the game after\r\n" +
+            "adding a map.\r\n\r\n" +
+            "Fika headless: copy this folder onto the headless too.\r\n\r\n" +
+            "Make your own with the SPZombies Map Kit (Unity).\r\n";
 
         private void Awake() => Instance = this;
 

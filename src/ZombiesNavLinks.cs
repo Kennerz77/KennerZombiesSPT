@@ -22,6 +22,33 @@ namespace KennerZombies
         /// <summary>The links in this match (their ends on the navmesh), for walking zombies across them (ZombiesRounds).</summary>
         public static readonly List<(Vector3 a, Vector3 b, bool oneWay)> Ends = new List<(Vector3, Vector3, bool)>();
 
+        // The ledges (ends 0.6 m or more apart in height): their place in Added and what they were made from
+        private static readonly List<(int index, NavMeshLinkData data)> Ledges = new List<(int, NavMeshLinkData)>();
+
+        /// <summary>
+        /// <paramref name="check"/> worked out with the ledges lifted off the navmesh for that moment, then put back (all on
+        /// this frame: nothing else paths in between). The ledges are shortcuts down for zombies already inside chasing a
+        /// player; a spawn whose only way to a player is over one doesn't count as leading there (user, 2026-11-17: zombies
+        /// came from the still-closed upstairs from round 1 once the bridge ledges were in).
+        /// </summary>
+        public static bool WithoutLedges(System.Func<bool> check)
+        {
+            if (Ledges.Count == 0)
+                return check();
+            foreach (var (index, _) in Ledges)
+                if (Added[index].valid)
+                    NavMesh.RemoveLink(Added[index]);
+            try
+            {
+                return check();
+            }
+            finally
+            {
+                foreach (var (index, data) in Ledges)
+                    Added[index] = NavMesh.AddLink(data);
+            }
+        }
+
         public static void Add(string location)
         {
             Remove();
@@ -68,6 +95,8 @@ namespace KennerZombies
                     ZombiesPlugin.Log.LogWarning($"Zombies nav links: {line}: Unity refused the link");
                     continue;
                 }
+                if (Mathf.Abs(hb.position.y - ha.position.y) >= 0.6f)
+                    Ledges.Add((Added.Count, data));
                 Added.Add(link);
                 Ends.Add((ha.position, hb.position, oneWay));
                 n++;
@@ -81,6 +110,7 @@ namespace KennerZombies
                 if (l.valid)
                     NavMesh.RemoveLink(l);
             Added.Clear();
+            Ledges.Clear();
             Ends.Clear();
         }
     }

@@ -16,7 +16,8 @@ namespace KennerZombies
         private const int BaseHits = 3, JuggHits = 5;
         private const float RegenAfter = 4f, MinGap = 0.8f; // slaps closer together than this count once (no gang-down)
 
-        private static int _hits;
+        // Slaps taken (a half: your own Ray Gun bolt, user 2026-11-15)
+        private static float _hits;
         private static float _lastHit = -100f;
         private static bool _down;
         private static Texture2D _edge;
@@ -37,22 +38,23 @@ namespace KennerZombies
             _down = false;
         }
 
-        /// <summary>A zombie hit the local player (forced: F12's "Take a slap", past god mode and the gap).</summary>
-        public static void Hit(Player player, bool forced = false)
+        /// <summary>A zombie hit the local player (forced: F12's "Take a slap", past god mode and the gap); amount: how
+        /// much of a slap (0.5 for your own Ray Gun bolt).</summary>
+        public static void Hit(Player player, bool forced = false, float amount = 1f)
         {
             if (_down || !forced && (ZombiesDebug.NoSlaps?.Value == true || Time.time - _lastHit < MinGap))
                 return;
             // Paused (solo), or the grace after the pause's countdown / being revived: nothing lands (user, 2026-11-11)
             if (!forced && (ZombiesPause.Paused || Time.time < SafeUntil))
                 return;
-            _hits++;
+            _hits += amount;
             _lastHit = Time.time;
-            ZombiesDebug.Log($"slap {_hits}/{MaxHits}");
+            ZombiesDebug.Log($"slap {_hits:0.#}/{MaxHits}");
             ZombiesWidow.Slapped(player);
-            if (_hits < MaxHits)
+            if (_hits < MaxHits - 0.01f)
                 return;
             _down = true;
-            ZombiesPlugin.Log.LogInfo($"Zombies: down after {_hits} slaps");
+            ZombiesPlugin.Log.LogInfo($"Zombies: down after {_hits:0.#} slaps");
             // The original's last stand: crawl with the pistol until revived or bled out
             ZombiesDowned.GoDown(player);
         }

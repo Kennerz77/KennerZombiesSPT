@@ -218,9 +218,25 @@ namespace KennerZombies
                 while (Time.time < until && me.HandsController == (object)ctrl)
                     yield return null;
                 yield return new WaitForSeconds(0.1f);
-                if (!inHand && gun is Weapon back && me.HandsController?.Item != back && back.Parent != null
-                    && !(me.HandsController?.InCanNotBeInterruptedOperation() ?? false))
-                    me.SetInHands(back, _ => { });
+                // The gun back, asked again if the game didn't take it, then drawn past whatever held it up. Asked once,
+                // a refusal (a Fika headless still finishing the throw) left the hands empty until the 5 s safety net
+                // replaced the gun's copy on the host, and the next reload stuck after that (user, 2026-11-17)
+                if (!inHand && gun is Weapon back && back.Parent != null)
+                {
+                    for (int attempt = 0; attempt < 2 && me.HandsController?.Item != back; attempt++)
+                    {
+                        if (!(me.HandsController?.InCanNotBeInterruptedOperation() ?? false))
+                            me.SetInHands(back, _ => { });
+                        float wait = Time.time + 1.5f;
+                        while (Time.time < wait && me.HandsController?.Item != back)
+                            yield return null;
+                    }
+                    if (me.HandsController?.Item != back && back.Parent != null && ZombiesMatch.Active)
+                    {
+                        ZombiesPlugin.Log.LogInfo($"Zombies grenade: the {back.ShortName.Localized()} didn't come back after the throw: drawn past what held it");
+                        yield return ZombiesReload.ForceDraw(me, back);
+                    }
+                }
             }
             finally
             {

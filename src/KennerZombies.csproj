@@ -40,6 +40,7 @@
     <Reference Include="UnityEngine.PhysicsModule" HintPath="$(ManagedPath)\UnityEngine.PhysicsModule.dll" Private="false" />
     <Reference Include="UnityEngine.ParticleSystemModule" HintPath="$(ManagedPath)\UnityEngine.ParticleSystemModule.dll" Private="false" />
     <Reference Include="UnityEngine.AIModule" HintPath="$(ManagedPath)\UnityEngine.AIModule.dll" Private="false" />
+    <Reference Include="UnityEngine.JSONSerializeModule" HintPath="$(ManagedPath)\UnityEngine.JSONSerializeModule.dll" Private="false" />
     <Reference Include="UnityEngine.TerrainModule" HintPath="$(ManagedPath)\UnityEngine.TerrainModule.dll" Private="false" />
     <Reference Include="UnityEngine.UI" HintPath="$(ManagedPath)\UnityEngine.UI.dll" Private="false" />
     <Reference Include="UnityEngine.UIModule" HintPath="$(ManagedPath)\UnityEngine.UIModule.dll" Private="false" />
@@ -57,17 +58,25 @@
     <Copy SourceFiles="$(MSBuildProjectDirectory)\..\data\box_builds.json" DestinationFolder="$(PluginOutputPath)" />
     <!-- The weapon table (mag and reserve per gun; data\make_guns.py writes it) -->
     <Copy SourceFiles="$(MSBuildProjectDirectory)\..\data\guns.json" DestinationFolder="$(PluginOutputPath)" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\data\zombie_anims.json" DestinationFolder="$(PluginOutputPath)" />
+    <!-- The original's window climbs, mantles and jump-downs, retargeted (tools\retarget_traversal.py) -->
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\data\zombie_traverse.json" DestinationFolder="$(PluginOutputPath)" />
     <!-- the original score portraits for the points HUD (hud\score_char1..4.png) -->
     <ItemGroup>
       <HudPictures Include="$(MSBuildProjectDirectory)\..\data\hud\*.png" />
     </ItemGroup>
     <Copy SourceFiles="@(HudPictures)" DestinationFolder="$(PluginOutputPath)\hud" />
+    <!-- Headshot gore: skull-open heads, splash + sounds, its licence -->
+    <ItemGroup>
+      <GoreFiles Include="$(MSBuildProjectDirectory)\..\data\gore\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(GoreFiles)" DestinationFolder="$(PluginOutputPath)\gore" SkipUnchangedFiles="true" />
     <!-- Wall decals (the original's blood hands, drips, scrawl and chalk, tinted; data\decals\*.png) -->
     <ItemGroup>
       <WallDecals Include="$(MSBuildProjectDirectory)\..\data\decals\*.png" />
     </ItemGroup>
     <Copy SourceFiles="@(WallDecals)" DestinationFolder="$(PluginOutputPath)\decals" />
-    <!-- The zombies main menu's video background (data\menu\zm_menu_bg.webm: BSG's Halloween 2026 menu loop) -->
+    <!-- The zombies main menu's video background (data\menu\zm_menu_bg.webm) -->
     <ItemGroup>
       <MenuVideo Include="$(MSBuildProjectDirectory)\..\data\menu\*.webm;$(MSBuildProjectDirectory)\..\data\menu\*.mp4" />
     </ItemGroup>

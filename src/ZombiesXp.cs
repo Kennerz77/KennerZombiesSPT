@@ -67,6 +67,13 @@ namespace KennerZombies
                 r.Lines.Add(new Line { What = $"EXFIL BONUS (+{ZombiesExfil.BonusFactor * 100f:0}%)", Count = 1, Each = bonus, Xp = bonus });
                 r.Xp += bonus;
             }
+            // The host let ANY NUMBER of wonder weapons into the box: 30% off everything above (user, 2026-11-16)
+            if (ZombiesWonder.MatchAny && r.Xp > 0)
+            {
+                int cut = -Mathf.RoundToInt(r.Xp * ZombiesWonder.AnyNumberCut);
+                r.Lines.Add(new Line { What = $"ANY NUMBER OF WONDER WEAPONS (-{ZombiesWonder.AnyNumberCut * 100f:0}%)", Count = 1, Each = cut, Xp = cut });
+                r.Xp += cut;
+            }
             r.Xp = Mathf.Max(0, r.Xp);
             r.Points = r.Xp / XpPerPoint;
             return r;

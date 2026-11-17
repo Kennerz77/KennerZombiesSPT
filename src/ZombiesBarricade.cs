@@ -130,11 +130,34 @@ namespace KennerZombies
         /// <summary>This barricade's next board is someone's to rip (one at a time, the original's pace), if it's ready.</summary>
         public bool ClaimTear() => ClaimTear(TearGap);
 
+        // More than one zombie at a window rips at once (user, 2026-11-13: "let another one help rip more boards off"): each
+        // window has rippers' places, 2, or 3 on a wide one, each on its own pace (the gap), so two zombies there take the
+        // boards off about twice as fast as one
+        private float[] _tearSlots;
+
+        private int TearPlaces()
+        {
+            float width = 0f;
+            foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                width = Mathf.Max(width, Mathf.Abs(Vector3.Dot(r.bounds.size, transform.right)));
+            return width > 2.2f ? 3 : 2;
+        }
+
         public bool ClaimTear(float gap)
         {
-            if (Time.time < _nextTear || BoardsUp == 0)
+            if (BoardsUp == 0)
                 return false;
-            _nextTear = Time.time + gap;
+            if (_tearSlots == null)
+                _tearSlots = new float[TearPlaces()];
+            int free = -1;
+            for (int i = 0; i < _tearSlots.Length; i++)
+                if (Time.time >= _tearSlots[i] && (free < 0 || _tearSlots[i] < _tearSlots[free]))
+                    free = i;
+            // Not two boards off in the same moment: the second place waits a beat after the first
+            if (free < 0 || Time.time < _nextTear)
+                return false;
+            _tearSlots[free] = Time.time + gap;
+            _nextTear = Time.time + 0.5f;
             return true;
         }
 

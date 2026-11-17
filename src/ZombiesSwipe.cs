@@ -32,7 +32,9 @@ namespace KennerZombies
                 "How wide the knife's swipe is, across the middle of the screen.", new AcceptableValueRange<float>(20f, 150f)));
             _animSpeed = config.Bind(section, "Knife: swing animation speed", 1.7f, new ConfigDescription(
                 "How fast the knife's swing plays (1 = EFT's own speed). Higher is a quicker slash.", new AcceptableValueRange<float>(0.8f, 3f)));
-            _every = config.Bind(section, "Knife: time between swings (s)", 0.85f, new ConfigDescription(
+            // 0.85 -> 0.5 (user, 2026-11-15: more repeatable; the swing's own animation still has to end first). Key renamed
+            // so the saved 0.85 doesn't stay
+            _every = config.Bind(section, "Knife: shortest time between swings (s)", 0.5f, new ConfigDescription(
                 "The shortest time from one knife swing to the next (holding or spamming melee can't go faster).", new AcceptableValueRange<float>(0.3f, 2f)));
             Headset = config.Bind(section, "Headset sound (everyone)", HeadsetSound.None, new ConfigDescription(
                 "What everyone hears through in a zombies match, whatever headset they wear (it's only a look): None = no headset " +
@@ -49,7 +51,7 @@ namespace KennerZombies
 
         // The hit lands as the blade crosses the screen: 0.12 s at the old 2.8 speed, later as the swing slows
         private static float HitAfter => 0.12f * 2.8f / Mathf.Max(0.5f, AnimSpeed);
-        private static float SwingEvery => _every?.Value ?? 0.85f;
+        private static float SwingEvery => _every?.Value ?? 0.5f;
 
         // One swing per swing animation (spamming F hit faster than the knife was seen to move, the user 2026-11-08);
         // the hit lands as the blade crosses the screen, a beat after the key

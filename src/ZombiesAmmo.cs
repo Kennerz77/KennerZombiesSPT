@@ -591,7 +591,7 @@ namespace KennerZombies
 
         private static int _launcherMag = -1, _launcherReserve;
 
-        private static bool SafeLauncherMode(Player.FirearmController fc)
+        internal static bool SafeLauncherMode(Player.FirearmController fc)
         {
             try
             {
@@ -760,6 +760,59 @@ namespace KennerZombies
         /// nothing to zombies (the wall-buy MP-43, user 2026-11-09). Only loose piles in the gear: never a mag or a round
         /// inside the gun in the hands (the host waits for the hands to let go of those).
         /// </summary>
+        /// <summary>
+        /// A reload cancelled by a swap (ZombiesReload.CancelForSwap; user, 2026-11-15): EFT's mag swap is done (it has to
+        /// be: its inventory already moved the mags), so the rounds are put back as they were before it: the gun's new mag
+        /// holds what the gun had, the mag that came out holds what the spare had. No pooling, nothing gained or lost.
+        /// </summary>
+        internal static void ReloadCancelled(Player me, Weapon w, Magazine inGun, int inGunRounds, Magazine outMag, int outRounds)
+        {
+            if (me == null || w == null || inGun == null)
+                return;
+            if (!Guns.TryGetValue(w.Id, out GunAmmo gun))
+                Guns[w.Id] = gun = new GunAmmo { Reserve = ReserveFor(w), AmmoTemplate = w.Template.defAmmo };
+            string tpl = gun.AmmoTemplate ?? w.Template.defAmmo;
+            // The fast-forward chambered a round from the new mag into an empty gun: that one came out of the spare
+            if (inGunRounds < 0)
+            {
+                outRounds += inGunRounds;
+                inGunRounds = 0;
+            }
+            int cap = Capacity(w, inGun, true);
+            if (inGunRounds > cap)
+            {
+                outRounds += inGunRounds - cap;
+                inGunRounds = cap;
+            }
+            SetRounds(inGun, inGunRounds, tpl);
+            Counts[inGun.Id] = inGun.Count;
+            outRounds = Mathf.Max(0, outRounds);
+            if (outMag != null && Find<Magazine>(me.InventoryController, outMag.Id) != null)
+            {
+                int outCap = Capacity(w, outMag, false);
+                SetRounds(outMag, Mathf.Min(outRounds, outCap), tpl);
+                gun.Reserve += Mathf.Max(0, outRounds - outCap);
+                Counts[outMag.Id] = outMag.Count;
+                gun.Spare = outMag.Id;
+                TellHost(outMag);
+            }
+            else
+            {
+                // A quick reload dropped the old mag: the spare's rounds go back to the reserve (a new spare is made)
+                gun.Reserve += outRounds;
+                if (outMag != null)
+                    Counts[outMag.Id] = 0;
+                gun.Spare = null;
+            }
+            gun.InGun = inGun.Id;
+            gun.Out = null;
+            gun.Pool = false;
+            _shownMag = -1;
+            if (ZombiesNet.Online)
+                ZombiesNet.GunRounds(w.Id.ToString(), inGun.Count);
+            ZombiesDebug.Log($"ammo: reload cancelled: {inGun.Count} in the gun, spare {(outMag != null ? outMag.Count : 0)}, reserve {gun.Reserve}");
+        }
+
         private static void TellHost(Item stack)
         {
             if (stack?.CurrentAddress == null || !ZombiesNet.Online || ZombiesNet.IsHost)
@@ -791,22 +844,48 @@ namespace KennerZombies
             Magazine mag = w.GetCurrentMagazine();
             if (mag == null || mag is CylinderMagazine)
                 return;
-            string key = w.Id + "|" + mag.Count;
+            string key = w.Id + "|" + mag.Count + "|" + Chambered(w);
             if (key == _roundsSent)
                 return;
             _roundsSent = key;
             _nextRoundsSend = Time.time + 0.3f;
-            ZombiesNet.GunRounds(w.Id.ToString(), mag.Count);
+            ZombiesNet.GunRounds(w.Id.ToString(), mag.Count, Chambered(w));
         }
 
         /// <summary>A teammate's held gun has this many rounds in its mag: set here too.</summary>
-        public static void RoundsRemote(Player owner, string gunId, int count)
+        /// <summary>1 when the gun's first chamber holds a live round, 0 when not, -1 for a gun with no chamber.</summary>
+        private static int Chambered(Weapon w) =>
+            w?.Chambers == null || w.Chambers.Length == 0 ? -1 : w.Chambers[0].ContainedItem is Ammo a && !a.IsUsed ? 1 : 0;
+
+        /// <summary>A copy of a teammate's gun: its first chamber filled with a round or emptied, to match theirs.</summary>
+        private static void SetChamber(Weapon w, bool loaded)
+        {
+            Slot chamber = w.Chambers[0];
+            bool has = chamber.ContainedItem is Ammo a && !a.IsUsed;
+            if (has == loaded)
+                return;
+            if (chamber.ContainedItem != null)
+                chamber.RemoveItemWithoutRestrictions();
+            if (!loaded)
+                return;
+            string tpl = w.GetCurrentMagazine()?.Cartridges?.Items.FirstOrDefault()?.TemplateId.ToString() ?? w.Template.defAmmo;
+            if (string.IsNullOrEmpty(tpl) || !(Singleton<ItemFactory>.Instance?.CreateItem(MongoID.Generate(), tpl, null) is Ammo round))
+                return;
+            round.StackObjectsCount = 1;
+            chamber.AddWithoutRestrictions(round);
+        }
+
+        public static void RoundsRemote(Player owner, string gunId, int count, int chambered = -1)
         {
             try
             {
                 if (owner == null || owner.IsYourPlayer)
                     return;
                 Weapon w = owner.InventoryController?.Inventory?.Equipment?.GetAllItems().OfType<Weapon>().FirstOrDefault(x => x.Id.ToString() == gunId);
+                // The chamber as theirs (the Wunderwaffe's bulbs count it), not while their reload plays here
+                if (w != null && chambered >= 0 && w.Chambers != null && w.Chambers.Length > 0
+                    && !(owner.HandsController is Player.FirearmController rfc && rfc.IsInReloadOperation()))
+                    SetChamber(w, chambered == 1);
                 Magazine mag = w?.GetCurrentMagazine();
                 if (mag == null || mag is CylinderMagazine || mag.Count == count)
                     return;
@@ -839,6 +918,8 @@ namespace KennerZombies
 
         // ---------- The gun's name over the counter for a moment on a swap (user, 2026-11-10) ----------
         private static string _nameShown, _nameFor;
+        private static bool _nameForInfused;
+        private static readonly GUIContent _nameContent = new GUIContent();
         private static float _nameUntil;
         private static GUIStyle _nameStyle;
         private const float NameSeconds = 2.5f, NameFade = 0.6f;
@@ -848,14 +929,16 @@ namespace KennerZombies
             Player me = Singleton<GameWorld>.Instance?.MainPlayer;
             if (me?.HandsController?.Item is Weapon held)
             {
-                string id = held.Id.ToString() + (ZombiesPaP.Infused(held) ? "+" : "");
-                if (id != _nameFor)
+                bool infused = ZombiesPaP.Infused(held);
+                if (held.Id != _nameFor || infused != _nameForInfused)
                 {
-                    _nameFor = id;
+                    _nameFor = held.Id;
+                    _nameForInfused = infused;
                     _nameShown = held.ShortName.Localized();
                     string full = held.LocalizedName();
                     if (!string.IsNullOrEmpty(full) && full.Length <= 26)
                         _nameShown = full;
+                    _nameContent.text = _nameShown?.ToUpperInvariant() ?? "";
                     _nameUntil = Time.time + NameSeconds;
                 }
             }
@@ -867,7 +950,7 @@ namespace KennerZombies
             _nameStyle.fontSize = Mathf.RoundToInt(24 * s);
             float a = Mathf.Clamp01(left / NameFade);
             var r = new Rect(right - 600 * s, top - 34 * s, 600 * s, 32 * s);
-            Shadowed(r, new GUIContent(_nameShown.ToUpperInvariant()), _nameStyle, new Color(1f, 1f, 1f, a), s);
+            Shadowed(r, _nameContent, _nameStyle, new Color(1f, 1f, 1f, a), s);
         }
 
         public static void Shown(Weapon w, out int mag, out int reserve)
@@ -951,8 +1034,18 @@ namespace KennerZombies
 
         // Our special guns: their own rules on how much a mag holds
         internal const string ThundergunId = "6a7e5a71d9a1150000000001", RaygunId = "6a7e5a71d9a1160000000001";
+        // The Wunderwaffe DG-2 mod's gun: its lightning always kills (ZombiesHealth)
+        internal const string WunderwaffeId = "6a7f4d6f1b11550000000001";
 
         private static System.Reflection.MethodInfo _raygunBootUp, _thundergunBootUp;
+
+        /// <summary>The other wonder weapon mods' guns (template id) and their start-up classes.</summary>
+        private static readonly Dictionary<string, string> OtherBootUps = new Dictionary<string, string>
+        {
+            ["6a7f2b4e8d11530000000001"] = "RaygunMk2.RaygunMk2BootUp",
+            ["6a7f4d6f1b11550000000001"] = "Wunderwaffe.WunderwaffeBootUp",
+            ["6a7f3c5e9a11540000000001"] = "Mp40.Mp40BootUp",
+        };
 
         /// <summary>
         /// The Ray Gun's next draw is the original's boot-up (Ray Gun mod's RaygunBootUp.Next): only when it's newly in the hands,
@@ -963,6 +1056,20 @@ namespace KennerZombies
             if (w == null)
                 return;
             string tpl = w.TemplateId.ToString();
+            // The wonder weapon mods' own start-ups (each mod's *BootUp.Next): the Ray Gun Mark II, the Wunderwaffe
+            // DG-2 and the MP40 play theirs only when newly in your hands in a match (user, 2026-11-16)
+            if (OtherBootUps.TryGetValue(tpl, out string bootUpType))
+            {
+                try
+                {
+                    AccessTools.Method(AccessTools.TypeByName(bootUpType), "Next")?.Invoke(null, null);
+                }
+                catch (Exception e)
+                {
+                    ZombiesPlugin.Log.LogWarning($"Zombies: {bootUpType} couldn't be asked for ({e.Message})");
+                }
+                return;
+            }
             if (tpl != RaygunId && tpl != ThundergunId)
                 return;
             try
@@ -985,7 +1092,17 @@ namespace KennerZombies
 
         public static bool IsThundergun(Item w) => w != null && w.TemplateId.ToString() == ThundergunId;
 
-        public static bool IsWonderWeapon(Item w) => w != null && (w.TemplateId.ToString() == ThundergunId || w.TemplateId.ToString() == RaygunId);
+        // The Ray Gun Mark II mod's gun
+        internal const string RaygunMk2Id = "6a7f2b4e8d11530000000001";
+
+        public static bool IsWonderWeapon(Item w)
+        {
+            if (w == null)
+                return false;
+            string tpl = w.TemplateId.ToString();
+            // The Mark II and the DG-2 too (user, 2026-11-16): their own mag sizes and draws, no box rack
+            return tpl == ThundergunId || tpl == RaygunId || tpl == RaygunMk2Id || tpl == WunderwaffeId;
+        }
 
         /// <summary>
         /// How many rounds this mag of this gun holds full: the Thundergun mod's canister holds 2 charges (4 on a Zeus
